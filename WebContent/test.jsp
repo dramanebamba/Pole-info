@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Ok ça marche sans problème !/MK
+Ok ça marche sans problème !/M
 </body>
 </html>
