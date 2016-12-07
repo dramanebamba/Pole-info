@@ -64,6 +64,7 @@ public class Inscription extends HttpServlet {
 			resultat = "Échec de l'inscription.";
 		}
 
+		
 		/* Stockage du résultat et des messages d'erreur dans l'objet request */
 		request.setAttribute( ATT_ERREURS, erreurs );
 		request.setAttribute( ATT_RESULTAT, resultat );
