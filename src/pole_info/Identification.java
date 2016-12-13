@@ -48,12 +48,11 @@ public class Identification extends HttpServlet {
 		String login = (String) request.getParameter("login");
 		String pw = (String) request.getParameter("password");
 		
-		System.out.println(verification_login.test(login,pw));
+		System.out.println("Operation : " + operation);
 		
-		/*
 		if(operation.equals("confAuth")){
-			response.getWriter().println("Connexion établie pour " + login);
-			//doGet(request, response);
-		}*/	
+			response.getWriter().println(verification_login.test(login,pw));
+			//System.out.println(verification_login.test(login,pw));
+		}
 	}
 }
