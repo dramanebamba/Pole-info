@@ -34,7 +34,7 @@ public class Accueil extends HttpServlet {
 		response.getWriter().println("Page d'accueil !");
 		
 		//Affichage de la page d'accueil
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.html");
 		dispatch.forward(request,response);
 	}
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Création d'un étudiant</title>
+</head>
+
+<body>
+	<label>Formulaire de création d'un étudiant</label><br /><br />
+	<form action="./identification?operation=confAuth" method="post">
+		<label>Nom</label> <input type="text" name="last_name" /><br />
+		<label>Théo</label> <input type="name" /><br /> 
+		<label>E-mail</label> <input type="email" /><br />
+		<label>Parcours</label>
+		<SELECT
+			name="parcours" size="1">
+			<OPTION>SITN
+			<OPTION>IF
+			<OPTION>ID
+		</SELECT>
+		<br />
+		<br />
+		<input type="submit" value="Créer l'étudiant">
+	</form>
+	<input type="button" name="import" value="Importation d'un étudiant">
+</body>
+
+</html>
