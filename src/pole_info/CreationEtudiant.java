@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Identification
  */
 @WebServlet("/creationEtudiant")
-public class creationEtudiant extends HttpServlet 
+public class CreationEtudiant extends HttpServlet 
 {
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class creationEtudiant extends HttpServlet
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public creationEtudiant() 
+	public CreationEtudiant() 
 	{
 		super();
 	}
