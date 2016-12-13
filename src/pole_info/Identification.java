@@ -34,7 +34,7 @@ public class Identification extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/identification.jsp");
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/identification.html");
 		dispatch.forward(request, response);
 	}
 
