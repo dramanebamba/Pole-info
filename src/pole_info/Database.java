@@ -39,6 +39,7 @@ public class Database {
 			e.printStackTrace();
 		}
 		System.out.println("Opened database successfully");
+		//c.close();
 	}
 	
 	
