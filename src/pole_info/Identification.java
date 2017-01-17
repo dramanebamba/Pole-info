@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class Identification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private VerificationLogin verification_login;
+	private VerificationLogin verification_login;	// CDI servant à verifier que les identifiants sont en BDD
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,7 +51,7 @@ public class Identification extends HttpServlet {
 		System.out.println("Operation : " + operation);
 		
 		if(operation.equals("confAuth")){
-			response.getWriter().println(verification_login.test(login,pw));
+			response.getWriter().println(verification_login.test(login,pw));	// Test en BDD par le CDI
 			//System.out.println(verification_login.test(login,pw));
 		}
 	}
