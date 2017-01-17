@@ -11,7 +11,7 @@
 		</head>
 		<body>
 			<div class="container">
-				<h1>Mes préférences</h1>
+				<h1><a href="./">Mes préférences</a></h1>
 				<p class="lead">Un étudiant peut entrer ses préférences concernant les cours facultatifs auxquels il a accès.</p>
 
 				<form method="post" action="Preferences">
