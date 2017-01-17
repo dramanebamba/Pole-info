@@ -9,4 +9,5 @@ public class VerificationLogin
 	{
 		return (login.equals("Theo") && pw.equals("YEAH"))?"yes":"non";
 	}
+	
 }
