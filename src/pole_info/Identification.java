@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class Identification
  */
 @WebServlet("/identification")
-public class Identification extends HttpServlet {
+public class Identification extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private VerificationLogin verification_login;	// CDI servant à verifier que les identifiants sont en BDD
@@ -55,6 +56,7 @@ public class Identification extends HttpServlet {
 		// Test en BDD par le CDI
 		if(operation.equals("confAuth") && verification_login.test(login,pw)){
 			request.setAttribute("connected", "true");
+			session.setAttribute("connected", "true");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 			dispatch.forward(request, response);
 			
@@ -62,6 +64,7 @@ public class Identification extends HttpServlet {
 		}
 		if(operation.equals("logout")){
 			request.setAttribute("connected", "false");
+			session.setAttribute("connected", "false");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
 			dispatch.forward(request, response);
 			System.out.println(session.getAttribute("connect"));

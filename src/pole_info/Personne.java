@@ -1,6 +1,8 @@
 package pole_info;
 
-abstract class Personne 
+import java.util.Vector;
+
+public class Personne 
 {
 	static int noC = 1;
 	private int id;
@@ -16,7 +18,24 @@ abstract class Personne
 	private String password = null;
 	private int id_master = 0;
 	private int annee_master = 0;
+	
+	static Vector<Personne> BDD = new Vector<Personne>();
 
+	public Personne(String nom, String pre, String mail, String parcours, String cv, String note, String pw, int id_m, int annee, String role)
+	{
+		setId(noC++);
+		setNom(nom);
+		setPrenom(pre);
+		setParcours(parcours);
+		setEmail(mail);
+		setCv(cv);
+		setNotes(note);
+		if(role != null) setRoles(role);
+		setPassword(pw);
+		setId_master(id_m);
+		setAnnee_master(annee);
+	}
+	
 	public String getNom() 
 	{
 		return nom;
@@ -144,5 +163,10 @@ abstract class Personne
 	public void setAnnee_master(int annee_master) 
 	{
 		this.annee_master = annee_master;
+	}
+	
+	public String toString()
+	{
+		return (roles.equals("Et"))?("Je suis un étudiant, mon nom est "+nom+" et mon prénom "+prenom):("Je suis un enseignant, mon nom est "+nom+" et mon prénom "+prenom);
 	}
 }
