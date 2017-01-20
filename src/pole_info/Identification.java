@@ -33,9 +33,10 @@ public class Identification extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/identification.html");
 		dispatch.forward(request, response);
+		
 	}
 
 	/**
@@ -52,10 +53,18 @@ public class Identification extends HttpServlet {
 		System.out.println("Operation : " + operation);
 
 		// Test en BDD par le CDI
-		if(operation.equals("confAuth") && verification_login.test(login,pw))
-		{
-			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.html");
+		if(operation.equals("confAuth") && verification_login.test(login,pw)){
+			request.setAttribute("connected", "true");
+			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 			dispatch.forward(request, response);
+			
+			System.out.println(session.getAttribute("connect"));
+		}
+		if(operation.equals("logout")){
+			request.setAttribute("connected", "false");
+			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
+			dispatch.forward(request, response);
+			System.out.println(session.getAttribute("connect"));
 		}
 	}
 }
