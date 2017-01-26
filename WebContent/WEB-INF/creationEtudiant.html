@@ -8,13 +8,15 @@
 
 <body>
 	<label>Formulaire de création d'un étudiant</label><br /><br />
-	<form action="./identification?operation=confAuth" method="post">
-		<label>Nom</label> <input type="text" name="last_name" /><br />
-		<label>Prénom</label> <input type="name" /><br /> 
-		<label>E-mail</label> <input type="email" /><br />
+
+	<form action="./creationEtudiant?operation=createStudent" method="post">
+		<label>Nom</label> <input type="text" name="last_name" id="last_name" /><br />
+		<label>Prenom</label> <input type="text" name="first_name" id="first_name" /><br /> 
+		<label>E-mail</label> <input type="text" name="mail" id="mail" /><br />
+
 		<label>Parcours</label>
 		<SELECT
-			name="parcours" size="1">
+			name="parcours" id="parcours" size="1">
 			<OPTION>SITN
 			<OPTION>IF
 			<OPTION>ID
