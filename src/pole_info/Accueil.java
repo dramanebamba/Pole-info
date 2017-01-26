@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Accueil
@@ -31,10 +32,12 @@ public class Accueil extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		HttpSession session = request.getSession(true);
+		
 		response.getWriter().println("Page d'accueil !");
 		
 		//Affichage de la page d'accueil
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.html");
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 		dispatch.forward(request,response);
 	}
 

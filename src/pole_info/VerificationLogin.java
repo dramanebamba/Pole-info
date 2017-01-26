@@ -5,9 +5,10 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class VerificationLogin 
 {
-	public String test(String login, String pw)
+	// Class permettant de vérifier la présence des identifiants en BDD
+	public boolean test(String login, String pw)
 	{
-		return (login.equals("Theo") && pw.equals("YEAH"))?"yes":"non";
+		return (login.equals("admin") && pw.equals("admin"))?true:false;
 	}
 	
 }

@@ -5,17 +5,22 @@
 <title>Accueil</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
+<% String connected = (String) request.getAttribute("connected");%>
+<% if(connected == "true"){%>
 <body>
 	<div class="container">
 		<h1>Menu</h1>
-		<a href="./creationEtudiant"> CrÃ©ation d'un Ã©tudiant </a><br />
+		<a href="./creationEtudiant"> Création d'un étudiant </a><br />
 		<br />
-		<a href="./Preferences"> Indiquer ses prÃ©fÃ©rences </a><br />
+		<a href="./Preferences"> Indiquer ses préférences </a><br />
 		<br />
 		<form action="./identification?operation=logout" method="post">
-			<button class="btn btn-danger" type="submit">Se dÃ©connecter</button>
+			<button class="btn btn-danger" type="submit">Se déconnecter</button>
 		</form>
 		<br/>
 	</div>
+<% } else{%>
+	NOTHING TO SHOW
+<%} %>
 </body>
 </html>
