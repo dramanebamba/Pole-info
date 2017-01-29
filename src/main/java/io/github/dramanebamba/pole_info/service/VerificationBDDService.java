@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 @ApplicationScoped
-public class VerificationBDD 
+public class VerificationBDDService 
 {
 	public boolean test(String mail)
 	{

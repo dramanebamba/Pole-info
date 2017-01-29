@@ -16,16 +16,16 @@ import main.java.io.github.dramanebamba.pole_info.service.*;
  * Servlet implementation class Identification
  */
 @WebServlet("/identification")
-public class Identification extends HttpServlet 
+public class IdentificationServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private VerificationLogin verification_login;	// CDI servant à verifier que les identifiants sont en BDD
+	private VerificationLoginService verification_login;	// CDI servant à verifier que les identifiants sont en BDD
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Identification() {
+	public IdentificationServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

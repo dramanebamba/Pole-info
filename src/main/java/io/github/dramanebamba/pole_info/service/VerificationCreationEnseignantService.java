@@ -3,7 +3,7 @@ package main.java.io.github.dramanebamba.pole_info.service;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class VerificationCreationEnseignant {
+public class VerificationCreationEnseignantService {
 
 	public String CreationEnseignant(String nom, String prenom, String mail, String sitn)
 	{

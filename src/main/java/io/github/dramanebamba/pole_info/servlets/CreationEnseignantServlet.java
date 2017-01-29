@@ -11,25 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import main.java.io.github.dramanebamba.pole_info.service.*;
-import main.java.io.github.dramanebamba.pole_info.model.*;
 
 /**
  * Servlet implementation class Identification
  */
-@WebServlet("/creationEtudiant")
-public class CreationEtudiant extends HttpServlet 
-{	
+@WebServlet("/creationEnseignant")
+public class CreationEnseignantServlet extends HttpServlet 
+{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3L;
+	private static final long serialVersionUID = 2L;
+	
 	@Inject
-	private VerificationBDD verification_BDD;
+	private VerificationCreationEnseignantService verificationCreationEnseignant;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreationEtudiant() 
+	public CreationEnseignantServlet() 
 	{
 		super();
 	}
@@ -39,40 +39,33 @@ public class CreationEtudiant extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEtudiant.html");
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEnseignant.html");
 		dispatch.forward(request, response);
 	}
+	
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
 		String nom = (String) request.getParameter("last_name");
 		String prenom = (String) request.getParameter("first_name");
 		String mail = (String) request.getParameter("mail");
-		String parcours = (String) request.getParameter("parcours");
-		String connected = (String) session.getAttribute("connected");
+		String sitn =(String) request.getParameter("SITN");
 		
-		request.setAttribute("connected", connected);
-
+		
 		System.out.println("Operation : " + operation);
-
-		if(operation.equals("createStudent"))
-		{
-			if(verification_BDD.test(mail))
-			{
-				Personne.getBDD().add(new Personne(nom, prenom, mail, parcours, "", "", "", 0, 0, "Et"));
-				System.out.println("Nouvel étudiant créé :" + nom + " " + prenom + " / " + mail + " / " + parcours);
-				System.out.println(Personne.getBDD().size() + "personne en BDD");
-				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
-				dispatch.forward(request, response);
-			}
-			else
-				response.getWriter().println("KO");
+		System.out.println("nom : " + nom);
+		System.out.println("prenom : " + prenom);
+		System.out.println("mail : " + mail);
+		System.out.println("sitn : " + sitn);
+		
+		if(operation.equals("confAuth")){
+			response.getWriter().println(verificationCreationEnseignant.CreationEnseignant(nom,prenom,mail,sitn));
 		}
 	}
+	
 }
