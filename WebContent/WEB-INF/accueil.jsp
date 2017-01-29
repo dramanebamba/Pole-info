@@ -10,12 +10,14 @@
 <body>
 	<div class="container">
 		<h1>Menu</h1>
-		<a href="./creationEtudiant"> Création d'un étudiant </a><br />
+		<a href="./creationEtudiant"> CrÃ©ation d'un Ã©tudiant </a><br />
 		<br />
-		<a href="./Preferences"> Indiquer ses préférences </a><br />
+		<a href="./creationEnseignant"> CrÃ©ation d'un enseignant </a><br />
+		<br />
+		<a href="./Preferences"> Indiquer ses prÃ©fÃ©rences </a><br />
 		<br />
 		<form action="./identification?operation=logout" method="post">
-			<button class="btn btn-danger" type="submit">Se déconnecter</button>
+			<button class="btn btn-danger" type="submit">Se dÃ©connecter</button>
 		</form>
 		<br/>
 	</div>
