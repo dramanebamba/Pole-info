@@ -54,7 +54,7 @@ public class CreationEnseignantServlet extends HttpServlet
 		String nom = (String) request.getParameter("last_name");
 		String prenom = (String) request.getParameter("first_name");
 		String mail = (String) request.getParameter("mail");
-		String sitn =(String) request.getParameter("SITN");
+		String sitn = (String) request.getParameter("SITN");
 		
 		
 		System.out.println("Operation : " + operation);
@@ -63,9 +63,7 @@ public class CreationEnseignantServlet extends HttpServlet
 		System.out.println("mail : " + mail);
 		System.out.println("sitn : " + sitn);
 		
-		if(operation.equals("confAuth")){
+		if(operation.equals("confAuth"))
 			response.getWriter().println(verificationCreationEnseignant.CreationEnseignant(nom,prenom,mail,sitn));
-		}
 	}
-	
 }

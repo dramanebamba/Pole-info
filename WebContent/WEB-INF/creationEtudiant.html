@@ -4,10 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Création d'un étudiant</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
 
 <body>
-	<label>Formulaire de création d'un étudiant</label><br /><br />
+	<H1>Formulaire de création d'un étudiant</H1><br />
 
 	<form action="./creationEtudiant?operation=createStudent" method="post">
 		<label>Nom</label> <input type="text" name="last_name" id="last_name" /><br />
@@ -23,9 +24,10 @@
 		</SELECT>
 		<br />
 		<br />
-		<input type="submit" value="Créer l'étudiant">
+		<input class="btn btn-primary" type="submit" value="Créer l'étudiant"><br />
 	</form>
-	<input type="button" name="import" value="Importation d'un étudiant">
+	<input class="btn btn-info" type="button" name="import" value="Importation d'un étudiant">
+	<a class="btn btn-danger" href="./accueil.jsp">Annuler</a>
 </body>
 
 </html>
