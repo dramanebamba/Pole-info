@@ -1,4 +1,4 @@
-package service;
+package main.java.io.github.dramanebamba.pole_info.service;
 
 import java.util.HashMap;
 import javax.enterprise.context.ApplicationScoped;
@@ -7,7 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
  * Servlet implementation class ListeContenu
  */
 @ApplicationScoped
-public class ListeContenu {
+public class ContenuService {
 	public HashMap<Integer, String> getListeContenu() {
 		return listeContenu;
 	}

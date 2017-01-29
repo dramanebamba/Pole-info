@@ -1,8 +1,8 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
-import service.ListeContenu;
+import main.java.io.github.dramanebamba.pole_info.service.*;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -15,17 +15,17 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Preferences
  */
 @WebServlet("/Preferences")
-public class Preferences extends HttpServlet {
+public class GetPreferencesServlet extends HttpServlet {
 	public static final String ATT_MESSAGES = "messages";
 	public static final String VUE          = "/WEB-INF/Preferences.jsp";
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private ListeContenu listeContenu;
+	private ContenuService listeContenu;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Preferences() {
+	public GetPreferencesServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

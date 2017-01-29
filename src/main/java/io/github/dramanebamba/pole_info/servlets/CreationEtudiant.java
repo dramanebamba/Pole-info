@@ -1,4 +1,4 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
 
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import main.java.io.github.dramanebamba.pole_info.service.*;
+import main.java.io.github.dramanebamba.pole_info.model.*;
 
 /**
  * Servlet implementation class Identification
@@ -63,9 +65,9 @@ public class CreationEtudiant extends HttpServlet
 		{
 			if(verification_BDD.test(mail))
 			{
-				Personne.BDD.add(new Personne(nom, prenom, mail, parcours, "", "", "", 0, 0, "Et"));
+				Personne.getBDD().add(new Personne(nom, prenom, mail, parcours, "", "", "", 0, 0, "Et"));
 				System.out.println("Nouvel étudiant créé :" + nom + " " + prenom + " / " + mail + " / " + parcours);
-				System.out.println(Personne.BDD.size() + "personne en BDD");
+				System.out.println(Personne.getBDD().size() + "personne en BDD");
 				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 				dispatch.forward(request, response);
 			}

@@ -1,4 +1,4 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.model;
 
 import java.util.Vector;
 
@@ -19,7 +19,7 @@ public class Personne
 	private int id_master = 0;
 	private int annee_master = 0;
 	
-	static Vector<Personne> BDD = new Vector<Personne>();
+	private static Vector<Personne> BDD = new Vector<Personne>();
 
 	public Personne(String nom, String pre, String mail, String parcours, String cv, String note, String pw, int id_m, int annee, String role)
 	{
@@ -168,5 +168,13 @@ public class Personne
 	public String toString()
 	{
 		return (roles.equals("Et"))?("Je suis un étudiant, mon nom est "+nom+" et mon prénom "+prenom):("Je suis un enseignant, mon nom est "+nom+" et mon prénom "+prenom);
+	}
+
+	public static Vector<Personne> getBDD() {
+		return BDD;
+	}
+
+	public static void setBDD(Vector<Personne> bDD) {
+		BDD = bDD;
 	}
 }

@@ -1,6 +1,7 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.service;
 
 import javax.enterprise.context.ApplicationScoped;
+import main.java.io.github.dramanebamba.pole_info.model.*;
 
 @ApplicationScoped
 public class VerificationBDD 
@@ -8,7 +9,7 @@ public class VerificationBDD
 	public boolean test(String mail)
 	{
 		System.out.println("TEST CDI");
-		for(Personne personne:Personne.BDD)
+		for(Personne personne:Personne.getBDD())
 			if(personne.getEmail().equals(mail))	return false;
 		return true;
 	}
