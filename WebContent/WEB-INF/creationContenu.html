@@ -12,12 +12,20 @@
 	<form action="./creationContenu?operation=createContenu" method="post">
 		<label>Nom</label> <input type="text" name="nom" /><br />
 		<label>Description</label> <textarea name="description">Veuillez remplir </textarea> <br /> 
-		<label>Apprentissage</label> <input type="text" name="apprentissage"/><br /> 
+		<label>Apprentissage</label> 
+		<select name="apprentissage"> 
+			<option>O</option>
+			<option>N</option> 
+		</select>
+		<br /> 
 		<label>Volume horaire</label> <input type="text" name="vol_horaire"/><br /> 
 		<label>Ects</label> <input type="text" name="ects"/><br /> 
-		<label>Objectifs</label> <input type="text" name="objectives"/><br /> 
-		<label>Contenu</label> <input type="text" name="contents"/><br /> 
-		<label>Biblio</label> <input type="text" name="biblio"/><br /> 
+		<label>Objectifs</label> <textarea name="objectives">Veuillez remplir </textarea>
+		<br /> 
+		<label>Contenu</label> <textarea name="contents">Veuillez remplir </textarea>
+		<br /> 
+		<label>Biblio</label> <textarea name="biblio">Veuillez remplir</textarea>
+		<br /> 
 		<br />
 		<input type="submit" value="Valider">
 	</form>
