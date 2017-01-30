@@ -24,10 +24,12 @@ public class Inscription extends HttpServlet {
 	public static final String ATT_ERREURS  = "erreurs";
 	public static final String ATT_RESULTAT = "resultat";
 
+	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response )	throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
 
+	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
 		/* Récupération des champs du formulaire. */
 

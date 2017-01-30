@@ -36,6 +36,7 @@ public class PostPreferenceServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher(VUE);
 		dispatch.forward(request, response);
@@ -44,6 +45,7 @@ public class PostPreferenceServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id_master = Integer.parseInt(request.getParameter("id_master"));
 		int id_contenu = Integer.parseInt(request.getParameter("id_contenu"));

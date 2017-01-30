@@ -37,6 +37,7 @@ public class CreationEnseignantServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEnseignant.html");
@@ -47,15 +48,15 @@ public class CreationEnseignantServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
+		// HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
-		String nom = (String) request.getParameter("last_name");
-		String prenom = (String) request.getParameter("first_name");
-		String mail = (String) request.getParameter("mail");
-		String sitn = (String) request.getParameter("SITN");
-		
+		String nom = request.getParameter("last_name");
+		String prenom = request.getParameter("first_name");
+		String mail = request.getParameter("mail");
+		String sitn = request.getParameter("SITN");
 		
 		System.out.println("Operation : " + operation);
 		System.out.println("nom : " + nom);

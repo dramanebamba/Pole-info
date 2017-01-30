@@ -37,6 +37,7 @@ public class CreationEtudiantServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEtudiant.html");
@@ -46,26 +47,27 @@ public class CreationEtudiantServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
-		String nom = (String) request.getParameter("last_name");
-		String prenom = (String) request.getParameter("first_name");
-		String mail = (String) request.getParameter("mail");
-		String parcours = (String) request.getParameter("parcours");
+		String nom = request.getParameter("last_name");
+		String prenom = request.getParameter("first_name");
+		String mail = request.getParameter("mail");
+		String parcours = request.getParameter("parcours");
 		String connected = (String) session.getAttribute("connected");
 		
 		request.setAttribute("connected", connected);
-
 		System.out.println("Operation : " + operation);
 
 		if(operation.equals("createStudent"))
 		{
 			if(verification_BDD.test(mail))
 			{
-				Personne.getBDD().add(new Personne(nom, prenom, mail, parcours, "", "", "", 0, 0, "Et"));
+				System.out.println("Création etudiant...");
+				Personne.getBDD().add(new Personne(nom, prenom, mail, parcours, "", "", "", 0, 0, new Role('S',"Etudiant")));
 				System.out.println("Nouvel étudiant créé :" + nom + " " + prenom + " / " + mail + " / " + parcours);
 				System.out.println(Personne.getBDD().size() + "personne en BDD");
 				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");

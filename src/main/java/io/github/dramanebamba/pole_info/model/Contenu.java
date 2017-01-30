@@ -115,4 +115,12 @@ public class Contenu {
 	public static void setBDD(List<Contenu> bDD_content) {
 		BDD_contenu = bDD_content;
 	}
+
+	public String getObj() {
+		return obj;
+	}
+
+	public void setObj(String obj) {
+		this.obj = obj;
+	}
 }

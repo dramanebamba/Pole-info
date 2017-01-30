@@ -16,6 +16,7 @@
 		<br />
 		<a href="./Preferences"> Indiquer ses préférences </a><br />
 		<br />
+		<br />
 		<form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se déconnecter</button>
 		</form>

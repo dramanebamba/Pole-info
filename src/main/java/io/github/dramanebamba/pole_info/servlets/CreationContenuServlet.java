@@ -37,6 +37,7 @@ public class CreationContenuServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationContenu.html");
@@ -47,19 +48,21 @@ public class CreationContenuServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
-		String nomMat = (String) request.getParameter("nomMat");
-		String desc = (String) request.getParameter("description");
-		String app = (String) request.getParameter("apprentissage");
-		String vol_horaire = (String) request.getParameter("vol_horaire");
-		String ects = (String) request.getParameter("ects");
-		String obj = (String) request.getParameter("objectives");
-		String content = (String) request.getParameter("contents");
-		String biblio = (String) request.getParameter("biblio");
-		
+		String nomMat = request.getParameter("nomMat");
+		/*
+		String desc = request.getParameter("description");
+		String app = request.getParameter("apprentissage");
+		String vol_horaire = request.getParameter("vol_horaire");
+		String ects = request.getParameter("ects");
+		String obj = request.getParameter("objectives");
+		String content = request.getParameter("contents");
+		String biblio = request.getParameter("biblio");
+		*/
 		
 		if(operation.equals("createContenu"))
 			response.getWriter().println(verificationCreationContenu.CreationContenu(nomMat));

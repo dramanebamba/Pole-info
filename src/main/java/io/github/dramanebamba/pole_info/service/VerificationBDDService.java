@@ -9,8 +9,14 @@ public class VerificationBDDService
 	public boolean test(String mail)
 	{
 		System.out.println("TEST CDI");
-		for(Personne personne:Personne.getBDD())
-			if(personne.getEmail().equals(mail))	return false;
+		if(Personne.getBDD().size()>0)
+		{
+			for(Personne personne:Personne.getBDD())
+			{
+				if(personne.getEmail().equals(mail))	
+					return false;
+			}
+		}
 		return true;
 	}
 

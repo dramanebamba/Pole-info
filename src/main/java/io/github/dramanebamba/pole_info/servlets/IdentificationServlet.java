@@ -33,24 +33,24 @@ public class IdentificationServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/identification.html");
 		dispatch.forward(request, response);
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
-		String login = (String) request.getParameter("login");
-		String pw = (String) request.getParameter("password");
+		String login = request.getParameter("login");
+		String pw = request.getParameter("password");
 
 		System.out.println("Operation : " + operation);
 
@@ -60,15 +60,14 @@ public class IdentificationServlet extends HttpServlet
 			session.setAttribute("connected", "true");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 			dispatch.forward(request, response);
-			
-			System.out.println(session.getAttribute("connect"));
+			// System.out.println(session.getAttribute("connect"));
 		}
 		if(operation.equals("logout")){
 			request.setAttribute("connected", "false");
 			session.setAttribute("connected", "false");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
 			dispatch.forward(request, response);
-			System.out.println(session.getAttribute("connect"));
+			// System.out.println(session.getAttribute("connect"));
 		}
 	}
 }
