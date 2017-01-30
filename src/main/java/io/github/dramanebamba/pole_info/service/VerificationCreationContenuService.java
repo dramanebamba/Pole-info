@@ -5,9 +5,9 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class VerificationCreationContenuService {
 
-	public String CreationContenu(String nom)
+	public String CreationContenu(String nomMat)
 	{
-		return (nom.equals("KM") || nom.equals("Java EE") &&
-				nom.equals("Negociation") && nom.equals("DataScience"))?"Création Contenu effectué":"Mauvaise matière";
+		return (nomMat.equals("KM") || nomMat.equals("Java EE") &&
+				nomMat.equals("Negociation") && nomMat.equals("DataScience"))?"Création Contenu effectué":"Mauvaise matière";
 	}
 }

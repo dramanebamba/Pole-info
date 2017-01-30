@@ -51,7 +51,7 @@ public class CreationContenuServlet extends HttpServlet
 		// TODO Auto-generated method stub
 		//HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
-		String nom = (String) request.getParameter("nom");
+		String nomMat = (String) request.getParameter("nomMat");
 		String desc = (String) request.getParameter("description");
 		String app = (String) request.getParameter("apprentissage");
 		String vol_horaire = (String) request.getParameter("vol_horaire");
@@ -62,6 +62,6 @@ public class CreationContenuServlet extends HttpServlet
 		
 		
 		if(operation.equals("createContenu"))
-			response.getWriter().println(verificationCreationContenu.CreationContenu(nom));
+			response.getWriter().println(verificationCreationContenu.CreationContenu(nomMat));
 	}
 }
