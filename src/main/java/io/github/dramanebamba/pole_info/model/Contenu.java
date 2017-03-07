@@ -3,10 +3,21 @@ package main.java.io.github.dramanebamba.pole_info.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Contenu {
 	
 	static int noCont = 1;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int idContenu;
+	
+	
 	private String nomMat;
 	private String desc;
 	private String app;
