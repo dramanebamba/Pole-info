@@ -1,45 +1,93 @@
-package main.java.io.github.dramanebamba.pole_info.model;
+package pole_info;
 
 import java.util.Vector;
 
-public class Personne 
-{
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@ApplicationScoped
+@Entity
+@Table(name="Personne")
+public class Personne {
+
 	static int noC = 1;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nom = "";
-	private String prenom = "";
-	private String email = "";
-	private String telephone = "";
-	private String parcours;
-	private String fax = "";
-	private String adresse;
-	private String mobile;
+	
+	@Column(name = "nom")
+	private String nom;
+	
+	@Column(name = "prenom")
+	private String prenom;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "telephone")
+	private String telephone;
+	
+	@Column(name = "fax")
+	private String fax;
+	
+	@Column(name = "home_page")
 	private String home_page = null;
+	
+	@Column(name = "cv")
 	private String cv = null;
+	
+	@Column(name = "notes")
 	private String notes = null;
-	private Role roles;
+	
+	@Column(name = "password")
 	private String password = null;
-	private int id_master;
+	
+	@Column(name = "roles")
+	private String roles = "M";
+	
+	@Column(name = "id_master")
+	private int id_master = 0;
+	
+	@Column(name = "annee_master")
 	private int annee_master = 0;
-	private char vacataire = 'N';
 	
-	private static Vector<Personne> BDD = new Vector<Personne>();
+	@Column(name = "adresse")
+	private String adresse = "";
 	
-	public Personne(String nom, String pre, String mail, String parcours, String cv, String note, String pw, int id_m, int annee, Role role)
-	{
+	@Column(name = "mobile")
+	private String mobile = "";
+	
+	@Column(name = "vacataire")
+	private String vacataire = "N";
+	
+	
+	static Vector<Personne> BDD = new Vector<Personne>();
+
+	public Personne(String nom, String pre, String mail,
+			String cv, String note, String pw,
+			int id_m, int annee, String role){
 		setId(noC++);
 		setNom(nom);
 		setPrenom(pre);
-		setParcours(parcours);
 		setEmail(mail);
 		setCv(cv);
 		setNotes(note);
-		setRoles(role);
+		if(role != null) setRoles(role);
 		setPassword(pw);
 		setId_master(id_m);
 		setAnnee_master(annee);
 	}
 	
+	public Personne() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNom() 
 	{
 		return nom;
@@ -68,16 +116,6 @@ public class Personne
 	public void setEmail(String email) 
 	{
 		this.email = email;
-	}
-
-	public String getParcours() 
-	{
-		return parcours;
-	}
-
-	public void setParcours(String parcours) 
-	{
-		this.parcours = parcours;
 	}
 
 	public int getId() {
@@ -129,14 +167,14 @@ public class Personne
 		this.notes = notes;
 	}
 
-	public Role getRoles() 
+	public String getRoles() 
 	{
 		return roles;
 	}
 
-	public void setRoles(Role r) 
+	public void setRoles(String roles) 
 	{
-		roles = new Role(r);
+		this.roles = roles;
 	}
 
 	public String getPassword() 
@@ -169,49 +207,9 @@ public class Personne
 		this.annee_master = annee_master;
 	}
 	
-	@Override
 	public String toString()
 	{
 		return (roles.equals("Et"))?("Je suis un étudiant, mon nom est "+nom+" et mon prénom "+prenom):("Je suis un enseignant, mon nom est "+nom+" et mon prénom "+prenom);
 	}
-
-	public static Vector<Personne> getBDD() {
-		return BDD;
-	}
-
-	public static void setBDD(Vector<Personne> bDD) {
-		BDD = bDD;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public char getVacataire() {
-		return vacataire;
-	}
-
-	public void setVacataire(char vacataire) {
-		this.vacataire = vacataire;
-	}
+	
 }
