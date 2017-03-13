@@ -1,62 +1,64 @@
 package pole_info;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 
-@ApplicationScoped
+@RequestScoped
 public class PersonneDAO {
 	
-	private static final String PERSISTENCE_UNIT_NAME = "pole";
+	//private static final String PERSISTENCE_UNIT_NAME = "pole";
 	
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u "
-			+ "WHERE u.email = :email AND u.password = :password";
+			+ "WHERE email = :email AND password = :password";
 	
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	
-	private static EntityManagerFactory factory;
+	//private static 
+	//@PersistenceUnit(name="pole")
+	//EntityManagerFactory emf;
+	
+	@PersistenceContext(unitName = "pole")
 	EntityManager em;
 	
 	Personne personne;
 	
-	public void creerPersonne(Personne personne){
-		em.persist(personne);
-	}
+//	public void creerPersonne(Personne personne){
+//		em.persist(personne);
+//	}
 	
+	//@Transactional
 	public Personne trouverPersonne(String email, String password){
 		Personne p = null;
+		Query requete = null;
 		
 		System.out.println("Entrée méthode trouverPersonne");
 		
 		//em.persist(personne);
-		
-		factory = Persistence.createEntityManagerFactory("pole");
-		System.out.println("factory passée");
-		
-		em = factory.createEntityManager();	
-		System.out.println("EM créée");
-		
-		em.getTransaction().begin();
-		System.out.println("Transaction commencée");
-		
-		em.persist(p);
-		System.out.println("EM persist");
+		//factory = Persistence.createEntityManagerFactory("pole");
+		//System.out.println("factory passée");
+		//em = Persistence.createEntityManager();	
+		//System.out.println("EM créée");
+		//em.getTransaction().begin();
+		//System.out.println("Transaction commencée");
+		//em.persist(p);
+		//System.out.println("EM persist");
 
+		//EntityManager em = emf.createEntityManager();
 		
-		Query requete = em.createQuery(QUERY_AUTH,Personne.class);
-		requete.setParameter(PARAM_EMAIL, email);
-		requete.setParameter(PARAM_PASSWORD, password);
+		System.out.println("query début");
 		
-		System.out.println("Bloc query");
+		p = em.createQuery(QUERY_AUTH,Personne.class)
+		.setParameter(PARAM_EMAIL, email)
+		.setParameter(PARAM_PASSWORD, password)
+		.getSingleResult();
 		
-		personne = (Personne) requete.getSingleResult();
-		
-		em.close();
 		
 		return p;
 	}

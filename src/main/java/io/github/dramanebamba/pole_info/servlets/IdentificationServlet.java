@@ -74,6 +74,7 @@ public class IdentificationServlet extends HttpServlet
 		}
 		*/
 		
+		
 		persDAO.trouverPersonne("admin", "admin");
 		
 		System.out.println("TEST");
