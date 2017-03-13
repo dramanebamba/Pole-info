@@ -35,7 +35,7 @@ public class PersonneDAO {
 		
 		//em.persist(personne);
 		
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		factory = Persistence.createEntityManagerFactory("pole");
 		System.out.println("factory passée");
 		
 		em = factory.createEntityManager();	
