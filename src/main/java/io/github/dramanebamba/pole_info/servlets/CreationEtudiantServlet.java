@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import main.java.io.github.dramanebamba.pole_info.service.*;
+import pole_info.Personne;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 /**
@@ -62,7 +63,7 @@ public class CreationEtudiantServlet extends HttpServlet
 		request.setAttribute("connected", connected);
 		System.out.println("Operation : " + operation);
 
-		if(operation.equals("createStudent"))
+		/*if(operation.equals("createStudent"))
 		{
 			if(verification_BDD.test(mail))
 			{
@@ -75,6 +76,6 @@ public class CreationEtudiantServlet extends HttpServlet
 			}
 			else
 				response.getWriter().println("KO");
-		}
+		}*/
 	}
 }

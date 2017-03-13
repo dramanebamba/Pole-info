@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import main.java.io.github.dramanebamba.pole_info.service.*;
+import pole_info.PersonneDAO;
 
 /**
  * Servlet implementation class Identification
@@ -20,7 +21,8 @@ public class IdentificationServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private VerificationLoginService verification_login;	// CDI servant à verifier que les identifiants sont en BDD
+	PersonneDAO persDAO;
+	//private VerificationLoginService verification_login;	// CDI servant à verifier que les identifiants sont en BDD
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -54,6 +56,7 @@ public class IdentificationServlet extends HttpServlet
 
 		System.out.println("Operation : " + operation);
 
+		/*
 		// Test en BDD par le CDI
 		if(operation.equals("confAuth") && verification_login.test(login,pw)){
 			request.setAttribute("connected", "true");
@@ -69,5 +72,11 @@ public class IdentificationServlet extends HttpServlet
 			dispatch.forward(request, response);
 			// System.out.println(session.getAttribute("connect"));
 		}
+		*/
+		
+		persDAO.trouverPersonne("admin", "admin");
+		
+		System.out.println("TEST");
+		
 	}
 }

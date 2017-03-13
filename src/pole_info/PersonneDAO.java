@@ -11,7 +11,7 @@ import javax.persistence.Query;
 @ApplicationScoped
 public class PersonneDAO {
 	
-	private static final String PERSISTENCE_UNIT_NAME = "pole_info";
+	private static final String PERSISTENCE_UNIT_NAME = "pole";
 	
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u "
 			+ "WHERE u.email = :email AND u.password = :password";
@@ -20,7 +20,6 @@ public class PersonneDAO {
 	private static final String PARAM_PASSWORD = "password";
 	
 	private static EntityManagerFactory factory;
-	@PersistenceContext
 	EntityManager em;
 	
 	Personne personne;
