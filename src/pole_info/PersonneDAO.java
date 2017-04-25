@@ -3,6 +3,7 @@ package pole_info;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
@@ -15,7 +16,7 @@ public class PersonneDAO {
 	//private static final String PERSISTENCE_UNIT_NAME = "pole";
 	
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u "
-			+ "WHERE email = :email AND password = :password";
+			+ "WHERE u.email = :email AND u.password = :password";
 	
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
@@ -24,8 +25,9 @@ public class PersonneDAO {
 	//@PersistenceUnit(name="pole")
 	//EntityManagerFactory emf;
 	
-	@PersistenceContext(unitName = "pole")
-	EntityManager em;
+	//@PersistenceContext(unitName = "pole")
+	//EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+	//EntityManager em = factory.createEntityManager();
 	
 	Personne personne;
 	
@@ -35,6 +37,10 @@ public class PersonneDAO {
 	
 	//@Transactional
 	public Personne trouverPersonne(String email, String password){
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
 		Personne p = null;
 		Query requete = null;
 		
@@ -59,6 +65,7 @@ public class PersonneDAO {
 		.setParameter(PARAM_PASSWORD, password)
 		.getSingleResult();
 		
+		System.out.println("PersDAO : " + p);
 		
 		return p;
 	}
