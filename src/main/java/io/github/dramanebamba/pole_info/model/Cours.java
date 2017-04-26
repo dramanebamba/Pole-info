@@ -1,6 +1,11 @@
 package main.java.io.github.dramanebamba.pole_info.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Cours {
+	@Id
 	private int id_master = 0;
 	private int id_contenu = 0;
 	private int id_enseignant = 0;
