@@ -5,20 +5,20 @@
 <title>Accueil</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
-<% String connected = (String) request.getAttribute("connected");%>
+<% String connected = (String) session.getAttribute("connected");%>
 <% if(connected == "true"){%>
 <body>
 	<div class="container">
 		<h1>Menu</h1>
-		<a href="./creationEtudiant"> Création d'un étudiant </a><br />
+		<a href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant </a><br />
 		<br />
-		<a href="./creationEnseignant"> Création d'un enseignant </a><br />
+		<a href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
 		<br />
-		<a href="./Preferences"> Indiquer ses préférences </a><br />
+		<a href="./PostPreferenceServlet"> Indiquer ses pr&eacute;f&eacute;rences </a><br />
 		<br />
 		<br />
 		<form action="./identification?operation=logout" method="post">
-			<button class="btn btn-danger" type="submit">Se déconnecter</button>
+			<button class="btn btn-danger" type="submit">Se d&eacute;connecter</button>
 		</form>
 		<br/>
 	</div>

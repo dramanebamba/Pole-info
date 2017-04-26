@@ -56,9 +56,9 @@ public class IdentificationServlet extends HttpServlet
 
 		System.out.println("Operation : " + operation);
 
-		/*
+		
 		// Test en BDD par le CDI
-		if(operation.equals("confAuth") && verification_login.test(login,pw)){
+		if(operation.equals("confAuth") && persDAO.trouverPersonne(login,pw)){
 			request.setAttribute("connected", "true");
 			session.setAttribute("connected", "true");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
@@ -72,12 +72,12 @@ public class IdentificationServlet extends HttpServlet
 			dispatch.forward(request, response);
 			// System.out.println(session.getAttribute("connect"));
 		}
-		*/
 		
 		
-		persDAO.trouverPersonne("admin", "admin");
 		
-		System.out.println("TEST");
+		//persDAO.trouverPersonne(login, pw);
+		
+		//System.out.println("TEST");
 		
 	}
 }

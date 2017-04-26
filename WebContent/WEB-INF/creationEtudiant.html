@@ -8,26 +8,38 @@
 </head>
 
 <body>
+<div class="container">
+	<div class="row">
 	<H1>Formulaire de création d'un étudiant</H1><br />
 
 	<form action="./creationEtudiant?operation=createStudent" method="post">
-		<label>Nom</label> <input type="text" name="last_name" id="last_name" /><br />
-		<label>Prenom</label> <input type="text" name="first_name" id="first_name" /><br /> 
-		<label>E-mail</label> <input type="text" name="email" id="mail" /><br />
-
-		<label>Parcours</label>
-		<SELECT
-			name="parcours" id="parcours" size="1">
-			<OPTION>SITN
-			<OPTION>IF
-			<OPTION>ID
-		</SELECT>
-		<br />
-		<br />
-		<input class="btn btn-primary" type="submit" value="Créer l'étudiant"><br />
+		<div class="form-group">
+			<label>Entrez votre Nom</label> <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Nom"/>
+		</div>
+		<div class="form-group">
+			<label>Entrez votre Pr&eacute;nom</label> <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Pr&eacute;nom"/> 
+		</div>
+		<div class="form-group">
+			<label>Entrez votre E-mail</label> <input class="form-control" type="text" name="email" id="mail" placeholder="prenom.nom@dauphine.eu"/>
+		</div>
+		<div class="form-group">
+			<label>Parcours</label>
+			<SELECT class="form-control" name="parcours" id="parcours" size="1">
+				<OPTION>SITN</OPTION>
+				<OPTION>IF</OPTION>
+				<OPTION>ID</OPTION>
+			</SELECT>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary" type="submit">Créer l'étudiant</button>
+		</div>
 	</form>
-	<input class="btn btn-info" type="button" name="import" value="Importation d'un étudiant">
-	<a class="btn btn-danger" href="./accueil.jsp">Annuler</a>
+	</div>
+	<div class="row">
+		<input class="btn btn-info" type="button" name="import" value="Importation d'un &eacute;tudiant">
+		<a class="btn btn-danger" href="./accueil">Annuler</a>
+	</div>
+	</div>
 </body>
 
 </html>
