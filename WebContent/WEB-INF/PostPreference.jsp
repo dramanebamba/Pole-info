@@ -51,7 +51,10 @@ pageEncoding="UTF-8"%>
                 </div>
               </div>
             </form>
+            <div class="row">
+                 <a href="./accueil" class="btn btn-danger">Annuler</a>
+              </div>
           </div>
-
+		
         </body>
       </html>
