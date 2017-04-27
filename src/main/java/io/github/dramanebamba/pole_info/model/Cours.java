@@ -22,6 +22,9 @@ public class Cours {
 		setNotes(notes);
 	}
 	
+	public Cours() {
+	}
+
 	public int getId_master() {
 		return id_master;
 	}

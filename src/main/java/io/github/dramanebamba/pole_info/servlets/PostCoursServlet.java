@@ -3,6 +3,10 @@ package main.java.io.github.dramanebamba.pole_info.servlets;
 import java.io.IOException;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +52,12 @@ public class PostCoursServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceTest");   
+	    EntityManager em = emf.createEntityManager();    
+	    EntityTransaction transac = em.getTransaction();
+	    transac.begin();
+	    
+	    
 		int id_master = Integer.parseInt(request.getParameter("id_master"));
 		int id_contenu = Integer.parseInt(request.getParameter("id_contenu"));
 		int id_enseignant = Integer.parseInt(request.getParameter("id_enseignant"));
@@ -60,6 +70,10 @@ public class PostCoursServlet extends HttpServlet {
 		System.out.println(Cours.getCours().size() + " cours créé en base de données");
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/PostCours.jsp");
 		dispatch.forward(request, response);
+		em.persist(Cours);
+		transac.commit();
+		em.close();
+		emf.close();
 	}
 
 }

@@ -2,6 +2,9 @@ package main.java.io.github.dramanebamba.pole_info.model;
 
 import java.util.Vector;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class Personne 
 {
 	static int noC = 1;
