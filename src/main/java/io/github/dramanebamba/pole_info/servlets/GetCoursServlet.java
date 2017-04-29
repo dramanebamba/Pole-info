@@ -1,55 +1,51 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.Vector;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
+import main.java.io.github.dramanebamba.pole_info.model.Item;
 import main.java.io.github.dramanebamba.pole_info.service.CoursService;
+import main.java.io.github.dramanebamba.pole_info.utils.ServletHelper;
 
-/**
- * Servlet implementation class GetCoursServlet
- */
 @WebServlet("/GetCoursServlet")
 public class GetCoursServlet extends HttpServlet {
-	public static final String ATT_MESSAGES = "cours";
-	public static final String VUE          = "/WEB-INF/GetCours.jsp";
-	private static final long serialVersionUID = 1L;
+	@PersistenceContext
+	private EntityManager em;
 	@Inject
-	CoursService cours;
+	private CoursService cours;
+	@Inject
+	private ServletHelper servletHelper;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetCoursServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Vector<Cours> listeCours = cours.getCours();
-		request.setAttribute(ATT_MESSAGES,listeCours);
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		assert (!em.isJoinedToTransaction());
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		@SuppressWarnings("resource")
+		final ServletOutputStream out = servletHelper.configureAndGetOutputStream(resp);
+		out.println("Liste des cours");
+
+
+		final List<Cours> allItems = cours.getAll();
+		assert (!em.isJoinedToTransaction());
+		for (Cours item : allItems) {
+			assert (!em.contains(item));
+		}
+
+		for (Cours item : allItems) {
+			out.println(item.getId_master() + " " + item.getId_contenu() + " " + item.getId_enseignant() + " " + item.getObligatoire() + " " + item.getObligatoire() + " " + item.getPeriode() + " " + item.getNotes());
+		}
 	}
 
 }
