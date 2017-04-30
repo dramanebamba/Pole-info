@@ -12,7 +12,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 
-import main.java.io.github.dramanebamba.pole_info.servlets.GetItemsServletJTAEntityManager;
 
 @RequestScoped
 public class ServletHelper {
@@ -26,13 +25,13 @@ public class ServletHelper {
 		return resp.getOutputStream();
 	}
 
-	public String getRedirectURL() {
-		Collection<String> mappings = context
-				.getServletRegistration(GetItemsServletJTAEntityManager.class.getCanonicalName()).getMappings();
-		assert (mappings.size() == 1);
-		final String urlMapping = mappings.iterator().next();
-		assert (urlMapping.charAt(0) == '/');
-		return urlMapping.substring(1);
-	}
+//	public String getRedirectURL() {
+//		Collection<String> mappings = context
+//				.getServletRegistration(GetItemsServletJTAEntityManager.class.getCanonicalName()).getMappings();
+//		assert (mappings.size() == 1);
+//		final String urlMapping = mappings.iterator().next();
+//		assert (urlMapping.charAt(0) == '/');
+//		return urlMapping.substring(1);
+//	}
 
 }
