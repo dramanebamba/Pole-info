@@ -59,14 +59,15 @@ public class IdentificationServlet extends HttpServlet
 		
 		// Test en BDD par le CDI
 		if(operation.equals("confAuth") && persDAO.trouverPersonne(login,pw)){
-			request.setAttribute("connected", "true");
+			//request.setAttribute("connected", "true");
 			session.setAttribute("connected", "true");
+			session.setAttribute("pseudo", login);
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 			dispatch.forward(request, response);
 			// System.out.println(session.getAttribute("connect"));
 		}
 		if(operation.equals("logout")){
-			request.setAttribute("connected", "false");
+			//request.setAttribute("connected", "false");
 			session.setAttribute("connected", "false");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
 			dispatch.forward(request, response);

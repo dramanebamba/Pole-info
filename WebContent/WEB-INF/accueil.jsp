@@ -6,6 +6,7 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <% String connected = (String) session.getAttribute("connected");%>
+<% String pseudo = (String) session.getAttribute("pseudo");%>
 <% if(connected == "true"){%>
 <body>
 	<div class="container">
@@ -16,6 +17,10 @@
 		<br />
 		<a href="./PostPreferenceServlet"> Indiquer ses pr&eacute;f&eacute;rences </a><br />
 		<br />
+		<%if(pseudo.equals("admin")){ %>
+			<a href="./BackupBDD"> Save da BDD </a><br />
+			<br />
+		<%} %>
 		<br />
 		<form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se d&eacute;connecter</button>
