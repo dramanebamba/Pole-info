@@ -1,8 +1,10 @@
-package main.java.io.github.dramanebamba.pole_info.servlets;
+package io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.io.github.dramanebamba.pole_info.model.Cours;
-import main.java.io.github.dramanebamba.pole_info.model.Preference;
-import main.java.io.github.dramanebamba.pole_info.service.PreferenceService;
+import io.github.dramanebamba.pole_info.model.Cours;
+import io.github.dramanebamba.pole_info.model.Preference;
+import io.github.dramanebamba.pole_info.service.PreferenceService;
 
 /**
  * Servlet implementation class PostPreferenceServlet
@@ -23,7 +25,10 @@ public class PostPreferenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PreferenceService preference;
+	private PreferenceService Preference;
+	
+	@PersistenceContext
+	private EntityManager em;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,9 +57,9 @@ public class PostPreferenceServlet extends HttpServlet {
 		int id_personne = Integer.parseInt(request.getParameter("id_personne"));
 		int niveau = Integer.parseInt(request.getParameter("niveau"));
 
-		preference.getPreference().add(new Preference(id_master, id_contenu, id_personne, niveau));
-		System.out.println("Création d'une préférence : " + " id_master : " + id_master + " id_contenu : " + id_contenu + " id_personne : " + id_personne + " niveau : " + niveau);
-		System.out.println("Nombre(s) de préférence(s) créée(s) = "+ preference.getPreference().size());
+		Preference preference = new Preference(id_master, id_contenu, id_personne, niveau);
+		System.out.println(preference);
+		Preference.persist(preference);
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/PostPreference.jsp");
 		dispatch.forward(request, response);
 	}

@@ -15,22 +15,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.dramanebamba.pole_info.model.Cours;
-import io.github.dramanebamba.pole_info.service.CoursService;
+import io.github.dramanebamba.pole_info.model.Contenu;
+import io.github.dramanebamba.pole_info.service.ContenuService;
 
-@WebServlet("/PostCoursServlet")
-public class PostCoursServlet extends HttpServlet {
-	public static final String VUE = "/WEB-INF/PostCours.jsp";
+@WebServlet("/PostContenuServlet")
+public class PostContenuServlet extends HttpServlet {
+	public static final String VUE = "/WEB-INF/PostContenu.jsp";
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private CoursService Cours;
+	private Contenu Cours;
 	
 	@PersistenceContext
 	private EntityManager em;
 
 
-	public PostCoursServlet() {
+	public PostContenuServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,19 +44,6 @@ public class PostCoursServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    
-		int id_master = Integer.parseInt(request.getParameter("id_master"));
-		int id_contenu = Integer.parseInt(request.getParameter("id_contenu"));
-		int id_enseignant = Integer.parseInt(request.getParameter("id_enseignant"));
-		String periode = request.getParameter("periode");
-		String obligatoire = request.getParameter("obligatoire");
-		String notes = request.getParameter("notes");
-
-		Cours cours = new Cours(id_master, id_contenu, id_enseignant, periode, obligatoire, notes);
-		System.out.println(cours);
-		Cours.persist(cours);
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/PostCours.jsp");
-		dispatch.forward(request, response);
 
 	}
 

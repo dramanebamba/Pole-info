@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.service;
+package io.github.dramanebamba.pole_info.service;
 
 import javax.enterprise.context.ApplicationScoped;
 

@@ -1,57 +1,51 @@
-package main.java.io.github.dramanebamba.pole_info.servlets;
+package io.github.dramanebamba.pole_info.servlets;
 
+import java.util.List;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Vector;
 
-import main.java.io.github.dramanebamba.pole_info.service.*;
-import main.java.io.github.dramanebamba.pole_info.model.*;
-
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Preferences
- */
+import io.github.dramanebamba.pole_info.model.Preference;
+import io.github.dramanebamba.pole_info.model.Item;
+import io.github.dramanebamba.pole_info.service.PreferenceService;
+import io.github.dramanebamba.pole_info.utils.ServletHelper;
+
 @WebServlet("/GetPreferenceServlet")
 public class GetPreferenceServlet extends HttpServlet {
-	public static final String ATT_MESSAGES = "preference";
-	public static final String VUE          = "/WEB-INF/GetPreference.jsp";
-	private static final long serialVersionUID = 1L;
+	@PersistenceContext
+	private EntityManager em;
 	@Inject
-	private PreferenceService listePreference;
+	private PreferenceService preference;
+	@Inject
+	private ServletHelper servletHelper;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public GetPreferenceServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Vector<Preference> preference = listePreference.getPreference();
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		assert (!em.isJoinedToTransaction());
 
-		request.setAttribute( ATT_MESSAGES, preference );
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-	}
+		@SuppressWarnings("resource")
+		final ServletOutputStream out = servletHelper.configureAndGetOutputStream(resp);
+		out.println("Liste des préférences");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		final List<Preference> allPreference = preference.getAll();
+		assert (!em.isJoinedToTransaction());
+		for (Preference item : allPreference) {
+			assert (!em.contains(item));
+		}
+
+		for (Preference item : allPreference) {
+			out.println(item.getId_master() + " " + item.getId_master() + " " + item.getId_contenu() + " " + item.getNiveau() + " " + item.getId_personne());
+		}
 	}
 
 }

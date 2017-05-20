@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.utils;
+package io.github.dramanebamba.pole_info.utils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

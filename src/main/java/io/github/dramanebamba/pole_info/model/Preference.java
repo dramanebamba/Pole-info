@@ -1,10 +1,19 @@
-package main.java.io.github.dramanebamba.pole_info.model;
+package io.github.dramanebamba.pole_info.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Preference {
+	@Id
 	private int id_master = 0;
 	private int id_contenu = 0;
 	private int id_personne = 0;
 	private int niveau = 0;
+	
+	public Preference(){
+		
+	}
 	
 	public Preference(int id_master, int id_contenu, int id_personne, int niveau) {
 		setId_master(id_master);

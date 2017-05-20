@@ -1,18 +1,34 @@
-package main.java.io.github.dramanebamba.pole_info.service;
+package io.github.dramanebamba.pole_info.service;
 
+
+import java.util.List;
 import java.util.Vector;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import main.java.io.github.dramanebamba.pole_info.model.Affectation;
+import io.github.dramanebamba.pole_info.model.Affectation;
+import io.github.dramanebamba.pole_info.model.Item;
+import io.github.dramanebamba.pole_info.utils.QueryHelper;
 
+@RequestScoped
 public class AffectationService {
-	private static Vector<Affectation> affectation = new Vector<Affectation>();
+	@PersistenceContext
+	private EntityManager em;
 
-	public static Vector<Affectation> getAffectation() {
-		return affectation;
+	@Inject
+	private QueryHelper helper;
+
+	@Transactional
+	public List<Affectation> getAll() {
+		return em.createQuery(helper.selectAll(em.getCriteriaBuilder(), Affectation.class)).getResultList();
 	}
 
-	public static void setAffectation(Vector<Affectation> affectation) {
-		AffectationService.affectation = affectation;
+	@Transactional
+	public void persist(Affectation affectation) {
+		em.persist(affectation);
 	}
-
 }

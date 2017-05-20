@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.servlets;
+package io.github.dramanebamba.pole_info.servlets;
 
 import java.util.List;
 import java.io.IOException;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.io.github.dramanebamba.pole_info.model.Cours;
-import main.java.io.github.dramanebamba.pole_info.model.Item;
-import main.java.io.github.dramanebamba.pole_info.service.CoursService;
-import main.java.io.github.dramanebamba.pole_info.utils.ServletHelper;
+import io.github.dramanebamba.pole_info.model.Cours;
+import io.github.dramanebamba.pole_info.model.Item;
+import io.github.dramanebamba.pole_info.service.CoursService;
+import io.github.dramanebamba.pole_info.utils.ServletHelper;
 
 @WebServlet("/GetCoursServlet")
 public class GetCoursServlet extends HttpServlet {

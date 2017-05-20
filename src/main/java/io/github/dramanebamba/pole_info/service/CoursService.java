@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.service;
+package io.github.dramanebamba.pole_info.service;
 
 
 import java.util.List;
@@ -10,9 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import main.java.io.github.dramanebamba.pole_info.model.Cours;
-import main.java.io.github.dramanebamba.pole_info.model.Item;
-import main.java.io.github.dramanebamba.pole_info.utils.QueryHelper;
+import io.github.dramanebamba.pole_info.model.Cours;
+import io.github.dramanebamba.pole_info.model.Item;
+import io.github.dramanebamba.pole_info.utils.QueryHelper;
 
 @RequestScoped
 public class CoursService {
@@ -31,15 +31,4 @@ public class CoursService {
 	public void persist(Cours cours) {
 		em.persist(cours);
 	}
-
-//	private static Vector<Cours> Cours = new Vector<Cours>();
-//
-//	public static Vector<Cours> getCours() {
-//		return Cours;
-//	}
-//
-//	public static void setCours(Vector<Cours> cours) {
-//		Cours = cours;
-//	}
-
 }

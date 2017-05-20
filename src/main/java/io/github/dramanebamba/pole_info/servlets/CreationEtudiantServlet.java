@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.servlets;
+package io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import main.java.io.github.dramanebamba.pole_info.service.*;
-import main.java.io.github.dramanebamba.pole_info.model.*;
+import io.github.dramanebamba.pole_info.service.*;
+import io.github.dramanebamba.pole_info.model.*;
 
 /**
  * Servlet implementation class Identification

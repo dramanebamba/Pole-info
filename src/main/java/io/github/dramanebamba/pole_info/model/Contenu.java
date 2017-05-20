@@ -1,126 +1,114 @@
-package main.java.io.github.dramanebamba.pole_info.model;
+package io.github.dramanebamba.pole_info.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Contenu {
-	
-	static int noCont = 1;
-	private int idContenu;
-	private String nomMat;
-	private String desc;
-	private String app;
-	private String vol_horaire ;
-	private String ects;
-	private String obj ;
-	private String content;
+	@Id
+	private int id;
+	private String nom;
+	private String description;
+	private String apprentissage;
+	private int volume_horaire ;
+	private int ects;
+	private String objectives ;
+	private String contents;
 	private String biblio;
 
-	private static List<Contenu> BDD_contenu = new ArrayList<Contenu>();
 	
 	public Contenu() {
-		// TODO Auto-generated constructor stub
-		setId(noCont++);
-		setNomMat(nomMat);
-		setDesc(desc);
-		setApp(app);
-		setVolHoraire(vol_horaire);
-		setEcts(ects);
-		setContent(content);
-		setBiblio(biblio);
-	}
-	
-	private void setBiblio(String biblio) {
-		// TODO Auto-generated method stub
-		this.biblio = biblio;
-		
-	}
-	
-	private String getBiblio(){
-		return biblio;
+
 	}
 
-	private void setContent(String content) {
-		// TODO Auto-generated method stub
-		this.content = content;
-	}
-	
-	private String getContent(){
-		return content;
+
+	public int getId() {
+		return id;
 	}
 
-	private void setEcts(String ects) {
-		// TODO Auto-generated method stub
-		this.ects=ects;
-		
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	private String getEcts(){
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public String getApprentissage() {
+		return apprentissage;
+	}
+
+
+	public void setApprentissage(String apprentissage) {
+		this.apprentissage = apprentissage;
+	}
+
+
+	public int getVolume_horaire() {
+		return volume_horaire;
+	}
+
+
+	public void setVolume_horaire(int volume_horaire) {
+		this.volume_horaire = volume_horaire;
+	}
+
+
+	public int getEcts() {
 		return ects;
 	}
 
-	private void setVolHoraire(String vol_h) {
-		// TODO Auto-generated method stub
-		this.vol_horaire = vol_h;
-		
-	}
-	private String getVolHoraire(){
-		return vol_horaire;
+
+	public void setEcts(int ects) {
+		this.ects = ects;
 	}
 
-	private void setApp(String app) {
-		// TODO Auto-generated method stub
-		this.app = app;
-		
-	}
-	
-	private String getApp(){
-		return app;
+
+	public String getObjectives() {
+		return objectives;
 	}
 
-	private void setId(int id) {
-		// TODO Auto-generated method stub
-		this.idContenu = id;
-		
-	}
-	
-	private int getId(){
-		return idContenu;
+
+	public void setObjectives(String objectives) {
+		this.objectives = objectives;
 	}
 
-	public String getNomMat() 
-	{
-		return nomMat;
+
+	public String getContents() {
+		return contents;
 	}
 
-	public void setNomMat(String nomMat) 
-	{
-		this.nomMat = nomMat;
-	}
-	
-	public String getDesc() 
-	{
-		return desc;
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
-	public void setDesc(String desc) 
-	{
-		this.desc = desc;
-	}
-	
-	public static List<Contenu> getBDD() {
-		return BDD_contenu;
+
+	public String getBiblio() {
+		return biblio;
 	}
 
-	public static void setBDD(List<Contenu> bDD_content) {
-		BDD_contenu = bDD_content;
+
+	public void setBiblio(String biblio) {
+		this.biblio = biblio;
 	}
 
-	public String getObj() {
-		return obj;
-	}
-
-	public void setObj(String obj) {
-		this.obj = obj;
-	}
 }

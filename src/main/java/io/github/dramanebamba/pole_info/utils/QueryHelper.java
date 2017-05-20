@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.utils;
+package io.github.dramanebamba.pole_info.utils;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.criteria.CriteriaBuilder;

@@ -1,4 +1,4 @@
-package main.java.io.github.dramanebamba.pole_info.model;
+package io.github.dramanebamba.pole_info.model;
 
 public class Role 
 {
