@@ -6,7 +6,7 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <% String connected = (String) session.getAttribute("connected");%>
-<% String pseudo = (String) session.getAttribute("pseudo");%>
+<% String pseudo = (String) session.getAttribute("login");%>
 <% if(connected == "true"){%>
 <body>
 	<div class="container">
@@ -18,7 +18,7 @@
 		<a href="./PostPreferenceServlet"> Indiquer ses pr&eacute;f&eacute;rences </a><br />
 		<br />
 		<%if(pseudo.equals("admin")){ %>
-			<a href="./BackupBDD"> Save da BDD </a><br />
+			<a href="./GetBackupServlet"> Save da BDD </a><br />
 			<br />
 		<%} %>
 		<br />
