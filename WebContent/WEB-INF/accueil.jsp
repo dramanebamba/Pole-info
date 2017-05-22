@@ -11,16 +11,21 @@
 <body>
 	<div class="container">
 		<h1>Menu</h1>
+		<h2>&Eacute;tudiant</h2>
 		<a href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant </a><br />
-		<br />
-		<a href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
 		<br />
 		<a href="./PostPreferenceServlet"> Indiquer ses pr&eacute;f&eacute;rences </a><br />
 		<br />
+		<h2>Enseignant</h2>
+		<a href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
+		<br />
 		<%if(pseudo.equals("admin")){ %>
+		<h2>Base de données</h2>
+			<a href="./GetBackupServlet"> Liste des sauvegardes de la base de données </a><br />
+			<br />
 			<a href="./GetCreateBackupServlet"> Créer une sauvegarde de la base de données </a><br />
 			<br />
-			<a href="./GetRestoreBackupServlet"> Restaurer une sauvegarde de la base de données </a><br />
+			<a href="./GetRestoreBackupServlet"> Restaurer la dernière sauvegarde de la base de données </a><br />
 			<br />
 		<%} %>
 		<br />

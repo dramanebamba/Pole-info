@@ -10,13 +10,12 @@
 <% if(connected == "true" && pseudo != null){%>
 <body>
 	<div class="container">
-		<form action="./PostBackupServlet" method="post">
-			<legend>Etiquette</legend>
-			<div class="form-group row">
-				<label class="col-sm-2 col-lg-2 col-form-label" for="label">Login</label>
-				<div class="col-sm-10 col-lg-10">
-					<textarea id="label" rows="5" class="form-control" placeholder="Insérer la description de la sauvegarde"/></textarea>
-				</div>
+	<div class="row">
+		<form action="./PostCreateBackupServlet" method="post">
+			<h1>Sauvegarde de la base de données</h1>
+			<div class="form-group">
+				<label for="etiq">&Eacute;tiquette</label>
+				<input class="form-control" type="text" name="etiq" id="etiq"/>
 			</div>
 			
 			<div class="form-group row">
@@ -27,7 +26,7 @@
 		<div class="row">
 			<a class="btn btn-danger" href="./accueil">Annuler</a>
 		</div>
-		
+		</div>	
 	</div>
 <% } else{%>
 	NOTHING TO SHOW

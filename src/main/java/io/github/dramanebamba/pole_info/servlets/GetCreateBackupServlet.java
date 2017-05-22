@@ -1,34 +1,27 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Enumeration;
 
-import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import pole_info.Backup;
-import pole_info.BackupDAO;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class GetBackupServlet
  */
-@WebServlet("/GetBackupServlet")
-public class GetBackupServlet extends HttpServlet {
+@WebServlet("/GetCreateBackupServlet")
+public class GetCreateBackupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	@Inject
-	BackupDAO backupDAO;
-	
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetBackupServlet() {
+    public GetCreateBackupServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,14 +30,8 @@ public class GetBackupServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Backup> backList = new ArrayList<Backup>();
-		backList = backupDAO.listeDesBackups();
-		
-		Iterator it = backList.iterator();
-		
-		while(it.hasNext()){
-			response.getWriter().println(it.next() + " ");
-		}
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/backup.jsp");
+		dispatch.forward(request, response);
 	}
 
 	/**

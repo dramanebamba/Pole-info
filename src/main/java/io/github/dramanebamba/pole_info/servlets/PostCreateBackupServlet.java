@@ -21,8 +21,8 @@ import pole_info.BackupDAO;
 /**
  * Servlet implementation class BackupBDD
  */
-@WebServlet("/PostBackupServlet")
-public class PostBackupServlet extends HttpServlet {
+@WebServlet("/PostCreateBackupServlet")
+public class PostCreateBackupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	BackupDAO backDAO;
@@ -30,7 +30,7 @@ public class PostBackupServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PostBackupServlet() {
+	public PostCreateBackupServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -60,7 +60,9 @@ public class PostBackupServlet extends HttpServlet {
 		Date dateBackup = new Date();
 		String dteBack = dateFormatBackup.format(dateBackup).toString();
 		
-		String label = (String) request.getAttribute("label");
+		String label = (String) request.getParameter("etiq");
+		
+		System.out.println("label avant if : " + label);
 		if(label.equals("")){
 			label = "NO DESCRIPTION";
 		}

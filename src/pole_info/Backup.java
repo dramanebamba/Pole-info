@@ -16,6 +16,7 @@ public class Backup {
 static int noB = 1;
 	
 	@Id
+	@Column(name= "id_backup")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBackup;
 	
