@@ -1,8 +1,7 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
-import java.util.List;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -14,17 +13,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.io.github.dramanebamba.pole_info.model.Cours;
 import main.java.io.github.dramanebamba.pole_info.model.Item;
-import main.java.io.github.dramanebamba.pole_info.service.CoursService;
+import main.java.io.github.dramanebamba.pole_info.service.ItemService;
 import main.java.io.github.dramanebamba.pole_info.utils.ServletHelper;
 
-@WebServlet("/GetCoursServlet")
-public class GetCoursServlet extends HttpServlet {
+@WebServlet("/getItemsServletJTAEntityManager")
+public class GetItemsServletJTAEntityManager extends HttpServlet {
 	@PersistenceContext
 	private EntityManager em;
 	@Inject
-	private CoursService cours;
+	private ItemService itemS;
 	@Inject
 	private ServletHelper servletHelper;
 
@@ -34,18 +32,20 @@ public class GetCoursServlet extends HttpServlet {
 
 		@SuppressWarnings("resource")
 		final ServletOutputStream out = servletHelper.configureAndGetOutputStream(resp);
-		out.println("Liste des cours");
+		out.println("I use a container-managed JTA entity manager.");
+		out.println(
+				"My persistence context is transaction-scoped (lifetime scoped to a single transaction) and synchronised (joins automatically the current JTA transaction).");
+		out.println("I use a CDI interceptor for managing the transaction.");
+		out.flush();
 
-
-		final List<Cours> allItems = cours.getAll();
+		final List<Item> allItems = itemS.getAll();
 		assert (!em.isJoinedToTransaction());
-		for (Cours item : allItems) {
+		for (Item item : allItems) {
 			assert (!em.contains(item));
 		}
 
-		for (Cours item : allItems) {
-			out.println(item.getId_master() + " " + item.getId_contenu() + " " + item.getId_enseignant() + " " + item.getObligatoire() + " " + item.getObligatoire() + " " + item.getPeriode() + " " + item.getNotes());
+		for (Item item : allItems) {
+			out.println(item.getName());
 		}
 	}
-
 }

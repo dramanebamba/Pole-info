@@ -1,11 +1,11 @@
 package main.java.io.github.dramanebamba.pole_info.model;
 
 public class Cours {
-	private int id_master = 0;
-	private int id_contenu = 0;
-	private int id_enseignant = 0;
-	private String periode = "NULL";
-	private String obligatoire = "0";
+	private int id_master;
+	private int id_contenu;
+	private int id_enseignant;
+	private String periode;
+	private String obligatoire;
 	private String notes;
 	
 	public Cours(int id_master, int id_contenu, int id_enseignant, String periode, String obligatoire, String notes) {

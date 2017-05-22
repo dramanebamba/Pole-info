@@ -15,6 +15,9 @@ public class Affectation {
 		setNote(note);
 	}
 
+	public Affectation() {
+	}
+
 	public int getId_master() {
 		return id_master;
 	}
