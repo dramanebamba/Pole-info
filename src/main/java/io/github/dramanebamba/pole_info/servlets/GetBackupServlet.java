@@ -6,11 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pole_info.Backup;
 import pole_info.BackupDAO;
@@ -37,14 +39,24 @@ public class GetBackupServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
 		List<Backup> backList = new ArrayList<Backup>();
 		backList = backupDAO.listeDesBackups();
 		
-		Iterator it = backList.iterator();
+		session.setAttribute("listBackup", backList);
+		
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/ListeBackup.jsp");
+		dispatch.forward(request, response);
+		
+		/*
+		Iterator<Backup> it = backList.iterator();
 		
 		while(it.hasNext()){
-			response.getWriter().println(it.next() + " ");
+			Backup temp = it.next();
+			response.getWriter().println(temp.getIdBackup() + " "+ temp.getDate() + " " + temp.getLabel());
 		}
+		*/
 	}
 
 	/**

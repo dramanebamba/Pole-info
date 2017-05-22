@@ -33,6 +33,7 @@
 			<button class="btn btn-danger" type="submit">Se d&eacute;connecter</button>
 		</form>
 		<br/>
+		
 	</div>
 <% } else{%>
 	NOTHING TO SHOW
