@@ -18,7 +18,9 @@
 		<a href="./PostPreferenceServlet"> Indiquer ses pr&eacute;f&eacute;rences </a><br />
 		<br />
 		<%if(pseudo.equals("admin")){ %>
-			<a href="./GetBackupServlet"> Save da BDD </a><br />
+			<a href="./GetCreateBackupServlet"> Créer une sauvegarde de la base de données </a><br />
+			<br />
+			<a href="./GetRestoreBackupServlet"> Restaurer une sauvegarde de la base de données </a><br />
 			<br />
 		<%} %>
 		<br />
