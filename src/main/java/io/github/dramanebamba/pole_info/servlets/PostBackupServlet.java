@@ -61,7 +61,7 @@ public class PostBackupServlet extends HttpServlet {
 		String dteBack = dateFormatBackup.format(dateBackup).toString();
 		
 		String label = (String) request.getAttribute("label");
-		if(label == null){
+		if(label.equals("")){
 			label = "NO DESCRIPTION";
 		}
 		
