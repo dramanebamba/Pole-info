@@ -66,8 +66,6 @@ public class Personne {
 	@Column(name = "vacataire")
 	private String vacataire = "N";
 	
-	
-	static Vector<Personne> BDD = new Vector<Personne>();
 
 	public Personne(String nom, String pre, String mail,
 			String cv, String note, String pw,

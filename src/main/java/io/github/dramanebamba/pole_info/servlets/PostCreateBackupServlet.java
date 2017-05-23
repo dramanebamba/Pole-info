@@ -50,7 +50,7 @@ public class PostCreateBackupServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		String idBackuper = (String) session.getAttribute("id").toString();
+		String idBackuper = session.getAttribute("id").toString();
 		
 		DateFormat dateFormatName = new SimpleDateFormat("ddMMyy_HHmmss");
 		Date dateName = new Date();
@@ -60,7 +60,7 @@ public class PostCreateBackupServlet extends HttpServlet {
 		Date dateBackup = new Date();
 		String dteBack = dateFormatBackup.format(dateBackup).toString();
 		
-		String label = (String) request.getParameter("etiq");
+		String label = request.getParameter("etiq");
 		
 		System.out.println("label avant if : " + label);
 		if(label.equals("")){
