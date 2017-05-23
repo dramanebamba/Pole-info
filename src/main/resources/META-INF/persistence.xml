@@ -7,19 +7,6 @@
 		<property name="eclipselink.ddl-generation" value="create-tables" />
 		<property name="eclipselink.logging.level" value="INFO" />
 		<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-		<class>model.Affectation</class>
-		<class>model.AffectationPK</class>
-		<class>model.Cour</class>
-		<class>model.Candidat</class>
-		<class>model.Contenu</class>
-		<class>model.Item</class>
-		<class>model.Master</class>
-		<class>model.Personne</class>
-		<class>model.Preference</class>
-		<class>model.PreferencePK</class>
-		<class>model.Role</class>
-		<class>model.Session</class>
-		<class>model.AffectBi</class>
-		<class>model.SvAffect</class>
+		<class>io.github.dramanebamba.pole_info.model.Contenu</class>
 	</persistence-unit>
 </persistence>

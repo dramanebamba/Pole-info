@@ -25,10 +25,6 @@ public class PostCoursServlet extends HttpServlet {
 
 	@Inject
 	private CoursService Cours;
-	
-	@PersistenceContext
-	private EntityManager em;
-
 
 	public PostCoursServlet() {
 		super();
@@ -47,10 +43,10 @@ public class PostCoursServlet extends HttpServlet {
 	    
 		int id_master = Integer.parseInt(request.getParameter("id_master"));
 		int id_contenu = Integer.parseInt(request.getParameter("id_contenu"));
-		int id_enseignant = Integer.parseInt(request.getParameter("id_enseignant"));
 		String periode = request.getParameter("periode");
 		String obligatoire = request.getParameter("obligatoire");
 		String notes = request.getParameter("notes");
+		int id_enseignant = Integer.parseInt(request.getParameter("id_enseignant"));
 
 		Cours cours = new Cours(id_master, id_contenu, id_enseignant, periode, obligatoire, notes);
 		System.out.println(cours);
