@@ -1,8 +1,12 @@
 package io.github.dramanebamba.pole_info.model;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@ManagedBean
+@SessionScoped
 @Entity
 public class Cours {
 	@Id

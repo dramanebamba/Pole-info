@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Créer un cours avec JSF</title>
+    </h:head>
+    <h:body>
+        <h1>Création d'un cours avec JSF</h1>
+        <h:form>
+        	<h:inputText value="#{cours.id_master}"></h:inputText>
+        	<h:inputText value="#{cours.id_contenu}"></h:inputText>
+        	<h:commandButton value="Soumettre" action="voirCours"></h:commandButton>
+        	
+        </h:form>
+    </h:body>
+</html>
