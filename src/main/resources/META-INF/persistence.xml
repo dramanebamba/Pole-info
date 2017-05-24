@@ -3,8 +3,8 @@
 	xmlns="http://java.sun.com/xml/ns/persistence">
 	<!-- <persistence-unit name="pole" transaction-type="RESOURCE_LOCAL"> -->
 	<persistence-unit name="pole" transaction-type="JTA">
-		<jta-data-source>MyDB</jta-data-source>
-<!-- 		<jta-data-source>jdbc/__default</jta-data-source> dramane wally-->
+		<!-- <jta-data-source>MyDB</jta-data-source>  -->
+ 		<jta-data-source>jdbc/__default</jta-data-source>
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
 		 <class>pole_info.Personne</class>
