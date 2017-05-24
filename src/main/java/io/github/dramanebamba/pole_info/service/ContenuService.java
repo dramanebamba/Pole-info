@@ -1,30 +1,32 @@
 package main.java.io.github.dramanebamba.pole_info.service;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Vector;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-/**
- * Servlet implementation class ListeContenu
- */
-@ApplicationScoped
+import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+import main.java.io.github.dramanebamba.pole_info.utils.QueryHelper;
+
+@RequestScoped
 public class ContenuService {
-	public HashMap<Integer, String> getListeContenu() {
-		return listeContenu;
-	}
-	public void setListeContenu(HashMap<Integer, String> listeContenu) {
-		this.listeContenu = listeContenu;
-	}
-	HashMap<Integer, String> listeContenu = new HashMap<Integer, String>();
-	{
-		listeContenu.put(1,"DataScience");
-		listeContenu.put(2, "Java EE");
-		listeContenu.put(3, "KM");
-		listeContenu.put(4, "Datawarehouse");
-		listeContenu.put(5, "Négociation");
-	}
-	public String getlisteContenuString(){
-		return listeContenu.get(1);
+	@PersistenceContext
+	private EntityManager em;
+
+	@Inject
+	private QueryHelper helper;
+
+	@Transactional
+	public List<Contenu> getAll() {
+		return em.createQuery(helper.selectAll(em.getCriteriaBuilder(), Contenu.class)).getResultList();
 	}
 
-
+	@Transactional
+	public void persist(Contenu contenu) {
+		em.persist(contenu);
+	}
 }
