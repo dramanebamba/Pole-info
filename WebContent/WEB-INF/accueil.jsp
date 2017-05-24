@@ -31,11 +31,14 @@
 		<h2>G&eacute;rer la liste des cours</h2>
 		<a href="./listCourses"> Afficher la liste des cours disponibles </a><br />
 		<br />
+		<h2>Cr&eacute;er master et contenu</h2>
+		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
+		<br />
 		<form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se d&eacute;connecter</button>
 		</form>
 		<br/>
-		
+
 	</div>
 <% } else{%>
 	NOTHING TO SHOW
