@@ -41,7 +41,7 @@ public class GetBackupServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		List<Backup> backList = new ArrayList<Backup>();
+		List<Backup> backList = new ArrayList<>();
 		backList = backupDAO.listeDesBackups();
 		
 		session.setAttribute("listBackup", backList);

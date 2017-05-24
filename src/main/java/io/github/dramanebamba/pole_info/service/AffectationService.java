@@ -5,7 +5,7 @@ import java.util.Vector;
 import main.java.io.github.dramanebamba.pole_info.model.Affectation;
 
 public class AffectationService {
-	private static Vector<Affectation> affectation = new Vector<Affectation>();
+	private static Vector<Affectation> affectation = new Vector<>();
 
 	public static Vector<Affectation> getAffectation() {
 		return affectation;

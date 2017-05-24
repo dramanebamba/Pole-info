@@ -14,7 +14,7 @@ public class ContenuService {
 	public void setListeContenu(HashMap<Integer, String> listeContenu) {
 		this.listeContenu = listeContenu;
 	}
-	HashMap<Integer, String> listeContenu = new HashMap<Integer, String>();
+	HashMap<Integer, String> listeContenu = new HashMap<>();
 	{
 		listeContenu.put(1,"DataScience");
 		listeContenu.put(2, "Java EE");

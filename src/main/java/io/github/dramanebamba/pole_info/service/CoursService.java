@@ -8,7 +8,7 @@ import main.java.io.github.dramanebamba.pole_info.model.Cours;
 @ApplicationScoped
 public class CoursService {
 
-	private static Vector<Cours> Cours = new Vector<Cours>();
+	private static Vector<Cours> Cours = new Vector<>();
 
 	public static Vector<Cours> getCours() {
 		return Cours;
