@@ -18,7 +18,6 @@ import javax.transaction.Transactional;*/
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
-
 @RequestScoped
 public class PersonneDAO {
 
@@ -59,41 +58,7 @@ public class PersonneDAO {
 		return p.getId();
 	}
 
-	@SuppressWarnings("resource")
-	public void exportJSON()
-	{
-		Gson json = new Gson();
-
-		List<String> affectations = new ArrayList<>();
-		affectations.add("Theo Gelly");
-		FileWriter writer;
-		
-		try 
-		{
-			File fil = new File("/Users/theogelly/Documents/test.json");
-			fil.createNewFile();
-			writer = new FileWriter(fil); 
-			
-			String json_string = json.toJson(affectations);
-			
-			System.out.println("Je veux export " + json_string + " dans le fichier : " + fil);
-			json.toJson(json_string, writer);
-			writer.flush();
-			writer.close();
-		} 
-		catch (JsonIOException e) 
-		{
-			throw new IllegalStateException(e);
-		} 
-		catch (IOException e) 
-		{
-			throw new IllegalStateException(e);
-		}
-	}
-
 	public boolean trouverPersonne(String email, String password){
-
-		exportJSON();
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 
@@ -112,12 +77,7 @@ public class PersonneDAO {
 
 		em.close();
 
-		if(p != null){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return (p != null)?true:false;
 	}
 
 }
