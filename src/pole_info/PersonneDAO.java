@@ -40,7 +40,7 @@ public class PersonneDAO {
 
 		Personne p = null;
 		
-		p = em.createQuery(QUERY_AUTH,Personne.class)
+		p = (Personne) em.createQuery(QUERY_AUTH,Personne.class)
 				.setParameter(PARAM_EMAIL, email)
 				.setParameter(PARAM_PASSWORD, password)
 				.getSingleResult();
