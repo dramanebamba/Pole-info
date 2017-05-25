@@ -73,16 +73,16 @@ public class Contenu {
 
 	}
 
-	private String getBiblio(){
+	public String getBiblio(){
 		return biblio;
 	}
 
-	private void setContent(String content) {
+	public void setContent(String content) {
 		// TODO Auto-generated method stub
 		this.contents = content;
 	}
 
-	private String getContent(){
+	public String getContent(){
 		return contents;
 	}
 
@@ -92,7 +92,7 @@ public class Contenu {
 
 	}
 
-	private String getEcts(){
+	public String getEcts(){
 		return ects;
 	}
 
@@ -100,7 +100,8 @@ public class Contenu {
 		this.volume_horaire = vol_h;
 
 	}
-	private int getVolHoraire(){
+	
+	public int getVolHoraire(){
 		return volume_horaire;
 	}
 
@@ -110,7 +111,7 @@ public class Contenu {
 
 	}
 
-	private char getApp(){
+	public char getApp(){
 		return apprentissage;
 	}
 
@@ -120,7 +121,7 @@ public class Contenu {
 
 	}
 
-	private int getId(){
+	public int getId(){
 		return id;
 	}
 

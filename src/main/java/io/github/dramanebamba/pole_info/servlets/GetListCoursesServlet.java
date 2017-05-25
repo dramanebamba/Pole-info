@@ -71,25 +71,29 @@ public class GetListCoursesServlet extends HttpServlet
 		dispatch.forward(request, response);
 	}
 
+	@SuppressWarnings("resource")
 	public void exportJSON(List<Contenu> liste)
 	{
 		Gson json = new Gson();
 		FileWriter writer;
-		String json_string;
-
+		
 		try
 		{
 			File fil = new File("/Users/theogelly/Documents/test.json");
 			fil.createNewFile();
 			writer = new FileWriter(fil); 
 
+			for(Contenu c: liste)
+			{
+				// int id = c.getId();
+				json.toJson(json.toJson(c), writer);
+				writer.write(System.getProperty("line.separator"));
+				writer.write(System.getProperty("line.separator"));
+			}
 			
-			json_string = json.toJson(liste);
-
-			System.out.println("Je veux export " + json_string + " dans le fichier : " + fil);
-			json.toJson(json_string, writer);
 			writer.flush();
 			writer.close();
+			
 		} 
 		catch (JsonIOException e) 
 		{

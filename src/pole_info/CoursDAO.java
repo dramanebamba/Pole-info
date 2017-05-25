@@ -14,5 +14,5 @@ import pole_info.Personne;
 @RequestScoped
 public class CoursDAO
 {
-	private static final String QUERY_GET = "SELECT u FROM Cours u";
+	// private static final String QUERY_GET = "SELECT u FROM Cours u";
 }
