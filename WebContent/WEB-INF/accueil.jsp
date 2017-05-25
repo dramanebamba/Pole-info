@@ -27,10 +27,11 @@
 			<br />
 			<a href="./GetRestoreBackupServlet"> Restaurer la derni&eacute;re sauvegarde de la base de donn&eacute;es </a><br />
 			<br />
+			<form action="./listCourses?operation=getlistCourses" method="post">
+				<button class="btn btn-primary" type="submit">Exportation fichier JSON des affectations des &eacute;tudiants a un cours</button>
+			</form>
+		<br/>
 		<%} %>
-		<h2>G&eacute;rer la liste des cours</h2>
-		<a href="./listCourses"> Afficher la liste des cours disponibles </a><br />
-		<br />
 		<h2>Cr&eacute;er master et contenu</h2>
 		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
 		<br />

@@ -21,21 +21,19 @@ import com.google.gson.JsonIOException;
 @RequestScoped
 public class PersonneDAO {
 
-	private static final String QUERY_AUTH = "SELECT u FROM Personne u "
-			+ "WHERE u.email = :email AND u.password = :password";
-	//	private static final String QUERY_ID = "SELECT u.id FROM Personne u "
-	//			+ "WHERE u.email = :email AND u.password = :password";
-
+	private static final String QUERY_AUTH = "SELECT u FROM Personne u " + "WHERE u.email = :email AND u.password = :password";
+	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
+	private static final String PARAM_ID = "id";
 
 	Personne personne;
 
-	public void creerPersonne(Personne personne){
+	public void creerPersonne(Personne per){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(personne);
+		em.persist(per);
 		em.getTransaction().commit();
 		//em.flush();
 		em.close();
@@ -56,6 +54,17 @@ public class PersonneDAO {
 		em.close();
 
 		return p.getId();
+	}
+	
+	public Personne getPersonne(int id_p)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		Personne p = em.createQuery(QUERY_GET_ID,Personne.class).setParameter(PARAM_ID, id_p).getSingleResult();
+		em.close();
+
+		return p;
 	}
 
 	public boolean trouverPersonne(String email, String password){

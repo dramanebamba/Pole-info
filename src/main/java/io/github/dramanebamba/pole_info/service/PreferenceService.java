@@ -8,7 +8,7 @@ import main.java.io.github.dramanebamba.pole_info.model.Preference;
 @ApplicationScoped
 public class PreferenceService {
 
-	private static Vector<Preference> preference = new Vector<Preference>();
+	private static Vector<Preference> preference = new Vector<>();
 
 	public static Vector<Preference> getPreference() {
 		return preference;
