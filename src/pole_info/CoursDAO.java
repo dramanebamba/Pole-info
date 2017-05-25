@@ -15,20 +15,4 @@ import pole_info.Personne;
 public class CoursDAO
 {
 	private static final String QUERY_GET = "SELECT u FROM Cours u";
-	
-	public List<Cours> getAllCourses()
-	{
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
-		EntityManager em = factory.createEntityManager();
-
-		System.out.println("chargement de la liste des cours");
-		List<Cours> list = new ArrayList<>();
-		list = em.createQuery(QUERY_GET,Cours.class).getResultList();
-		
-		if(list.size() != 0)	for(Cours c: list)	System.out.println("Cours " + c);
-		else	System.out.println("Liste vide");
-
-		em.close();
-		return list;
-	}
 }
