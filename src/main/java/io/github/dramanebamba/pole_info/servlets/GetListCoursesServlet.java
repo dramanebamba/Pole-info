@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
 import main.java.io.github.dramanebamba.pole_info.service.*;
+import pole_info.AffectationDAO;
 import pole_info.Backup;
 import pole_info.ContenuDAO;
 import pole_info.CoursDAO;
@@ -40,7 +41,7 @@ public class GetListCoursesServlet extends HttpServlet
 	PersonneDAO personne;
 	
 	@Inject
-	MasterDAO master;
+	AffectationDAO affectation;
 
 	public GetListCoursesServlet()
 	{
@@ -56,45 +57,45 @@ public class GetListCoursesServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String operation = request.getParameter("operation");
-
-		if(operation.equals("getlistCourses"))
-		{
-			System.out.println("Je vais récupérer la liste des cours !!");
-			System.out.println("Récupération liste des cours");
-			List<Contenu> listCourses = new ArrayList<>();
-			listCourses = contenu.getAllCourses();
-			exportJSON(listCourses);
-		}
+		if(request.getParameter("operation").equals("getlistCourses"))	
+			exportJSONListCourses(contenu.getAllCourses()); // Recuperation de la liste des cours
 		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 		dispatch.forward(request, response);
 	}
 
+	// Methode servant a lister les cours avec les etudiants qui y sont relie, pour ensuite exporter cette liste en fichier JSON
 	@SuppressWarnings("resource")
-	public void exportJSON(List<Contenu> liste)
+	public void exportJSONListCourses(List<Contenu> liste)
 	{
+		System.out.println("Récupération liste des cours");
 		Gson json = new Gson();
-		FileWriter writer;
+		FileWriter writer;	// Objet servant a ecrire dans le fichier voulu
 		
 		try
 		{
-			File fil = new File("/Users/theogelly/Documents/test.json");
-			fil.createNewFile();
-			writer = new FileWriter(fil); 
-
+			File fil = new File("/Users/theogelly/Documents/test.json"); // ecriture en brut [provisoire]
+			fil.createNewFile();	// Creation nouveau fichier
+			writer = new FileWriter(fil); // Liaison entre l'objet et le fichier a remplir
+			
+			// Parcours de la liste des contenus recue en parametre
 			for(Contenu c: liste)
 			{
-				// int id = c.getId();
-				json.toJson(json.toJson(c), writer);
-				writer.write(System.getProperty("line.separator"));
-				writer.write(System.getProperty("line.separator"));
+				json.toJson(json.toJson(c), writer);	// On ecrit d'abord le contenu, ensuite les etudiants raccroches
+				writer.write(System.getProperty("line.separator"));	// Saut de ligne
+				
+				// Apres recuperation des id des etudiants rattaches a ce contenu, recuperation des objets personne lies
+				for(Integer i : affectation.getListePersonnes(c.getId()))
+				{
+					json.toJson(json.toJson(personne.getPersonne(i)), writer);	// ecriture dans le fichier de la personne
+					writer.write(System.getProperty("line.separator"));	// Saut de ligne
+				}
+				writer.write(System.getProperty("line.separator"));	// Saut de ligne pour passer au prochain contenu
 			}
-			
+			// Fermeture de l'ecriture sur le ficher JSON
 			writer.flush();
 			writer.close();
-			
-		} 
+		}
 		catch (JsonIOException e) 
 		{
 			throw new IllegalStateException(e);
