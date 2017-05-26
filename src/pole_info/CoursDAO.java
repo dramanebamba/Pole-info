@@ -42,7 +42,6 @@ public class CoursDAO
 			try 
 			{
 				json.toJson(personne.getPersonne(i), writer);	// ecriture dans le fichier de la personne
-				writer.write("\n");
 				
 				List<Integer> l_content = em.createQuery(QUERY_GET_CONTENT,Integer.class)
 						.setParameter(PARAM_M, id_master)
@@ -50,10 +49,9 @@ public class CoursDAO
 						.getResultList();
 				
 				for(Integer id_content : l_content)
-				{
 					json.toJson(contenu.getContenu(id_content), writer);	// ecriture dans le fichier de la personne
-					writer.write("\n");
-				}
+				
+				writer.write("\n");
 			}
 			catch (IOException e) 
 			{
