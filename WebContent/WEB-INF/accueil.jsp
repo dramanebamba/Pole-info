@@ -35,6 +35,8 @@
 		<h2>Cr&eacute;er master et contenu</h2>
 		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
 		<br />
+		<a href="./PostMasterServlet"> Cr&eacute;er un master</a><br />
+		<br />
 		<form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se d&eacute;connecter</button>
 		</form>
