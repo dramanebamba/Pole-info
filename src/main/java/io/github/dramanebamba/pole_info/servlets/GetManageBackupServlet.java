@@ -150,7 +150,7 @@ public class GetManageBackupServlet extends HttpServlet {
 
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/ListeBackup.jsp");
 		dispatch.forward(request, response);
-		//COMMIT 3
+		//COMMIT NON FORWARD
 	}
 
 	/**
