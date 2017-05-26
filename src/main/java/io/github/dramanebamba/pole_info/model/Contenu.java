@@ -49,7 +49,7 @@ public class Contenu {
 	@Column(name = "biblio")
 	private String biblio;
 
-	public Contenu(String n, String d, char a, int v, String e, int vo, String c, String b) {
+	public Contenu(String n, String d, char a, int v, String e, int vo, String c, String b, String o) {
 		// TODO Auto-generated constructor stub
 		setId(noCont++);
 		setNomMat(n);
@@ -60,6 +60,7 @@ public class Contenu {
 		setVolume_projet(vo);
 		setContent(c);
 		setBiblio(b);
+		setObj(o);
 	}
 	
 	public Contenu()
@@ -67,60 +68,60 @@ public class Contenu {
 		setId(noCont++);
 	}
 
-	private void setBiblio(String biblio) {
+	public void setBiblio(String biblio) {
 		// TODO Auto-generated method stub
 		this.biblio = biblio;
 
 	}
 
-	private String getBiblio(){
+	public String getBiblio(){
 		return biblio;
 	}
 
-	private void setContent(String content) {
+	public void setContent(String content) {
 		// TODO Auto-generated method stub
 		this.contents = content;
 	}
 
-	private String getContent(){
+	public String getContent(){
 		return contents;
 	}
 
-	private void setEcts(String ects) {
+	public void setEcts(String ects) {
 		// TODO Auto-generated method stub
 		this.ects=ects;
 
 	}
 
-	private String getEcts(){
+	public String getEcts(){
 		return ects;
 	}
 
-	private void setVolHoraire(int vol_h) {
+	public void setVolHoraire(int vol_h) {
 		this.volume_horaire = vol_h;
 
 	}
-	private int getVolHoraire(){
+	public int getVolHoraire(){
 		return volume_horaire;
 	}
 
-	private void setApp(char app) {
+	public void setApp(char app) {
 		// TODO Auto-generated method stub
 		this.apprentissage = app;
 
 	}
 
-	private char getApp(){
+	public char getApp(){
 		return apprentissage;
 	}
 
-	private void setId(int id) {
+	public void setId(int id) {
 		// TODO Auto-generated method stub
 		this.id = id;
 
 	}
 
-	private int getId(){
+	public int getId(){
 		return id;
 	}
 

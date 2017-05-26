@@ -54,7 +54,7 @@ public class PostContenuServlet extends HttpServlet {
     int volumeHoraire = Integer.parseInt(request.getParameter("volumeHoraire"));
     int volumeProjet = Integer.parseInt(request.getParameter("volumeProjet"));
 
-    contenuDAO.creerContenu(new Contenu(nom, description, app, volumeHoraire, ects, volumeProjet, contents, biblio));
+    contenuDAO.creerContenu(new Contenu(nom, description, app, volumeHoraire, ects, volumeProjet, contents, biblio, objectives));
     System.out.println("Nouveau contenu créé : " + nom +" / " + description);
     System.out.println(nom + " ajouté en base de données !");
     RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/PostContenu.jsp");
