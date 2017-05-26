@@ -18,7 +18,7 @@ import pole_info.CoursDAO;
 /**
  * Servlet implementation class Identification
  */
-@WebServlet("/creationEnseignant")
+@WebServlet("/PostCoursServlet")
 public class PostCoursServlet extends HttpServlet 
 {
 	/**
