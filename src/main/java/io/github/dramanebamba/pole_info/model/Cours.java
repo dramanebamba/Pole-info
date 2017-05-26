@@ -1,11 +1,35 @@
 package main.java.io.github.dramanebamba.pole_info.model;
 
-public class Cours {
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@ApplicationScoped
+@Entity
+@Table(name="Cours")
+public class Cours 
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_master = 0;
+	
+	@Column(name = "id_contenu")
 	private int id_contenu = 0;
+	
+	@Column(name = "id_enseignant")
 	private int id_enseignant = 0;
+	
+	@Column(name = "periode")
 	private String periode = "NULL";
+	
+	@Column(name = "obligatoire")
 	private String obligatoire = "0";
+	
+	@Column(name = "notes")
 	private String notes;
 	
 	public Cours(int id_master, int id_contenu, int id_enseignant, String periode, String obligatoire, String notes) {
@@ -15,6 +39,11 @@ public class Cours {
 		setPeriode(periode);
 		setObligatoire(obligatoire);
 		setNotes(notes);
+	}
+	
+	public Cours()
+	{
+		
 	}
 	
 	public int getId_master() {

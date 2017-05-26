@@ -3,124 +3,162 @@ package main.java.io.github.dramanebamba.pole_info.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@ApplicationScoped
+@Entity
+@Table(name="Contenu")
 public class Contenu {
-	
+
 	static int noCont = 1;
-	private int idContenu;
-	private String nomMat;
-	private String desc;
-	private String app;
-	private String vol_horaire ;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(name = "nom")
+	private String nom;
+
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "apprentissage")
+	private char apprentissage;
+
+	@Column(name = "volume_horaire")
+	private int volume_horaire ;
+
+	@Column(name = "ects")
 	private String ects;
-	private String obj ;
-	private String content;
+
+	@Column(name = "volume_projet")
+	private int volume_projet ;
+
+	@Column(name = "objectives")
+	private String objectives;
+
+	@Column(name = "contents")
+	private String contents;
+
+	@Column(name = "biblio")
 	private String biblio;
 
-	private static List<Contenu> BDD_contenu = new ArrayList<Contenu>();
-	
-	public Contenu() {
+	public Contenu(String n, String d, char a, int v, String e, int vo, String c, String b, String o) {
 		// TODO Auto-generated constructor stub
 		setId(noCont++);
-		setNomMat(nomMat);
-		setDesc(desc);
-		setApp(app);
-		setVolHoraire(vol_horaire);
-		setEcts(ects);
-		setContent(content);
-		setBiblio(biblio);
+		setNomMat(n);
+		setDesc(d);
+		setApp(a);
+		setVolHoraire(v);
+		setEcts(e);
+		setVolume_projet(vo);
+		setContent(c);
+		setBiblio(b);
+		setObj(o);
 	}
-	
-	private void setBiblio(String biblio) {
+
+	public Contenu()
+	{
+		setId(noCont++);
+	}
+
+	public void setBiblio(String biblio) {
 		// TODO Auto-generated method stub
 		this.biblio = biblio;
-		
+
 	}
-	
-	private String getBiblio(){
+
+	public String getBiblio(){
 		return biblio;
 	}
 
-	private void setContent(String content) {
+	public void setContent(String content) {
 		// TODO Auto-generated method stub
-		this.content = content;
-	}
-	
-	private String getContent(){
-		return content;
+		this.contents = content;
 	}
 
-	private void setEcts(String ects) {
+	public String getContent(){
+		return contents;
+	}
+
+	public void setEcts(String ects) {
 		// TODO Auto-generated method stub
 		this.ects=ects;
-		
+
 	}
-	
-	private String getEcts(){
+
+	public String getEcts(){
 		return ects;
 	}
 
-	private void setVolHoraire(String vol_h) {
+	public void setVolHoraire(int vol_h) {
+		this.volume_horaire = vol_h;
+
+	}
+
+	public int getVolHoraire(){
+		return volume_horaire;
+	}
+
+	public void setApp(char app) {
 		// TODO Auto-generated method stub
-		this.vol_horaire = vol_h;
-		
-	}
-	private String getVolHoraire(){
-		return vol_horaire;
+		this.apprentissage = app;
+
 	}
 
-	private void setApp(String app) {
+	public char getApp(){
+		return apprentissage;
+	}
+
+	public void setId(int id) {
 		// TODO Auto-generated method stub
-		this.app = app;
-		
-	}
-	
-	private String getApp(){
-		return app;
+		this.id = id;
+
 	}
 
-	private void setId(int id) {
-		// TODO Auto-generated method stub
-		this.idContenu = id;
-		
-	}
-	
-	private int getId(){
-		return idContenu;
+	public int getId(){
+		return id;
 	}
 
-	public String getNomMat() 
+	public String getNomMat()
 	{
-		return nomMat;
+		return nom;
 	}
 
-	public void setNomMat(String nomMat) 
+	public void setNomMat(String nomMat)
 	{
-		this.nomMat = nomMat;
-	}
-	
-	public String getDesc() 
-	{
-		return desc;
+		this.nom = nomMat;
 	}
 
-	public void setDesc(String desc) 
+	public String getDesc()
 	{
-		this.desc = desc;
-	}
-	
-	public static List<Contenu> getBDD() {
-		return BDD_contenu;
+		return description;
 	}
 
-	public static void setBDD(List<Contenu> bDD_content) {
-		BDD_contenu = bDD_content;
+	public void setDesc(String desc)
+	{
+		this.description = desc;
 	}
 
 	public String getObj() {
-		return obj;
+		return objectives;
 	}
 
 	public void setObj(String obj) {
-		this.obj = obj;
+		this.objectives = obj;
+	}
+
+	public int getVolume_projet() {
+		return volume_projet;
+	}
+
+	public void setVolume_projet(int volume_projet) {
+		this.volume_projet = volume_projet;
 	}
 }

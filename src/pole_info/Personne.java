@@ -235,6 +235,7 @@ public class Personne {
 		this.annee_master = annee_master;
 	}
 	
+	@Override
 	public String toString()
 	{
 		return (roles.equals("Et"))?("Je suis un étudiant, mon nom est "+nom+" et mon prénom "+prenom):("Je suis un enseignant, mon nom est "+nom+" et mon prénom "+prenom);

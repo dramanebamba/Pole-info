@@ -34,7 +34,7 @@ public class Inscription extends HttpServlet {
 		/* Récupération des champs du formulaire. */
 
 		String resultat;
-		Map<String, String> erreurs = new HashMap<String, String>();
+		Map<String, String> erreurs = new HashMap<>();
 
 		/* Récupération des champs du formulaire. */
 		String email = request.getParameter( CHAMP_EMAIL );

@@ -24,7 +24,7 @@ public class Accueil extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -33,6 +33,7 @@ public class Accueil extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		//HttpSession session = request.getSession(true);
+
 		
 		response.getWriter().println("Page d'accueil !");
 		

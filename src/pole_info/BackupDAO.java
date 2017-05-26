@@ -35,7 +35,7 @@ public class BackupDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 		
-		List<Backup> listBackup = new ArrayList<Backup>();
+		List<Backup> listBackup = new ArrayList<>();
 		System.out.println("AVANT QUERY");
 		listBackup = em.createQuery(QUERY_LIST_BACKUP,Backup.class).getResultList();
 		System.out.println("APRES QUERY");

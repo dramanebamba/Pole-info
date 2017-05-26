@@ -9,6 +9,12 @@
 
 		 <class>pole_info.Personne</class>
 		 <class>pole_info.Backup</class>
+		 <class>model.Cours</class>
+		 <class>model.Affectation</class>
+		 <class>model.Contenu</class>
+		 <class>model.Preference</class>
+		 <class>model.Role</class>
+		 <class>model.Master</class>
 
 		<property name="eclipselink.ddl-generation" value="create-tables" />
 		<property name="eclipselink.logging.level" value="INFO" />

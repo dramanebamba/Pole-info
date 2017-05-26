@@ -20,20 +20,28 @@
 		<a href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
 		<br />
 		<%if(pseudo.equals("admin")){ %>
-		<h2>Base de données</h2>
-			<a href="./GetBackupServlet"> Liste des sauvegardes de la base de données </a><br />
+		<h2>Base de donn&eacute;es</h2>
+			<a href="./GetBackupServlet"> Liste des sauvegardes de la base de donn&eacute;es </a><br />
 			<br />
-			<a href="./GetCreateBackupServlet"> Créer une sauvegarde de la base de données </a><br />
+			<a href="./GetCreateBackupServlet"> Cr&eacute;er une sauvegarde de la base de donn&eacute;es </a><br />
 			<br />
-			<a href="./GetRestoreBackupServlet"> Restaurer la dernière sauvegarde de la base de données </a><br />
+			<a href="./GetRestoreBackupServlet"> Restaurer la derni&eacute;re sauvegarde de la base de donn&eacute;es </a><br />
 			<br />
+			<form action="./listCourses?operation=getlistCourses" method="post">
+				<button class="btn btn-primary" type="submit">Exportation fichier JSON des affectations des &eacute;tudiants a un cours</button>
+			</form>
+		<br/>
 		<%} %>
+		<h2>Cr&eacute;er master et contenu</h2>
+		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
+		<br />
+		<a href="./PostMasterServlet"> Cr&eacute;er un master</a><br />
 		<br />
 		<form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se d&eacute;connecter</button>
 		</form>
 		<br/>
-		
+
 	</div>
 <% } else{%>
 	NOTHING TO SHOW
