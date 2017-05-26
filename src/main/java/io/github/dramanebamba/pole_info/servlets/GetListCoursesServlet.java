@@ -74,18 +74,18 @@ public class GetListCoursesServlet extends HttpServlet
 		
 		try
 		{
-			File fil = new File("/Users/theogelly/Documents/test.json"); // ecriture en brut [provisoire]
+			File fil = new File("../eclipseApps/pole_info/Export_JSON_Courses.json"); // ecriture en brut [provisoire]
 			fil.createNewFile();	// Creation nouveau fichier
 			writer = new FileWriter(fil); // Liaison entre l'objet et le fichier a remplir
 			
 			// Parcours de la liste des contenus recue en parametre
 			for(Contenu c: liste)
 			{
-				json.toJson(json.toJson(c), writer);	// On ecrit d'abord le contenu, ensuite les etudiants raccroches
+				json.toJson(c, writer);	// On ecrit d'abord le contenu, ensuite les etudiants raccroches
 				
 				// Apres recuperation des id des etudiants rattaches a ce contenu, recuperation des objets personne lies
 				for(Integer i : affectation.getListePersonnes(c.getId()))
-					json.toJson(json.toJson(personne.getPersonne(i)), writer);	// ecriture dans le fichier de la personne
+					json.toJson(personne.getPersonne(i), writer);	// ecriture dans le fichier de la personne
 				
 				writer.write("\n");	// Saut de ligne pour passer au prochain contenu
 			}
