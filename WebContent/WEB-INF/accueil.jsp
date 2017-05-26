@@ -29,8 +29,8 @@
 		<a href="./GetBackupServlet"> Liste des sauvegardes de la base de
 			donn&eacute;es </a><br /> <br /> <a href="./GetCreateBackupServlet">
 			Cr&eacute;er une sauvegarde de la base de donn&eacute;es </a><br /> <br />
-		<a href="./GetRestoreBackupServlet"> Restaurer la derni&eacute;re
-			sauvegarde de la base de donn&eacute;es </a><br /> <br />
+		<!-- <a href="./GetRestoreBackupServlet"> Restaurer la derni&eacute;re
+			sauvegarde de la base de donn&eacute;es </a><br /> <br /> -->
 		
 		<h2>Exportations JSON</h2>
 		<form action="./listCourses?operation=getlistCourses" method="post">

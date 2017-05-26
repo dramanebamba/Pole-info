@@ -29,14 +29,14 @@
 				<tr>
 					<td><%= b.getIdBackup() %></td>
 					<td><%= b.getDate()  %></td>
-					<td><%= b.getLabel() %></td>
+					<td><a href="./<%= b.getNom() %>.sql" download><%= b.getLabel() %></a></td>
 					<td class="test-align">
-						<a href=".?operation=remove&id=<%=b.getIdBackup() %>">
+						<a href="GetManageBackupServlet?operation=remove&id=<%=b.getIdBackup() %>">
 						<span class="glyphicon glyphicon-trash"></span>
 						</a>
 					</td>
 					<td class="text-align">
-						<a href=".?operation=restore&id=<%=b.getIdBackup() %>">
+						<a href="GetManageBackupServlet?operation=restore&id=<%=b.getIdBackup() %>">
 						<span class="glyphicon glyphicon-upload"></span>
 						</a>
 					</td>
