@@ -15,14 +15,14 @@ import com.google.gson.Gson;
 
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
->>>>>>> affectation
+
+import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
 import pole_info.Personne;
 
 @RequestScoped
 public class CoursDAO
 {
-<<<<<<< HEAD
 	@Inject
 	PersonneDAO personne;
 
@@ -75,6 +75,7 @@ public class CoursDAO
 		}
 		return new_liste;
 	}
+
 	// private static final String QUERY_GET = "SELECT u FROM Cours u";
 	private static final String QUERY_GET_COURS = "SELECT c.nom FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
 	private static final String QUERY_GET_ID = "SELECT c.id FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
