@@ -74,26 +74,45 @@ public class PostCreateBackupServlet extends HttpServlet {
 		
 		Backup monBackup = new Backup(backupName,idBackuper,label,dteBack);
 		System.out.println(monBackup);
-		backDAO.creerBackup(monBackup);
 		
 		String filename = backupName + ".sql";
 		
-		Process p = null;
+		//String relativePath = getServletContext().getRealPath("");
+	    //System.out.println("relativePath 1st = " + relativePath);
+		
+		Process p, p1 = null;
 		String expr = new StringBuilder()
 				.append("/usr/local/mysql/bin/mysqldump").append(' ')
 				.append("-u").append("root").append(' ')
 			    .append("-p").append("root").append(' ')
+			    .append("--add-drop-database").append(' ')
+			    .append("-B").append(' ')
 			    .append("poleinfobd").append(' ')
 			    .append("-r").append(' ')
 			    .append(filename)
 			    .toString();
+			    
+		String exprCP = new StringBuilder()
+			    .append("/bin/cp").append(' ')
+			    .append(filename).append(' ')
+			    .append("../eclipseApps/pole_info/")
+			    .toString();
 		try {
+			backDAO.creerBackup(monBackup);
 			p = Runtime.getRuntime().exec(expr);
 			int processComplete = p.waitFor();
 			if(processComplete == 0){
 				System.out.println("success");
+				p1 = Runtime.getRuntime().exec(exprCP);
+				int p1Complete = p1.waitFor();
+				if(p1Complete == 0){
+					System.out.println("CP OK");
+				}
+				else{
+					System.out.println("CP KO");
+				}
 			} else {
-				System.out.println("restore failure");
+				System.out.println("failure backup");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

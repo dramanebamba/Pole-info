@@ -29,7 +29,7 @@
 				<tr>
 					<td><%= b.getIdBackup() %></td>
 					<td><%= b.getDate()  %></td>
-					<td><%= b.getLabel() %></td>
+					<td><a href="./<%= b.getNom() %>.sql" download><%= b.getLabel() %></a></td>
 					<td class="test-align">
 						<a href="GetManageBackupServlet?operation=remove&id=<%=b.getIdBackup() %>">
 						<span class="glyphicon glyphicon-trash"></span>

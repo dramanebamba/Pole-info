@@ -46,6 +46,9 @@ public class GetBackupServlet extends HttpServlet {
 		
 		session.setAttribute("listBackup", backList);
 		
+		 //String relativePath = getServletContext().getRealPath("");
+	     //System.out.println("relativePath = " + relativePath);
+		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/ListeBackup.jsp");
 		dispatch.forward(request, response);
 		
