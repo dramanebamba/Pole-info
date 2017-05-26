@@ -21,35 +21,35 @@ public class Contenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "nom")
 	private String nom;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "apprentissage")
 	private char apprentissage;
-	
+
 	@Column(name = "volume_horaire")
 	private int volume_horaire ;
-	
+
 	@Column(name = "ects")
 	private String ects;
-	
+
 	@Column(name = "volume_projet")
 	private int volume_projet ;
-	
+
 	@Column(name = "objectives")
 	private String objectives;
-	
+
 	@Column(name = "contents")
 	private String contents;
-	
+
 	@Column(name = "biblio")
 	private String biblio;
 
-	public Contenu(String n, String d, char a, int v, String e, int vo, String c, String b) {
+	public Contenu(String n, String d, char a, int v, String e, int vo, String c, String b, String o) {
 		// TODO Auto-generated constructor stub
 		setId(noCont++);
 		setNomMat(n);
@@ -60,14 +60,15 @@ public class Contenu {
 		setVolume_projet(vo);
 		setContent(c);
 		setBiblio(b);
+		setObj(o);
 	}
-	
+
 	public Contenu()
 	{
 		setId(noCont++);
 	}
 
-	private void setBiblio(String biblio) {
+	public void setBiblio(String biblio) {
 		// TODO Auto-generated method stub
 		this.biblio = biblio;
 
@@ -86,7 +87,7 @@ public class Contenu {
 		return contents;
 	}
 
-	private void setEcts(String ects) {
+	public void setEcts(String ects) {
 		// TODO Auto-generated method stub
 		this.ects=ects;
 
@@ -96,16 +97,16 @@ public class Contenu {
 		return ects;
 	}
 
-	private void setVolHoraire(int vol_h) {
+	public void setVolHoraire(int vol_h) {
 		this.volume_horaire = vol_h;
 
 	}
-	
+
 	public int getVolHoraire(){
 		return volume_horaire;
 	}
 
-	private void setApp(char app) {
+	public void setApp(char app) {
 		// TODO Auto-generated method stub
 		this.apprentissage = app;
 
@@ -115,7 +116,7 @@ public class Contenu {
 		return apprentissage;
 	}
 
-	private void setId(int id) {
+	public void setId(int id) {
 		// TODO Auto-generated method stub
 		this.id = id;
 
@@ -125,22 +126,22 @@ public class Contenu {
 		return id;
 	}
 
-	public String getNomMat() 
+	public String getNomMat()
 	{
 		return nom;
 	}
 
-	public void setNomMat(String nomMat) 
+	public void setNomMat(String nomMat)
 	{
 		this.nom = nomMat;
 	}
 
-	public String getDesc() 
+	public String getDesc()
 	{
 		return description;
 	}
 
-	public void setDesc(String desc) 
+	public void setDesc(String desc)
 	{
 		this.description = desc;
 	}
