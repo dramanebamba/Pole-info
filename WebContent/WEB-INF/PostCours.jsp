@@ -17,21 +17,21 @@ pageEncoding="UTF-8"%>
 
       <form class="form-horizontal" action="./PostCoursServlet" method="post">
         <div class="form-group">
-          <label for="exampleInputName2" class="col-sm-2 control-label">Identifiant du master</label>
+          <label for="exampleInputName2" class="col-sm-2 control-label">Nom du master</label>
           <div class="col-sm-10">
-            <input type="text" name="id_master" class="form-control" placeholder="Identifiant master">
+            <input type="text" name="nom_master" class="form-control" placeholder="Nom master">
             </div>
           </div>
           <div class="form-group">
             <label for="exampleInputName2" class="col-sm-2 control-label">Identifiant du contenu</label>
             <div class="col-sm-10">
-              <input type="text" name="id_contenu" class="form-control" placeholder="Identifiant du contenu">
+              <input type="text" name="nom_contenu" class="form-control" placeholder="Nom du contenu">
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputName2" class="col-sm-2 control-label">Identifiant de l'enseignant</label>
+              <label for="exampleInputName2" class="col-sm-2 control-label">Nom de l'enseignant</label>
               <div class="col-sm-10">
-                <input type="text" name="id_enseignant" class="form-control" placeholder="Identifiant de l'enseignant">
+                <input type="text" name="nom_enseignant" class="form-control" placeholder="Nom de l'enseignant">
                 </div>
               </div>
               <div class="form-group">
