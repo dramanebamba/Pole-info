@@ -82,15 +82,12 @@ public class GetListCoursesServlet extends HttpServlet
 			for(Contenu c: liste)
 			{
 				json.toJson(json.toJson(c), writer);	// On ecrit d'abord le contenu, ensuite les etudiants raccroches
-				writer.write(System.getProperty("line.separator"));	// Saut de ligne
 				
 				// Apres recuperation des id des etudiants rattaches a ce contenu, recuperation des objets personne lies
 				for(Integer i : affectation.getListePersonnes(c.getId()))
-				{
 					json.toJson(json.toJson(personne.getPersonne(i)), writer);	// ecriture dans le fichier de la personne
-					writer.write(System.getProperty("line.separator"));	// Saut de ligne
-				}
-				writer.write(System.getProperty("line.separator"));	// Saut de ligne pour passer au prochain contenu
+				
+				writer.write("\n");	// Saut de ligne pour passer au prochain contenu
 			}
 			// Fermeture de l'ecriture sur le ficher JSON
 			writer.flush();
