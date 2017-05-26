@@ -23,8 +23,7 @@ public class ContenuDAO {
 		EntityManager em = factory.createEntityManager();
 
 		System.out.println("chargement de la liste des cours");
-		List<Contenu> list = new ArrayList<>();
-		list = em.createQuery(QUERY_GET,Contenu.class).getResultList();
+		List<Contenu> list = em.createQuery(QUERY_GET,Contenu.class).getResultList();
 
 		em.close();
 		return list;
