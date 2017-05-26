@@ -31,9 +31,16 @@
 			Cr&eacute;er une sauvegarde de la base de donn&eacute;es </a><br /> <br />
 		<a href="./GetRestoreBackupServlet"> Restaurer la derni&eacute;re
 			sauvegarde de la base de donn&eacute;es </a><br /> <br />
+		
+		<h2>Exportations JSON</h2>
 		<form action="./listCourses?operation=getlistCourses" method="post">
 			<button class="btn btn-primary" type="submit">Exportation
 				fichier JSON des affectations des &eacute;tudiants a un cours</button>
+		</form>
+		<br />
+		<form action="./listParcours?operation=getlistParcours" method="post">
+			<button class="btn btn-primary" type="submit">Exportation
+				fichier JSON des enseigants responsables des cours d'un parcours</button>
 		</form>
 		<br />
 		
