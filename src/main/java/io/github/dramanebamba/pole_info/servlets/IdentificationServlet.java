@@ -22,14 +22,12 @@ public class IdentificationServlet extends HttpServlet
 	private static final long serialVersionUID = 1L;
 	@Inject
 	PersonneDAO persDAO;
-	//private VerificationLoginService verification_login;	// CDI servant à verifier que les identifiants sont en BDD
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public IdentificationServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -37,7 +35,6 @@ public class IdentificationServlet extends HttpServlet
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/identification.html");
 		dispatch.forward(request, response);
 	}
@@ -48,7 +45,6 @@ public class IdentificationServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
 		String login = request.getParameter("login");
@@ -56,30 +52,25 @@ public class IdentificationServlet extends HttpServlet
 
 		System.out.println("Operation : " + operation);
 
-		
-		// Test en BDD par le CDI
-		if(operation.equals("confAuth") && persDAO.trouverPersonne(login,pw)){
+		if(operation.equals("logout")){
+			session.setAttribute("connected", "false");
+			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
+			dispatch.forward(request, response);
+		} else	if(operation.equals("confAuth") && persDAO.trouverPersonne(login,pw)){
 			int id = persDAO.getId(login, pw);
+			String roles = persDAO.getRoles(login, pw);
+			session.setAttribute("roles", roles);
 			session.setAttribute("id", id);
 			session.setAttribute("connected", "true");
 			session.setAttribute("login", login);
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 			dispatch.forward(request, response);
-			// System.out.println(session.getAttribute("connect"));
 		}
-		if(operation.equals("logout")){
-			//request.setAttribute("connected", "false");
-			session.setAttribute("connected", "false");
+		else
+		{
+			System.out.println("Erreur lors de l'authentification, veuillez reessayer");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
 			dispatch.forward(request, response);
-			// System.out.println(session.getAttribute("connect"));
 		}
-		
-		
-		
-		//persDAO.trouverPersonne(login, pw);
-		
-		//System.out.println("TEST");
-		
 	}
 }

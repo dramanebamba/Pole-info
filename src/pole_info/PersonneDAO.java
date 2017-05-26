@@ -22,12 +22,24 @@ import com.google.gson.JsonIOException;
 public class PersonneDAO {
 
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u " + "WHERE u.email = :email AND u.password = :password";
+	private static final String QUERY_ROLE = "SELECT u.roles FROM Personne u WHERE u.email = :email AND u.password = :password";
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_ID = "id";
 
 	Personne personne;
+	
+	public String getRoles(String email, String password)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		String roles = em.createQuery(QUERY_ROLE,String.class).setParameter(PARAM_EMAIL, email).setParameter(PARAM_PASSWORD, password).getSingleResult();
+		em.close();
+
+		return roles;
+	}
 
 	public void creerPersonne(Personne per){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
@@ -71,22 +83,15 @@ public class PersonneDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 
-		Personne p = null;
-
 		System.out.println("query début trouverPersonne");
 
-		p = em.createQuery(QUERY_AUTH,Personne.class)
-				.setParameter(PARAM_EMAIL, email)
-				.setParameter(PARAM_PASSWORD, password)
-				.getSingleResult();
-
-		System.out.println("PersDAO : " + p);
-
+		List<Personne> li = em.createQuery(QUERY_AUTH,Personne.class).setParameter(PARAM_EMAIL, email).setParameter(PARAM_PASSWORD, password)
+				.getResultList();
+		
 		System.out.println("query fin trouverPersonne");
-
 		em.close();
-
-		return (p != null)?true:false;
+		
+		return (li.isEmpty())?false:true;
 	}
 
 }
