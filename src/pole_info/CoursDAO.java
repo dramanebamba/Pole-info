@@ -16,6 +16,9 @@ import com.google.gson.Gson;
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+
+
+import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
 import pole_info.Personne;
 
@@ -74,7 +77,6 @@ public class CoursDAO
 		}
 		return new_liste;
 	}
-
 
 	// private static final String QUERY_GET = "SELECT u FROM Cours u";
 	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
