@@ -45,10 +45,10 @@
 		</form>
 		<br />
 		
-		<h2>Cr&eacute;er master et contenu</h2>
-		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
+		<h2>Gestion des masters et contenus</h2>
+		<a href="./PostContenuServlet"> G&eacute;rer les contenus d'un cours</a><br />
 		<br />
-		<a href="./PostMasterServlet"> Cr&eacute;er un master</a><br />
+		<a href="./PostMasterServlet"> G&eacute;rer les masters</a><br />
 		<br />
 		<% } %>
 		<% } else { %>
