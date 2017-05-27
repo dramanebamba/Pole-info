@@ -27,9 +27,22 @@ public class CoursDAO
 	
 	private static final String QUERY_GET_TEACHERS = "SELECT u.id_enseignant FROM Cours u WHERE u.id_master = :id";
 	private static final String QUERY_GET_CONTENT = "SELECT u.id_contenu FROM Cours u WHERE u.id_master = :id_m AND u.id_enseignant = :id_e";
+	private static final String QUERY_GET_MASTER = "SELECT u.id_master FROM Cours u WHERE u.id_contenu = :id_c";
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_M = "id_m";
 	private static final String PARAM_E = "id_e";
+	private static final String PARAM_C = "id_c";
+	
+	public List<Integer> getListContenus(int id_c)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		List<Integer> li = em.createQuery(QUERY_GET_MASTER,Integer.class).setParameter(PARAM_C, id_c).getResultList();
+		em.close();
+		
+		return li;
+	}
 	
 	public void getListePersonnes(int id_master, Gson json, FileWriter writer)
 	{

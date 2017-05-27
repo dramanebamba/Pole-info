@@ -13,9 +13,22 @@ import main.java.io.github.dramanebamba.pole_info.model.Master;
 @RequestScoped
 public class MasterDAO
 {
-	// private static final String QUERY_GET = "SELECT u FROM Master u";
 	private final static String QUERY_LIST_MASTER = "SELECT b FROM Master b";
+	private final static String QUERY_MASTER = "SELECT b FROM Master b WHERE b.id = :id";
+	private static final String PARAM_ID = "id";
+	
 	Master master;
+	
+	public String getMaster(int id)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		Master m = em.createQuery(QUERY_MASTER,Master.class).setParameter(PARAM_ID, id).getSingleResult();
+		em.close();
+		
+		return m.getNom();
+	}
 	
 	public void creerMaster(Master mas){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
