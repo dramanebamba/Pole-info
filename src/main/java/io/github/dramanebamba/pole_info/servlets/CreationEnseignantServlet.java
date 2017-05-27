@@ -20,6 +20,9 @@ import pole_info.PersonneDAO;
 @WebServlet("/creationEnseignant")
 public class CreationEnseignantServlet extends HttpServlet 
 {
+	@Inject
+	private VerificationBDDService verification_BDD;
+	
 	/**
 	 * 
 	 */
@@ -46,7 +49,6 @@ public class CreationEnseignantServlet extends HttpServlet
 		dispatch.forward(request, response);
 	}
 	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -69,9 +71,16 @@ public class CreationEnseignantServlet extends HttpServlet
 
 		if(operation.equals("createProf")){
 				System.out.println("Création enseignant...");
-				persDAO.creerPersonne(new Personne(nom, prenom, mail, "", "", "", "", "", "", 0, 0, "M"));
-				System.out.println("Nouvel étudiant créé : " + prenom + " " + nom + " / " + mail );
-				System.out.println(prenom + " " + nom + " ajouté en BDD");
+				
+				if(verification_BDD.verification(mail)) // CDI : Si true alors la personne peut etre ajoutee, sinon deja en BDD
+				{
+					persDAO.creerPersonne(new Personne(nom, prenom, mail, "", "", "", "", "", "", 0, 0, "M"));
+					System.out.println("Nouvel enseignant créé : " + prenom + " " + nom + " / " + mail );
+					System.out.println(prenom + " " + nom + " ajouté en BDD");
+				}
+				else
+					System.out.println("Erreur : L'enseignant est déjà en base de données (email). Retour au menu.");
+				
 				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 				dispatch.forward(request, response);
 		}

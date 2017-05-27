@@ -35,13 +35,10 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Opened database successfully");
-		//c.close();
 	}
-	
 	
 	public boolean createTableTest(){
 		boolean b = true;

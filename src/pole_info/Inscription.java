@@ -1,6 +1,5 @@
 package pole_info;
 
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -117,5 +116,4 @@ public class Inscription extends HttpServlet {
 			throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères." );
 		}
 	}
-
 }

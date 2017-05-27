@@ -37,17 +37,17 @@ public class Master
 		setDesc(d);
 	}
 	
-	public void setId(int d)
+	private void setId(int d)
 	{
 		id = d;
 	}
 	
-	public void setNom(String n)
+	private void setNom(String n)
 	{
 		nom = n;
 	}
 	
-	public void setDesc(String d)
+	private void setDesc(String d)
 	{
 		description = d;
 	}
@@ -67,5 +67,3 @@ public class Master
 		return description;
 	}
 }
-
-

@@ -46,7 +46,7 @@ public class Affectation {
 		return id_master;
 	}
 
-	public void setId_master(int id_master) {
+	private void setId_master(int id_master) {
 		this.id_master = id_master;
 	}
 
@@ -54,7 +54,7 @@ public class Affectation {
 		return id_contenu;
 	}
 
-	public void setId_contenu(int id_contenu) {
+	private void setId_contenu(int id_contenu) {
 		this.id_contenu = id_contenu;
 	}
 
@@ -62,7 +62,7 @@ public class Affectation {
 		return id_personne;
 	}
 
-	public void setId_personne(int id_personne) {
+	private void setId_personne(int id_personne) {
 		this.id_personne = id_personne;
 	}
 
@@ -70,7 +70,7 @@ public class Affectation {
 		return annee;
 	}
 
-	public void setAnnee(int annee) {
+	private void setAnnee(int annee) {
 		this.annee = annee;
 	}
 
@@ -78,7 +78,7 @@ public class Affectation {
 		return note;
 	}
 
-	public void setNote(double note) {
+	private void setNote(double note) {
 		this.note = note;
 	}
 }
