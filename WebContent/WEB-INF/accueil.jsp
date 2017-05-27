@@ -45,24 +45,18 @@
 		</form>
 		<br />
 
-		<h2>Cr&eacute;er master et contenu</h2>
-		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
-		
 		<h2>Gestion des masters et contenus</h2>
 		<a href="./PostContenuServlet"> G&eacute;rer les contenus d'un cours</a><br />
 		<br />
 		<a href="./PostMasterServlet"> G&eacute;rer les masters</a><br />
-		<br />
-		<h2>Affectation</h2>
-		<a href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
-		<br />
-		<h2>Affectation</h2>
+
+		<h2>Gestion des affectation</h2>
 		<a href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
 		<br />
 		<% } %>
 		<% } else { %>
 		<br />
-		Erreur: Votre compte n'est ni un Enseignant, ni un étudiant, veuillez contacter l'administrateur.
+		Erreur: Votre compte n'est ni un Enseignant, ni un ï¿½tudiant, veuillez contacter l'administrateur.
 		<br />
 		<% } %>
 		<form action="./identification?operation=logout" method="post">
@@ -73,7 +67,7 @@
 	</div>
 	<% } else { %>
 	<br />
-	Erreur : vous n'êtes plus connecté.
+	Erreur : vous n'ï¿½tes plus connectï¿½.
 	<br />
 	<% } %>
 </body>
