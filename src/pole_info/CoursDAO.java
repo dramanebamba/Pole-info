@@ -95,12 +95,12 @@ public class CoursDAO
 		 }
 		return nomCours;
 	}
-	
+
 	public List<Object[]> getCoursByMaster(int id_master){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
-		List<Object[]> coursByMaster  = em.createQuery(QUERY_GET_COURS_BY_MASTER,Object[].class).setParameter("id_master", id_master).getResultList();		
+
+		List<Object[]> coursByMaster  = em.createQuery(QUERY_GET_COURS_BY_MASTER,Object[].class).setParameter("id_master", id_master).getResultList();
 		if(coursByMaster.isEmpty()){
 			System.out.println("Pas de cours facultatifs pour ce master");
 			System.out.println("COURSDAO : "+coursByMaster);
