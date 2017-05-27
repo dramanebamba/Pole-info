@@ -20,18 +20,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+import main.java.io.github.dramanebamba.pole_info.model.Master;
 import pole_info.ContenuDAO;
 import pole_info.CoursDAO;
+import pole_info.MasterDAO;
 
-@WebServlet("/AffectationServlet")
-public class AffectationServlet extends HttpServlet {
-  public static final String VUE = "/WEB-INF/Affectation.jsp";
+@WebServlet("/AffectationMaster")
+public class AffectationMaster extends HttpServlet {
+  public static final String VUE = "/WEB-INF/AffectationMaster.jsp";
   private static final long serialVersionUID = 1L;
 
-  @Inject
-  private CoursDAO coursDAO;
+  // @Inject
+  // private CoursDAO coursDAO;
 
-  public AffectationServlet() {
+  @Inject
+  private MasterDAO masterDAO;
+
+  public AffectationMaster() {
     super();
     // TODO Auto-generated constructor stub
   }
@@ -40,14 +45,10 @@ public class AffectationServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
 
-    List<Contenu> listCours = new ArrayList<>();
-    List<Contenu> idCours = new ArrayList<>();
-    // Récupération des cours
-    listCours = coursDAO.getListCours();
-    idCours = coursDAO.getIdCours();
+    List<Master> listMaster = new ArrayList<>();
+    listMaster = masterDAO.listeDesMasters();
 
-    session.setAttribute("listCours", listCours);
-    session.setAttribute("idCours", idCours);
+    session.setAttribute("listMaster", listMaster);
 
     RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher(VUE);
     dispatch.forward(request, response);
@@ -56,8 +57,7 @@ public class AffectationServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    int idContenu = Integer.parseInt(request.getParameter("id"));
-    System.out.println(idContenu);
+
   }
 
 }
