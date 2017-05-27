@@ -8,6 +8,8 @@ import java.util.Vector;
 
 import main.java.io.github.dramanebamba.pole_info.service.*;
 import pole_info.ContenuDAO;
+import pole_info.CoursDAO;
+import pole_info.MasterDAO;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 import javax.inject.Inject;
@@ -27,8 +29,15 @@ public class GetContenuServlet extends HttpServlet {
 	public static final String ATT_MESSAGES = "contenu";
 	public static final String VUE          = "/WEB-INF/GetContenu.jsp";
 	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private ContenuDAO contenuDAO;
+
+	@Inject
+	CoursDAO cours;
+
+	@Inject
+	MasterDAO master;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -46,20 +55,32 @@ public class GetContenuServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 
-		List<Contenu> listeDesContenus = new ArrayList<>();
-		listeDesContenus = contenuDAO.listeDesContenus();
-		session.setAttribute("listContenu", listeDesContenus);
+		HashMap<Contenu,HashMap<Integer, String>> listCours = new HashMap<>(); // HashMap liant le contenu avec les masters rattachés
+		List<Contenu> listeDesContenus = contenuDAO.listeDesContenus();	// Récupération de la liste des contenus en BDD
 
+		// Pour chaque contenu, on recupère les informations a afficher
+		for(Contenu c: listeDesContenus)
+		{
+			List<Integer> listeIdMaster = cours.getListContenus(c.getId());	// Liste des Id des master rattachés à un contenu
+			HashMap<Integer, String> listNameMasters = new HashMap<>(); // Liste des noms des masters rattachés à un contenu
+
+			// Récupération du nom du master avec son id
+			for(Integer i: listeIdMaster)	listNameMasters.put(i,master.getMaster(i));
+			listCours.put(c, listNameMasters);	// Ajout du couple dans la hashmap
+		}
+
+		session.setAttribute("listNameMasters", listCours);
+		session.setAttribute("listContenu", listeDesContenus);
 
 		String operation = request.getParameter("operation");
 		System.out.println(operation);
 
-	if(operation != null && operation.equals("remove")){
-		int id = Integer.parseInt(request.getParameter("id"));
-		contenuDAO.supprimerContenu(id);
-	}
-
-
+		if(operation != null && operation.equals("remove"))
+		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			contenuDAO.supprimerContenu(id);
+		}
+		
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
 
