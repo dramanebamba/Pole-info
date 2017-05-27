@@ -56,6 +56,9 @@
 		<h2>Affectation</h2>
 		<a href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
 		<br />
+		<h2>Affectation</h2>
+		<a href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
+		<br />
 		<% } %>
 		<% } else { %>
 		<br />
