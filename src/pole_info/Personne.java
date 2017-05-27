@@ -65,7 +65,6 @@ public class Personne {
 	
 	@Column(name = "vacataire")
 	private String vacataire = "N";
-	
 
 	public Personne(String nom, String pre, String mail,
 			String cv, String note, String pw,
@@ -81,7 +80,6 @@ public class Personne {
 		setId_master(id_m);
 		setAnnee_master(annee);
 	}
-	
 	
 	public Personne(String nom, String pre, String mail,
 			String tel, String fax, String hp,
@@ -106,14 +104,12 @@ public class Personne {
 		return telephone;
 	}
 
-
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
-
 	public Personne() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getNom() 
@@ -121,7 +117,7 @@ public class Personne {
 		return nom;
 	}
 
-	public void setNom(String nom) 
+	private void setNom(String nom) 
 	{
 		this.nom = nom;
 	}
@@ -131,7 +127,7 @@ public class Personne {
 		return prenom;
 	}
 
-	public void setPrenom(String prenom) 
+	private void setPrenom(String prenom) 
 	{
 		this.prenom = prenom;
 	}
@@ -141,7 +137,7 @@ public class Personne {
 		return email;
 	}
 
-	public void setEmail(String email) 
+	private void setEmail(String email) 
 	{
 		this.email = email;
 	}
@@ -150,7 +146,7 @@ public class Personne {
 		return id;
 	}
 
-	public void setId(int id) 
+	private void setId(int id) 
 	{
 		this.id = id;
 	}
@@ -160,7 +156,7 @@ public class Personne {
 		return fax;
 	}
 
-	public void setFax(String fax) 
+	private void setFax(String fax) 
 	{
 		this.fax = fax;
 	}
@@ -170,7 +166,7 @@ public class Personne {
 		return home_page;
 	}
 
-	public void setHome_page(String home_page) 
+	private void setHome_page(String home_page) 
 	{
 		this.home_page = home_page;
 	}
@@ -180,7 +176,7 @@ public class Personne {
 		return cv;
 	}
 
-	public void setCv(String cv) 
+	private void setCv(String cv) 
 	{
 		this.cv = cv;
 	}
@@ -190,7 +186,7 @@ public class Personne {
 		return notes;
 	}
 
-	public void setNotes(String notes) 
+	private void setNotes(String notes) 
 	{
 		this.notes = notes;
 	}
@@ -200,7 +196,7 @@ public class Personne {
 		return roles;
 	}
 
-	public void setRoles(String roles) 
+	private void setRoles(String roles) 
 	{
 		this.roles = roles;
 	}
@@ -210,7 +206,7 @@ public class Personne {
 		return password;
 	}
 
-	public void setPassword(String password) 
+	private void setPassword(String password) 
 	{
 		this.password = password;
 	}
@@ -220,7 +216,7 @@ public class Personne {
 		return id_master;
 	}
 
-	public void setId_master(int id_master) 
+	private void setId_master(int id_master) 
 	{
 		this.id_master = id_master;
 	}
@@ -230,7 +226,7 @@ public class Personne {
 		return annee_master;
 	}
 
-	public void setAnnee_master(int annee_master) 
+	private void setAnnee_master(int annee_master) 
 	{
 		this.annee_master = annee_master;
 	}
@@ -240,5 +236,4 @@ public class Personne {
 	{
 		return (roles.equals("Et"))?("Je suis un étudiant, mon nom est "+nom+" et mon prénom "+prenom):("Je suis un enseignant, mon nom est "+nom+" et mon prénom "+prenom);
 	}
-	
 }

@@ -10,5 +10,4 @@ public class VerificationLoginService
 	{
 		return (login.equals("admin") && pw.equals("admin"))?true:false;
 	}
-	
 }

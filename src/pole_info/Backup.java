@@ -55,7 +55,7 @@ static int noB = 1;
 		return idBackup;
 	}
 
-	public void setIdBackup(int idBackup) {
+	private void setIdBackup(int idBackup) {
 		this.idBackup = idBackup;
 	}
 
@@ -63,7 +63,7 @@ static int noB = 1;
 		return nom;
 	}
 
-	public void setNom(String nom) {
+	private void setNom(String nom) {
 		this.nom = nom;
 	}
 
@@ -71,7 +71,7 @@ static int noB = 1;
 		return idBackuper;
 	}
 
-	public void setIdBackuper(String idBackuper) {
+	private void setIdBackuper(String idBackuper) {
 		this.idBackuper = idBackuper;
 	}
 
@@ -79,7 +79,7 @@ static int noB = 1;
 		return label;
 	}
 
-	public void setLabel(String label) {
+	private void setLabel(String label) {
 		this.label = label;
 	}
 
@@ -87,7 +87,7 @@ static int noB = 1;
 		return date;
 	}
 
-	public void setDate(String date) {
+	private void setDate(String date) {
 		this.date = date;
 	}
 
@@ -96,7 +96,4 @@ static int noB = 1;
 		return "Backup [id_backup=" + idBackup + ", nom=" + nom + ", idBackuper=" + idBackuper + ", label=" + label
 				+ ", date=" + date + "]";
 	}
-	
-	
-	
 }

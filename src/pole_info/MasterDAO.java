@@ -18,11 +18,12 @@ public class MasterDAO
 	private final static String QUERY_GET_BY_ID = "SELECT b FROM Master b WHERE b.id = :id";
 
 	Master master;
-	public void creerMaster(Master master){
+	
+	public void creerMaster(Master mas){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(master);
+		em.persist(mas);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -43,10 +44,10 @@ public class MasterDAO
 	public void supprimerMaster(int key){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		Master master = em.find(Master.class, key);
-		if(master!=null){
+		Master ma = em.find(Master.class, key);
+		if(ma!=null){
 			em.getTransaction().begin();
-			em.remove(master);
+			em.remove(ma);
 			em.getTransaction().commit();
 			em.close();
 			System.out.println("Suppression de la clé : " + key);

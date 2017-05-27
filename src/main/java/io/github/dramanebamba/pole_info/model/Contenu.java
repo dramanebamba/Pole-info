@@ -68,7 +68,7 @@ public class Contenu {
 		setId(noCont++);
 	}
 
-	public void setBiblio(String biblio) {
+	private void setBiblio(String biblio) {
 		// TODO Auto-generated method stub
 		this.biblio = biblio;
 
@@ -78,7 +78,7 @@ public class Contenu {
 		return biblio;
 	}
 
-	public void setContent(String content) {
+	private void setContent(String content) {
 		// TODO Auto-generated method stub
 		this.contents = content;
 	}
@@ -87,7 +87,7 @@ public class Contenu {
 		return contents;
 	}
 
-	public void setEcts(String ects) {
+	private void setEcts(String ects) {
 		// TODO Auto-generated method stub
 		this.ects=ects;
 
@@ -97,16 +97,15 @@ public class Contenu {
 		return ects;
 	}
 
-	public void setVolHoraire(int vol_h) {
+	private void setVolHoraire(int vol_h) {
 		this.volume_horaire = vol_h;
-
 	}
 
 	public int getVolHoraire(){
 		return volume_horaire;
 	}
 
-	public void setApp(char app) {
+	private void setApp(char app) {
 		// TODO Auto-generated method stub
 		this.apprentissage = app;
 
@@ -116,7 +115,7 @@ public class Contenu {
 		return apprentissage;
 	}
 
-	public void setId(int id) {
+	private void setId(int id) {
 		// TODO Auto-generated method stub
 		this.id = id;
 
@@ -131,7 +130,7 @@ public class Contenu {
 		return nom;
 	}
 
-	public void setNomMat(String nomMat)
+	private void setNomMat(String nomMat)
 	{
 		this.nom = nomMat;
 	}
@@ -140,8 +139,8 @@ public class Contenu {
 	{
 		return description;
 	}
-
-	public void setDesc(String desc)
+	
+	private void setDesc(String desc)
 	{
 		this.description = desc;
 	}
@@ -150,7 +149,7 @@ public class Contenu {
 		return objectives;
 	}
 
-	public void setObj(String obj) {
+	private void setObj(String obj) {
 		this.objectives = obj;
 	}
 
@@ -158,7 +157,7 @@ public class Contenu {
 		return volume_projet;
 	}
 
-	public void setVolume_projet(int volume_projet) {
+	private void setVolume_projet(int volume_projet) {
 		this.volume_projet = volume_projet;
 	}
 }

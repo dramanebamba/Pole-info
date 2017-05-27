@@ -25,6 +25,7 @@ public class PersonneDAO {
 
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u " + "WHERE u.email = :email AND u.password = :password";
 	private static final String QUERY_ROLE = "SELECT u.roles FROM Personne u WHERE u.email = :email AND u.password = :password";
+	private static final String QUERY_IS_IN = "SELECT u FROM Personne u WHERE u.email = :email";
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String QUERY_GET_BY_MASTER = "SELECT u FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
 	private static final String PARAM_EMAIL = "email";
@@ -34,6 +35,17 @@ public class PersonneDAO {
 
 
 	Personne personne;
+	
+	public boolean isInBDD(String mail)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Personne> p = em.createQuery(QUERY_IS_IN,Personne.class).setParameter(PARAM_EMAIL, mail).getResultList();
+		em.close();
+
+		return (p.isEmpty())?false:true;
+	}
 	
 	public String getRoles(String email, String password)
 	{

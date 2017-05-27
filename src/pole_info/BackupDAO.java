@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 @RequestScoped
 public class BackupDAO {
 	
-	private final static String QUERY_COUNT_BACKUP = "SELECT count(*) FROM Backup b";
+	// private final static String QUERY_COUNT_BACKUP = "SELECT count(*) FROM Backup b";
 	private final static String QUERY_LIST_BACKUP = "SELECT b FROM Backup b";
 	private final static String QUERY_GET_BACKUP_BY_ID = "SELECT u.nom FROM Backup u "
 			+ "WHERE u.idBackup= :id";

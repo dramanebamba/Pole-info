@@ -12,6 +12,7 @@
 <body>
 	<div class="container">
 		<h1>Menu</h1>
+		<br />
 		<% if (role.equals("S")) { // Etudiant %>
 		CE QUE PEUT FAIRE L'ETUDIANT
 		<% } else if (role.equals("M")) { // Enseignant %>
@@ -46,13 +47,20 @@
 
 		<h2>Cr&eacute;er master et contenu</h2>
 		<a href="./PostContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br />
+		
+		<h2>Gestion des masters et contenus</h2>
+		<a href="./PostContenuServlet"> G&eacute;rer les contenus d'un cours</a><br />
 		<br />
-		<a href="./PostMasterServlet"> Cr&eacute;er un master</a><br />
+		<a href="./PostMasterServlet"> G&eacute;rer les masters</a><br />
 		<br />
 		<h2>Affectation</h2>
 		<a href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
 		<br />
 		<% } %>
+		<% } else { %>
+		<br />
+		Erreur: Votre compte n'est ni un Enseignant, ni un étudiant, veuillez contacter l'administrateur.
+		<br />
 		<% } %>
 		<form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se
@@ -61,7 +69,9 @@
 		<br />
 	</div>
 	<% } else { %>
-	NOTHING TO SHOW
+	<br />
+	Erreur : vous n'êtes plus connecté.
+	<br />
 	<% } %>
 </body>
 </html>
