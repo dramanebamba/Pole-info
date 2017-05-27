@@ -55,17 +55,17 @@ public class GetContenuServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 
-		HashMap<Contenu,List<String>> listCours = new HashMap<>(); // HashMap liant le contenu avec les masters rattachés
+		HashMap<Contenu,HashMap<Integer, String>> listCours = new HashMap<>(); // HashMap liant le contenu avec les masters rattachés
 		List<Contenu> listeDesContenus = contenuDAO.listeDesContenus();	// Récupération de la liste des contenus en BDD
 
 		// Pour chaque contenu, on recupère les informations a afficher
 		for(Contenu c: listeDesContenus)
 		{
 			List<Integer> listeIdMaster = cours.getListContenus(c.getId());	// Liste des Id des master rattachés à un contenu
-			List<String> listNameMasters = new ArrayList<>(); // Liste des noms des masters rattachés à un contenu
+			HashMap<Integer, String> listNameMasters = new HashMap<>(); // Liste des noms des masters rattachés à un contenu
 
 			// Récupération du nom du master avec son id
-			for(Integer i: listeIdMaster)	listNameMasters.add(master.getMaster(i));
+			for(Integer i: listeIdMaster)	listNameMasters.put(i,master.getMaster(i));
 			listCours.put(c, listNameMasters);	// Ajout du couple dans la hashmap
 		}
 
