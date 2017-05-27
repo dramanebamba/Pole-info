@@ -15,6 +15,8 @@ public class MasterDAO
 {
 	// private static final String QUERY_GET = "SELECT u FROM Master u";
 	private final static String QUERY_LIST_MASTER = "SELECT b FROM Master b";
+	private final static String QUERY_GET_BY_ID = "SELECT b FROM Master b WHERE b.id = :id";
+
 	Master master;
 	public void creerMaster(Master master){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
@@ -53,6 +55,15 @@ public class MasterDAO
 			System.out.println(key + " est une clé inexistante");
 		}
 
+	}
+	
+	public List<Master> getMasterById(int id_master){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Master> nomMaster  = em.createQuery(QUERY_GET_BY_ID,Master.class).setParameter("id", id_master).getResultList();		
+		
+		return nomMaster;
 	}
 
 
