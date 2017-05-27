@@ -74,33 +74,37 @@ public class CoursDAO
 	}
 
 	// private static final String QUERY_GET = "SELECT u FROM Cours u";
-	private static final String QUERY_GET_COURS = "SELECT c.nom FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
-	private static final String QUERY_GET_ID = "SELECT c.id FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
-	public List<Contenu> getListCours(){
+	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
+	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
+	public List<Object[]> getListCours(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 
-		List<Contenu> nomCours = new ArrayList<>();
+		List<Object[]> nomCours = new ArrayList<>();
 		System.out.println("récupération du résultat de la requête");
-		nomCours = em.createQuery(QUERY_GET_COURS,Contenu.class).getResultList();
+		nomCours = em.createQuery(QUERY_GET_COURS,Object[].class).getResultList();
 		System.out.println("Requête exécutée avec succès");
 		System.out.println(nomCours);
-		em.close();
-
+		int i = 0;
+		for (i=0;i<nomCours.size(); i++)
+		{
+			 System.out.println(nomCours.get(i)[1]);
+		 }
 		return nomCours;
 	}
-	public List<Contenu> getIdCours(){
+	
+	public List<Object[]> getCoursByMaster(int id_master){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-
-		List<Contenu> idCours = new ArrayList<>();
-		System.out.println("récupération du résultat de la requête");
-		idCours = em.createQuery(QUERY_GET_ID,Contenu.class).getResultList();
-		System.out.println("Requête exécutée avec succès");
-		System.out.println(idCours);
-		em.close();
-
-		return idCours;
+		
+		List<Object[]> coursByMaster  = em.createQuery(QUERY_GET_COURS_BY_MASTER,Object[].class).setParameter("id_master", id_master).getResultList();		
+		if(coursByMaster.isEmpty()){
+			System.out.println("Pas de cours facultatifs pour ce master");
+			System.out.println("COURSDAO : "+coursByMaster);
+		}
+		else{
+			System.out.println("COURSDAO : "+coursByMaster);
+		}
+		return coursByMaster;
 	}
-
 }
