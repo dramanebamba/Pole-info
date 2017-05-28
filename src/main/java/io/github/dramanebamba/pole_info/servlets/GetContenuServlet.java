@@ -55,21 +55,22 @@ public class GetContenuServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 
-		HashMap<Contenu,HashMap<Integer, String>> listCours = new HashMap<>(); // HashMap liant le contenu avec les masters rattachés
+		HashMap<Contenu,List<Master>> listCours = new HashMap<>(); // HashMap liant le contenu avec les masters rattachés
 		List<Contenu> listeDesContenus = contenuDAO.listeDesContenus();	// Récupération de la liste des contenus en BDD
 
 		// Pour chaque contenu, on recupère les informations a afficher
 		for(Contenu c: listeDesContenus)
 		{
 			List<Integer> listeIdMaster = cours.getListContenus(c.getId());	// Liste des Id des master rattachés à un contenu
-			HashMap<Integer, String> listNameMasters = new HashMap<>(); // Liste des noms des masters rattachés à un contenu
+			List<Master> listMasters = new ArrayList<>(); // Liste des noms des masters rattachés à un contenu
 
 			// Récupération du nom du master avec son id
-			for(Integer i: listeIdMaster)	listNameMasters.put(i,master.getMaster(i));
-			listCours.put(c, listNameMasters);	// Ajout du couple dans la hashmap
+			for(Integer i: listeIdMaster)	listMasters.add(master.getMaster(i));
+			listCours.put(c, listMasters);	// Ajout du couple dans la hashmap
 		}
 
-		session.setAttribute("listNameMasters", listCours);
+		session.setAttribute("listAllMasters", master.listeDesMasters());
+		session.setAttribute("listMasters", listCours);
 		session.setAttribute("listContenu", listeDesContenus);
 
 		String operation = request.getParameter("operation");
@@ -90,7 +91,7 @@ public class GetContenuServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Jarive ici dans Post !!");
 		doGet(request, response);
 	}
-
 }

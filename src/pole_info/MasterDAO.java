@@ -20,7 +20,7 @@ public class MasterDAO
 
 	Master master;
 	
-	public String getMaster(int id)
+	public Master getMaster(int id)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
@@ -28,7 +28,7 @@ public class MasterDAO
 		Master m = em.createQuery(QUERY_MASTER,Master.class).setParameter(PARAM_ID, id).getSingleResult();
 		em.close();
 		
-		return m.getNom();
+		return m;
 	}
 	
 	public void creerMaster(Master mas){
