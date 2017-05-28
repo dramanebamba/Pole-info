@@ -13,9 +13,14 @@
 <%
 	String connected = (String) session.getAttribute("connected");
 	String pseudo = (String) session.getAttribute("login");
+	@SuppressWarnings("unchecked")
 	List<Contenu> listeDesContenus = (List<Contenu>) session.getAttribute("listContenu");
+	
+	@SuppressWarnings("unchecked")
 	HashMap<Contenu, List<Master>> listMasters = (HashMap<Contenu, List<Master>>) session
 			.getAttribute("listMasters");
+	
+	@SuppressWarnings("unchecked")
 	List<Master> listAllMasters = (List<Master>) session.getAttribute("listAllMasters");
 	if (connected == "true" && pseudo.equals("admin")) 
 	{

@@ -12,10 +12,14 @@
     <%@ page import="main.java.io.github.dramanebamba.pole_info.model.Master,java.util.List" %>
     <% String connected = (String) session.getAttribute("connected");%>
     <% String pseudo = (String) session.getAttribute("login");%>
-    <% List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");%>
-    <% List<Master> nomMaster = (List<Master>) session.getAttribute("nomMaster");%>
-    <% String id_master = (String) request.getAttribute("id_master");%>
-    <% String nom_master = (String) request.getAttribute("nom_master");%>
+    <% @SuppressWarnings("unchecked")
+    List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");%>
+    <% @SuppressWarnings("unchecked")
+    List<Master> nomMaster = (List<Master>) session.getAttribute("nomMaster");%>
+    <% @SuppressWarnings("unchecked")
+    String id_master = (String) request.getAttribute("id_master");%>
+    <% @SuppressWarnings("unchecked")
+    String nom_master = (String) request.getAttribute("nom_master");%>
     <% if(connected == "true" && pseudo.equals("admin")){%>
     <body>
       <div class="container">

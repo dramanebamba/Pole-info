@@ -49,7 +49,7 @@ public class AffectationValidate extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	HttpSession session = request.getSession();
+	// HttpSession session = request.getSession();
 	int id_master = Integer.parseInt(request.getParameter("id_master"));
 	int id_contenu = Integer.parseInt(request.getParameter("id_contenu"));
 	int id_personne = Integer.parseInt(request.getParameter("id_personne"));

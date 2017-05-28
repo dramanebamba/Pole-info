@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-  <!DOCTYPE html>
+  <!DOCTYPE html SYSTEM "about:legacy-compat">
   <html>
     <head>
       <meta charset="utf-8" />
@@ -12,9 +12,12 @@
     <%@ page import="main.java.io.github.dramanebamba.pole_info.model.*,pole_info.Personne,java.util.List" %>
     <% String connected = (String) session.getAttribute("connected");%>
     <% String pseudo = (String) session.getAttribute("login");%>
-    <% List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");%>
-    <% List<Personne> listStudent = (List<Personne>) session.getAttribute("listStudent");%>
-    <% List<Affectation> numAffectation = (List<Affectation>) session.getAttribute("numAffectation");%>
+    <% @SuppressWarnings("unchecked")
+    List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");%>
+    <% @SuppressWarnings("unchecked")
+    List<Personne> listStudent = (List<Personne>) session.getAttribute("listStudent");%>
+    <% @SuppressWarnings("unchecked")
+    List<Affectation> numAffectation = (List<Affectation>) session.getAttribute("numAffectation");%>
     <% Contenu nom_contenu = (Contenu) session.getAttribute("nom_contenu");%>
     <% String id_master = (String) request.getAttribute("id_master");%>
     <% String nom_master = (String) request.getAttribute("nom_master");%>
