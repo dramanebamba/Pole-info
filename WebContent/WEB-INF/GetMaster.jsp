@@ -8,8 +8,7 @@
 <%@ page import="main.java.io.github.dramanebamba.pole_info.model.Master,java.util.List" %>
 <% String connected = (String) session.getAttribute("connected");%>
 <% String pseudo = (String) session.getAttribute("login");%>
-<% @SuppressWarnings("unchecked")
-List<Master> listeDesMasters = (List<Master>) session.getAttribute("listMaster");%>
+<% List<Master> listeDesMasters = (List<Master>) session.getAttribute("listMaster");%>
 <% if(connected == "true" && pseudo.equals("admin")){%>
 <body>
 	<div class="container">

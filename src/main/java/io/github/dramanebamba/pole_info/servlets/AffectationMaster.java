@@ -54,4 +54,10 @@ public class AffectationMaster extends HttpServlet {
     dispatch.forward(request, response);
 
   }
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+  }
+
 }

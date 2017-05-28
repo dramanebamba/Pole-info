@@ -8,8 +8,7 @@
 <%@ page import="pole_info.Backup,java.util.List" %>
 <% String connected = (String) session.getAttribute("connected");%>
 <% String pseudo = (String) session.getAttribute("login");%>
-<% @SuppressWarnings("unchecked")
-List<Backup> listBackup = (List<Backup>) session.getAttribute("listBackup");%>
+<% List<Backup> listBackup = (List<Backup>) session.getAttribute("listBackup");%>
 <% if(connected == "true" && pseudo.equals("admin")){%>
 <body>
 	<div class="container">
