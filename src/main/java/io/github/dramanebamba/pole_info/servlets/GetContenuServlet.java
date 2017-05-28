@@ -38,6 +38,9 @@ public class GetContenuServlet extends HttpServlet {
 
 	@Inject
 	MasterDAO master;
+	
+	@Inject
+	VerificationCourseInBDD check_course;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -81,6 +84,31 @@ public class GetContenuServlet extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			contenuDAO.supprimerContenu(id);
 		}
+		else if(operation != null && operation.equals("changeMaster"))
+		{
+			System.out.println("Modification du master du contenu lancée");
+			
+			String[] info = request.getParameter("changeMaster").split("/");
+			int id_m = Integer.parseInt(info[0]);
+			int new_val = Integer.parseInt(info[1]);
+			int id_c = Integer.parseInt(info[2]);
+			
+			if(check_course.Check_course(id_c, new_val))
+				cours.updateMaster(id_m, id_c, new_val);
+			else
+				System.out.println("Cours déjà en BDD, impossible de modifier le contenu pour cette valeur.");
+		}
+		else if(operation != null && operation.equals("changeObligation"))
+		{
+			System.out.println("Modification de l'obligation du contenu lancée");
+			
+			String[] info = request.getParameter("changeObli").split("/");
+			int id_c = Integer.parseInt(info[0]);
+			int id_m = Integer.parseInt(info[1]);
+			String obligatoire = info[2];
+			String new_val = (obligatoire.equals("Oui"))?"N":"O";
+			cours.updateObligatoire(id_m, id_c, new_val);
+		}
 		
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
@@ -89,9 +117,7 @@ public class GetContenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("Jarive ici dans Post !!");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		doGet(request, response);
 	}
 }

@@ -25,14 +25,64 @@ public class CoursDAO
 	@Inject
 	ContenuDAO contenu;
 	
+	private static final String QUERY_UPDATE_MASTER = "UPDATE Cours u SET u.id_master = :new_id WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
+	private static final String QUERY_UPDATE_OBLIGATION = "UPDATE Cours u SET u.obligatoire = :valeur WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
+	
 	private static final String QUERY_GET_TEACHERS = "SELECT u.id_enseignant FROM Cours u WHERE u.id_master = :id";
+	private static final String QUERY_GET_ALL_COURSES = "SELECT u FROM Cours u WHERE u.id_contenu = :id_c";
 	private static final String QUERY_GET_CONTENT = "SELECT u.id_contenu FROM Cours u WHERE u.id_master = :id_m AND u.id_enseignant = :id_e";
 	private static final String QUERY_GET_MASTER = "SELECT u.id_master FROM Cours u WHERE u.id_contenu = :id_c";
 	private static final String QUERY_GET_OBLIGATOIRE = "SELECT u.obligatoire FROM Cours u WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
+	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
+	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
+	
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_M = "id_m";
 	private static final String PARAM_E = "id_e";
 	private static final String PARAM_C = "id_c";
+	
+	public List<Cours> getAllCourses(int id_c)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		List<Cours> liste = em.createQuery(QUERY_GET_ALL_COURSES, Cours.class).setParameter(PARAM_C, id_c).getResultList();
+		em.close();
+		
+		return liste;
+	}
+	
+	public void updateMaster(int id_master, int id_contenu, int new_val)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		System.out.println("Lancement modification du master en Base de données...");
+		
+		em.createQuery(QUERY_UPDATE_MASTER)
+		.setParameter("new_id", new_val)
+		.setParameter(PARAM_M, id_master)
+		.setParameter(PARAM_C, id_contenu);
+		
+		System.out.println("Modification du master réalisée en Base de données.");
+		em.close();
+	}
+	
+	public void updateObligatoire(int id_master, int id_contenu, String new_val)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		System.out.println("Lancement modification de l'attribut obligatoire en Base de données...");
+		
+		em.createQuery(QUERY_UPDATE_OBLIGATION)
+		.setParameter("valeur", new_val)
+		.setParameter(PARAM_M, id_master)
+		.setParameter(PARAM_C, id_contenu);
+		
+		System.out.println("Modification de l'attribut obligatoire réalisée en Base de données.");
+		em.close();
+	}
 	
 	public List<Integer> getListContenus(int id_c)
 	{
@@ -96,9 +146,7 @@ public class CoursDAO
 		}
 		return new_liste;
 	}
-	// private static final String QUERY_GET = "SELECT u FROM Cours u";
-	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
-	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
+	
 	public List<Object[]> getListCours(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
