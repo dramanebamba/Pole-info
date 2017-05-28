@@ -34,7 +34,7 @@
             <div class="col-sm-10">
               <select class="form-control" name="id_personne">
                 <% for(Personne p : listStudent) {%>
-                <<option value="<%= p.getId() %>"><%= p.getPrenom() + " " + p.getNom()  %></option>>
+                <option value="<%= p.getId() %>"><%= p.getPrenom() + " " + p.getNom()  %></option>
                 <% } %>
               </select>
             </div>
@@ -47,9 +47,9 @@
               </select>
             </div>
           </div>
-          <input type="hidden" name="id_master" value=<% out.println(id_master);%>">
-          <input type="hidden" name="id_contenu" value=<% out.println(id_contenu);%>">
-          <input type="hidden" name="nom_master" value="<% out.println(nom_master);%>">          
+          <input type="hidden" name="id_master" value=<% out.println(id_master);%>>
+          <input type="hidden" name="id_contenu" value=<% out.println(id_contenu);%>>
+          <input type="hidden" name="nom_master" value=<% out.println(nom_master);%>>          
           <%-- <% for(Master m : nomMaster) {%>
           <input type="hidden" name="nom_master" value="<%= m.getNom() %>">
           <% } %> --%>

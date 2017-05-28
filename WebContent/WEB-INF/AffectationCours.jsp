@@ -35,12 +35,12 @@
                 <%
                 int i = 0;
                 for (i=0;i<listCours.size(); i++){%>
-                <option value=<%out.println(listCours.get(i)[0]);%>"><%out.println(listCours.get(i)[1]);%></option>
+                <option value=<%out.println(listCours.get(i)[0]);%>><%out.println(listCours.get(i)[1]);%></option>
                 <% } %>
               </select>
             </div>
           </div>
-          <input type="hidden" name="id_master" value=<% out.println(id_master);%>">
+          <input type="hidden" name="id_master" value=<% out.println(id_master);%>>
           <% for(Master m : nomMaster) {%>
           <input type="hidden" name="nom_master" value="<%= m.getNom() %>">
           <% } %>

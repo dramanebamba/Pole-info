@@ -26,7 +26,7 @@
             <div class="col-sm-10">
               <select class="form-control" name="id_master">
                 <% for(Master m : listMaster) {%>
-                <<option value="<%= m.getId() %>"><%= m.getNom() %></option>>
+                <option value="<%= m.getId() %>"><%= m.getNom() %></option>
                 <% } %>
               </select>
             </div>
