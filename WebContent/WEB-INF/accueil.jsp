@@ -19,6 +19,7 @@
 <% String connected = (String) session.getAttribute("connected"); %>
 <% String pseudo = (String) session.getAttribute("login"); %>
 <% String role = (String) session.getAttribute("roles"); %>
+<% int id_ma = (Integer) session.getAttribute("id_m"); %>
 <% if (connected == "true") { %>
 <body>
 
@@ -61,6 +62,8 @@
 		<h2>&Eacute;tudiant</h2>
 		<a class="btn btn-default" href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant</a>
 		<br /> <br /> 
+		<a href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
+		<br /> <br />
 
 		<h2>Enseignant</h2>
 		<a class="btn btn-default" href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
@@ -94,6 +97,21 @@
 		<h2>Gestion des affectation</h2>
 		<a class="btn btn-default" href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
 		<br />
+		
+		<h2>Gestion des cours</h2>
+		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
+		<br />
+		
+		
+		<h2>Gestion des cours</h2>
+		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
+		<br />
+		
+		
+		<h2>Gestion des cours</h2>
+		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
+		<br />
+		
 		<% } %>
 		<% } else { %>
 		<br />
