@@ -41,6 +41,11 @@
 	    <ul class="nav navbar-nav navbar-right">
       		<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
       		<li>
+      			<a href="./GetDeconnexion">
+					<span class="glyphicon glyphicon-log-out"></span> Se déconnecter
+				</a>
+			</li>
+			<!-- <li>
       			<a href="">
       				<form action="./identification?operation=logout" method="post">
 						<button class="btn-link" type="submit">
@@ -48,7 +53,7 @@
 						</button>
 					</form>
 				</a>
-			</li>
+			</li> -->
     	</ul>
 	  </div>
 	</nav>
@@ -69,7 +74,7 @@
 		<br /> <br />
 
 		<h2>Enseignant</h2>
-		<a class="btn btn-default" href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
+		<a class="btn btn-default" href="./GetCreateEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
 		<br />
 
 		<h2>Base de donn&eacute;es</h2>

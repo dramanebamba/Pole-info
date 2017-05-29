@@ -10,51 +10,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import main.java.io.github.dramanebamba.pole_info.service.*;
+
+import main.java.io.github.dramanebamba.pole_info.service.VerificationBDDService;
 import pole_info.Personne;
 import pole_info.PersonneDAO;
 
 /**
- * Servlet implementation class Identification
+ * Servlet implementation class PostCreateEnseignant
  */
-@WebServlet("/creationEnseignant")
-public class CreationEnseignantServlet extends HttpServlet 
-{
+@WebServlet("/PostCreateEnseignant")
+public class PostCreateEnseignantServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+     
 	@Inject
 	private VerificationBDDService verification_BDD;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2L;
-	
 	@Inject
 	PersonneDAO persDAO;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CreationEnseignantServlet() 
-	{
-		super();
-	}
+	
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public PostCreateEnseignantServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEnseignant.html");
-		dispatch.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
 		String nom = request.getParameter("last_name");
@@ -69,7 +62,7 @@ public class CreationEnseignantServlet extends HttpServlet
 		
 		session.setAttribute("true", connected);
 
-		if(operation.equals("createProf")){
+		//if(operation.equals("createProf")){
 				System.out.println("Création enseignant...");
 				
 				if(verification_BDD.verification(mail)) // CDI : Si true alors la personne peut etre ajoutee, sinon deja en BDD
@@ -83,9 +76,10 @@ public class CreationEnseignantServlet extends HttpServlet
 				
 				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 				dispatch.forward(request, response);
-		}
+		/*}
 		else{
 				response.getWriter().println("KO");
-		}
+		}*/
 	}
+
 }

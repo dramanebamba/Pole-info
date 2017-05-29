@@ -16,8 +16,8 @@ import pole_info.PersonneDAO;
 /**
  * Servlet implementation class Identification
  */
-@WebServlet("/identification")
-public class IdentificationServlet extends HttpServlet 
+@WebServlet("/PostConnexion")
+public class PostConnexionServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	@Inject
@@ -26,7 +26,7 @@ public class IdentificationServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public IdentificationServlet() {
+	public PostConnexionServlet() {
 		super();
 	}
 
@@ -35,8 +35,7 @@ public class IdentificationServlet extends HttpServlet
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/identification.html");
-		dispatch.forward(request, response);
+		//
 	}
 
 	/**
@@ -46,17 +45,18 @@ public class IdentificationServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession(true);
-		String operation = request.getParameter("operation");
+		//String operation = request.getParameter("operation");
 		String login = request.getParameter("login");
 		String pw = request.getParameter("password");
 
-		System.out.println("Operation : " + operation);
+		//System.out.println("Operation : " + operation);
 
-		if(operation.equals("logout")){
+		/*if(operation.equals("logout")){
 			session.setAttribute("connected", "false");
 			RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
 			dispatch.forward(request, response);
-		} else	if(operation.equals("confAuth") && persDAO.trouverPersonne(login,pw)){
+		} else*/
+		if(persDAO.trouverPersonne(login,pw)){
 			int id = persDAO.getId(login, pw);
 			String roles = persDAO.getRoles(login, pw);
 			int id_m = persDAO.getMaster(login, pw);
