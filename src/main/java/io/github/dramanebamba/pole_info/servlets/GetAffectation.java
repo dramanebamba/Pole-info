@@ -27,9 +27,9 @@ import pole_info.CoursDAO;
 import pole_info.Personne;
 import pole_info.PersonneDAO;
 
-@WebServlet("/AffectationStudent")
-public class AffectationStudent extends HttpServlet {
-  public static final String VUE = "/WEB-INF/AffectationStudent.jsp";
+@WebServlet("/GetAffectation")
+public class GetAffectation extends HttpServlet {
+  public static final String VUE = "/WEB-INF/GetAffectation.jsp";
   private static final long serialVersionUID = 1L;
 
   @Inject
@@ -41,7 +41,7 @@ public class AffectationStudent extends HttpServlet {
   @Inject
   private AffectationDAO affectationDAO;
 
-  public AffectationStudent() {
+  public GetAffectation() {
     super();
     // TODO Auto-generated constructor stub
   }
@@ -66,28 +66,22 @@ public class AffectationStudent extends HttpServlet {
     System.out.println(id_contenu);
     System.out.println("MASTER : " +id_master);
     System.out.println("CONTENU : " +id_contenu);
-
+    
     Contenu c = contenuDAO.getContenu(id_contenu);
-    List<Personne> listStudent = personneDAO.getMasterById(id_master);
     List<Affectation> numAffectation = affectationDAO.countAffectation(id_master, id_contenu, 2017);
+    List<Integer> studentIds = affectationDAO.getStudentByCourses(id_master, id_contenu);
+    List<Personne> affectedStudents = personneDAO.getStudentByIds(studentIds);
     
     System.out.println("NOMBRE AFFECTATION : "+numAffectation);
+    System.out.println("LIST ETUDIANT :" + affectedStudents);
     
     request.setAttribute("id_master", id_m);
     request.setAttribute("nom_master", nom_master);
-    request.setAttribute("id_contenu", id_c);
     session.setAttribute("nom_contenu", c);
-    session.setAttribute("listStudent", listStudent);
+    request.setAttribute("id_contenu", id_c);
     session.setAttribute("numAffectation", numAffectation);
+    session.setAttribute("affectedStudents",affectedStudents);
     
-    if(request.getParameter("id_personne") != null){
-    	int id_personne = Integer.parseInt(request.getParameter("id_personne"));
-    	int annee = Integer.parseInt(request.getParameter("annee"));
-        System.out.println("PERSONNE : " +id_personne);
-        System.out.println("ANNEE : " +annee);
-        affectationDAO.setAffectation(new Affectation(id_master, id_contenu, id_personne, annee, annee));
-
-    }
     
     RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher(VUE);
     dispatch.forward(request, response);

@@ -6,40 +6,29 @@
   <html>
     <head>
       <meta charset="utf-8" />
-      <title>Affectation des étudiants</title>
+      <title>Consulter les affectations</title>
       <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
     </head>
     <%@ page import="main.java.io.github.dramanebamba.pole_info.model.Master,java.util.List" %>
     <% String connected = (String) session.getAttribute("connected");%>
     <% String pseudo = (String) session.getAttribute("login");%>
-    <% List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");%>
-    <% List<Master> nomMaster = (List<Master>) session.getAttribute("nomMaster");%>
-    <% String id_master = (String) request.getAttribute("id_master");%>
-    <% String nom_master = (String) request.getAttribute("nom_master");%>
+    <% List<Master> listMaster = (List<Master>) session.getAttribute("listMaster");%>
     <% if(connected == "true" && pseudo.equals("admin")){%>
     <body>
       <div class="container">
-        <h1>Affectation des étudiants - 
-          <% for(Master m : nomMaster) {%>
-            <%= m.getNom() %>
-          <% } %>
-        </h1>
-        <a href="./GetAffectationMaster">Voir la liste des affectations</a>
-        <form class="form-horizontal" action="./AffectationStudent" method="post">
+        <h1>Consulter les affectations</h1>
+        <form class="form-horizontal" action="./GetAffectationCours" method="post">
           <div class="form-group">
-            <label for="exampleInputName2" class="col-sm-2 control-label">Sélectionner un cours facultatif</label>
+            <label for="exampleInputName2" class="col-sm-2 control-label">Sélectionner un master</label>
             <div class="col-sm-10">
-              <select class="form-control" name="id_contenu">
-                <%
-                int i = 0;
-                for (i=0;i<listCours.size(); i++){%>
-                <option value=<%out.println(listCours.get(i)[0]);%>><%out.println(listCours.get(i)[1]);%></option>
+              <select class="form-control" name="id_master">
+                <% for(Master m : listMaster) {%>
+                <option value="<%= m.getId() %>"><%= m.getNom() %></option>
                 <% } %>
               </select>
             </div>
           </div>
-          <input type="hidden" name="id_master" value=<%out.println(id_master);%>>
-          <% for(Master m : nomMaster) {%>
+          <% for(Master m : listMaster) {%>
           <input type="hidden" name="nom_master" value="<%= m.getNom() %>">
           <% } %>
           <div class="form-group">

@@ -16,6 +16,7 @@ import main.java.io.github.dramanebamba.pole_info.model.Master;
 public class AffectationDAO {
 	private static final String QUERY_GET_LIST = "SELECT u.id_personne FROM Affectation u WHERE u.id_contenu = :id";
 	private static final String QUERY_COUNT = "SELECT COUNT(a) FROM Affectation a WHERE a.id_master = :id_master AND a.id_contenu = :id_contenu AND a.annee = :annee";
+	private static final String QUERY_GET_STUDENT_BY_LESSON = "SELECT a.id_personne FROM Affectation a WHERE a.id_master = :id_master AND a.id_contenu = :id_contenu";
 	private static final String PARAM_ID = "id";
 	
 	public List<Integer> getListePersonnes(int id_contenu)
@@ -43,6 +44,17 @@ public class AffectationDAO {
 		List<Affectation> numAffectation = em.createQuery(QUERY_COUNT,Affectation.class).setParameter("id_master", id_master).setParameter("id_contenu", id_contenu).setParameter("annee", annee).getResultList();
 		
 		return numAffectation;
+	}
+	
+	public List<Integer> getStudentByCourses(int id_master, int id_contenu)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		List<Integer> studentIds = em.createQuery(QUERY_GET_STUDENT_BY_LESSON,Integer.class).setParameter("id_master", id_master).setParameter("id_contenu", id_contenu).getResultList();
+		System.out.println(studentIds);
+		em.close();
+		return studentIds;
 	}
 	
 	
