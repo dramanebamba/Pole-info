@@ -1,6 +1,7 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -9,10 +10,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import main.java.io.github.dramanebamba.pole_info.model.Cours;
+import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+import main.java.io.github.dramanebamba.pole_info.model.Master;
 import main.java.io.github.dramanebamba.pole_info.model.Preference;
-import main.java.io.github.dramanebamba.pole_info.service.PreferenceService;
+import pole_info.ContenuDAO;
+import pole_info.MasterDAO;
+import pole_info.PreferenceDAO;
 
 /**
  * Servlet implementation class PostPreferenceServlet
@@ -23,7 +28,11 @@ public class PostPreferenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PreferenceService preference;
+	private PreferenceDAO preferenceDao;
+	@Inject
+	private MasterDAO masterDao;
+	@Inject
+	private ContenuDAO contenuDao;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,6 +47,15 @@ public class PostPreferenceServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		List<Master> listMaster = masterDao.listeDesMasters();
+		List<Contenu> listContenu = contenuDao.listeDesContenus();
+		
+		session.setAttribute("listMaster", listMaster);
+		session.setAttribute("listContenu", listContenu);
+		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher(VUE);
 		dispatch.forward(request, response);
 	}
@@ -47,14 +65,37 @@ public class PostPreferenceServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id_master = Integer.parseInt(request.getParameter("id_master"));
-		int id_contenu = Integer.parseInt(request.getParameter("id_contenu"));
-		int id_personne = Integer.parseInt(request.getParameter("id_personne"));
-		int niveau = Integer.parseInt(request.getParameter("niveau"));
+		
+		HttpSession session = request.getSession();
+		
+		String operation = request.getParameter("operation");
+		
+		if(operation.equals("masterChoice")){
+			
+			int idMaster = Integer.parseInt(request.getParameter("id_master"));
+			System.out.println("idMaster : " + idMaster);
+			
+			List<Contenu> listContenu = contenuDao.getCoursesFromMaster(idMaster);
+			
+			//id Master
+			session.setAttribute("idMaster", idMaster);
+			
+			//Contenu linked to master
+			session.removeAttribute("listContenu");
+			session.setAttribute("listContenu", listContenu);
+		}
+		if(operation.equals("postPreference")){
+			//Retrieve all the needed parameters for the preference
+			int idMaster = Integer.parseInt((String) session.getAttribute("idMaster"));
+			int idContenu = Integer.parseInt(request.getParameter("id_contenu"));
+			int niveau = Integer.parseInt(request.getParameter("niveau"));
+			int idPersonne = Integer.parseInt((String) session.getAttribute("id"));
+			
+			preferenceDao.createPreference(new Preference(idMaster,idContenu,idPersonne,niveau));
+			System.out.println("Création d'une préférence : " + " id_master : " + idMaster + " id_contenu : " + idContenu + " id_personne : " + idPersonne + " niveau : " + niveau);		
 
-		preference.getPreference().add(new Preference(id_master, id_contenu, id_personne, niveau));
-		System.out.println("Création d'une préférence : " + " id_master : " + id_master + " id_contenu : " + id_contenu + " id_personne : " + id_personne + " niveau : " + niveau);
-		System.out.println("Nombre(s) de préférence(s) créée(s) = "+ preference.getPreference().size());
+		}		
+		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/PostPreference.jsp");
 		dispatch.forward(request, response);
 	}
