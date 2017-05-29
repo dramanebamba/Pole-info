@@ -4,7 +4,11 @@
 	<!-- <persistence-unit name="pole" transaction-type="RESOURCE_LOCAL"> -->
 	<persistence-unit name="pole" transaction-type="JTA">
 		<jta-data-source>MyDB</jta-data-source>
+<<<<<<< HEAD
 		<!-- <jta-data-source>jdbc/__default</jta-data-source>  -->
+=======
+		<!--<jta-data-source>jdbc/__default</jta-data-source>-->
+>>>>>>> branch 'master' of https://github.com/dramanebamba/pole_info.git
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
 		 <class>pole_info.Personne</class>
