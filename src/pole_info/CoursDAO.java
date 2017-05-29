@@ -87,16 +87,18 @@ public class CoursDAO
 		
 		System.out.println("Lancement modification de l'attribut obligatoire en Base de données...");
 		
-		em.getTransaction().begin();
-		
 		Cours c = em.createQuery(QUERY_GET_CONTENT_BIS, Cours.class)
 				.setParameter(PARAM_M, id_master)
 				.setParameter(PARAM_C, id_contenu)
 				.getSingleResult();
 		
+		em.getTransaction().begin();
 		c.setObligatoire(new_val);
-		em.merge(c);
+		em.persist(c);
+		//em.merge(c);
+		em.flush();
 		em.getTransaction().commit();
+		
 		em.close();
 		
 		System.out.println("Modification de l'attribut obligatoire réalisée en Base de données.");

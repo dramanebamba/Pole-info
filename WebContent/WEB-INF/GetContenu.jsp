@@ -23,7 +23,7 @@
 	
 	@SuppressWarnings("unchecked")
 	List<Master> listAllMasters = (List<Master>) session.getAttribute("listAllMasters");
-	if (connected == "true" && pseudo.equals("admin")) 
+	if (connected == "true") 
 	{
 %>
 <body>

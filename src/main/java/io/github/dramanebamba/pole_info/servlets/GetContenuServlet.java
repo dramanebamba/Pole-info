@@ -110,7 +110,8 @@ public class GetContenuServlet extends HttpServlet {
 			cours.updateObligatoire(id_m, id_c, new_val);
 		}
 		
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/GetContenu.jsp");
+		dispatch.forward(request, response);
 	}
 
 	/**
