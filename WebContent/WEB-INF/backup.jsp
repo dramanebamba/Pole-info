@@ -10,22 +10,21 @@
 <% if(connected == "true" && pseudo != null){%>
 <body>
 	<div class="container">
-	<div class="row">
-		<form action="./PostCreateBackupServlet" method="post">
-			<h1>Sauvegarde de la base de données</h1>
-			<div class="form-group">
-				<label for="etiq">&Eacute;tiquette</label>
-				<input class="form-control" type="text" name="etiq" id="etiq"/>
-			</div>
-			
-			<div class="form-group row">
-				<button class="btn btn-primary" type="submit">Sauvegarder la BDD</button>
-			</div> 
-		</form>
-		
 		<div class="row">
-			<a class="btn btn-danger" href="./accueil">Annuler</a>
-		</div>
+			<form class="form-horizontal" action="./PostCreateBackupServlet" method="post">
+				<h1>Sauvegarde de la base de données</h1>
+				<div class="form-group">
+					<label for="etiq">&Eacute;tiquette</label>
+					<input class="form-control" type="text" name="etiq" id="etiq"/>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Sauvegarder la BDD</button>
+				</div> 
+			</form>
+			
+			<div class="row">
+				<a class="btn btn-danger" href="./accueil">Annuler</a>
+			</div>
 		</div>	
 	</div>
 <% } else{%>
