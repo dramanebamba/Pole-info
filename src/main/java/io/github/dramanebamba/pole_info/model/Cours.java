@@ -49,7 +49,7 @@ public class Cours
 	public int getId_master() {
 		return id_master;
 	}
-	private void setId_master(int id_master) {
+	public void setId_master(int id_master) {
 		this.id_master = id_master;
 	}
 	public int getId_contenu() {
@@ -73,7 +73,7 @@ public class Cours
 	public String getObligatoire() {
 		return obligatoire;
 	}
-	private void setObligatoire(String obligatoire) {
+	public void setObligatoire(String obligatoire) {
 		this.obligatoire = obligatoire;
 	}
 	public String getNotes() {

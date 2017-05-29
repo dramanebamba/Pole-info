@@ -70,7 +70,8 @@ public class PostCoursServlet extends HttpServlet
 		int id_master = coursDAO.getIdMaster(master);
 		int id_contenu = coursDAO.getIdContenu(contenu);
 		int id_enseignant = coursDAO.getIdEnseignant(enseignant);
-
+		
+		
 		coursDAO.creerCours(new Cours(id_master,id_contenu,id_enseignant,periode,obligatoire, notes));
 		System.out.println("Nouveau cours créé");
 
