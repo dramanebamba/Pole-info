@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputName2" class="col-sm-2 control-label">N du contenu</label>
+            <label for="exampleInputName2" class="col-sm-2 control-label">Nom du contenu</label>
             <div class="col-sm-10">
               <input type="text" name="nom_contenu" class="form-control" placeholder="Nom du contenu">
               </div>
