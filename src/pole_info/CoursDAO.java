@@ -42,15 +42,6 @@ public class CoursDAO
 	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
 	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
 	
-	private static final String QUERY_GET_ID_MASTER = "SELECT u.id FROM Master u " + "WHERE u.nom = :master";
-	private static final String QUERY_GET_ID_CONTENU = "SELECT u.id FROM Contenu u WHERE u.nom = :contenu";
-	private static final String QUERY_GET_ID_ENSEIGNANT = "SELECT u.id FROM Personne u WHERE u.nom = :enseignant AND u.roles = M";
-
-	private static final String PARAM_MASTER = "master";
-	private static final String PARAM_CONTENU = "contenu";
-	private static final String PARAM_ENSEIGNANT = "enseignant";
-	
-	
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_M = "id_m";
 	private static final String PARAM_E = "id_e";
@@ -205,6 +196,14 @@ public class CoursDAO
 		}
 		return coursByMaster;
 	}
+	
+	private static final String QUERY_GET_ID_MASTER = "SELECT u.id FROM Master u " + "WHERE u.nom = :master";
+	private static final String QUERY_GET_ID_CONTENU = "SELECT u.id FROM Contenu u WHERE u.nom = :contenu";
+	private static final String QUERY_GET_ID_ENSEIGNANT = "SELECT u.id FROM Personne u WHERE u.nom = :enseignant AND u.roles = M";
+
+	private static final String PARAM_MASTER = "master";
+	private static final String PARAM_CONTENU = "contenu";
+	private static final String PARAM_ENSEIGNANT = "enseignant";
 
 	Cours cours;
 
@@ -266,4 +265,6 @@ public class CoursDAO
 
 		return p.getId();
 	}
+
+
 }
