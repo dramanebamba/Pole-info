@@ -75,7 +75,7 @@
 	</div>
 	<% } else { %>
 	<br />
-	Erreur : vous n'�tes plus connect�.
+	Erreur : vous n'etes plus connecte.
 	<br />
 	<% } %>
 </body>
