@@ -26,7 +26,7 @@ public class PostCreateBackupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	BackupDAO backDAO;
-	
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -41,7 +41,7 @@ public class PostCreateBackupServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -49,53 +49,72 @@ public class PostCreateBackupServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
-		
+
 		String idBackuper = session.getAttribute("id").toString();
-		
+
 		DateFormat dateFormatName = new SimpleDateFormat("ddMMyy_HHmmss");
 		Date dateName = new Date();
 		String backupName = "poleinfoBD" + dateFormatName.format(dateName).toString();
-		
+
 		DateFormat dateFormatBackup = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date dateBackup = new Date();
 		String dteBack = dateFormatBackup.format(dateBackup).toString();
-		
+
 		String label = request.getParameter("etiq");
-		
+
 		System.out.println("label avant if : " + label);
 		if(label.equals("")){
 			label = "NO DESCRIPTION";
 		}
-		
+
 		System.out.println("idBackuper : " + idBackuper);
 		System.out.println("backupName : " + backupName);
 		System.out.println("dteBack : " + dteBack);
 		System.out.println("label : " + label);
-		
+
 		Backup monBackup = new Backup(backupName,idBackuper,label,dteBack);
 		System.out.println(monBackup);
-		backDAO.creerBackup(monBackup);
-		
+
 		String filename = backupName + ".sql";
-		
-		Process p = null;
+
+		//String relativePath = getServletContext().getRealPath("");
+		//System.out.println("relativePath 1st = " + relativePath);
+
+		Process p, p1 = null;
 		String expr = new StringBuilder()
 				.append("/usr/local/mysql/bin/mysqldump").append(' ')
 				.append("-u").append("root").append(' ')
-			    .append("-p").append("root").append(' ')
-			    .append("poleinfobd").append(' ')
-			    .append("-r").append(' ')
-			    .append(filename)
-			    .toString();
+				.append("-p").append("root").append(' ')
+				.append("--add-drop-database").append(' ')
+				.append("-B").append(' ')
+				.append("poleinfobd").append(' ')
+				.append("-r").append(' ')
+				.append(filename)
+				.toString();
+
+		String exprCP = new StringBuilder()
+				.append("/bin/cp").append(' ')
+				.append(filename).append(' ')
+				.append("../eclipseApps/pole_info/")
+				.toString();
 		try {
+			backDAO.creerBackup(monBackup);
 			p = Runtime.getRuntime().exec(expr);
 			int processComplete = p.waitFor();
 			if(processComplete == 0){
 				System.out.println("success");
+				p1 = Runtime.getRuntime().exec(exprCP);
+				int p1Complete = p1.waitFor();
+				if(p1Complete == 0){
+					System.out.println("CP OK");
+				}
+				else{
+					System.out.println("CP KO");
+				}
 			} else {
-				System.out.println("restore failure");
+				System.out.println("failure backup");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -104,8 +123,9 @@ public class PostCreateBackupServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 		dispatch.forward(request, response);
 	}
-	
+
 }
