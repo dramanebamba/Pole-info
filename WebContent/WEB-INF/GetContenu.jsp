@@ -5,59 +5,119 @@
 <title>Accueil</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
-<%@ page import="main.java.io.github.dramanebamba.pole_info.model.Contenu,java.util.List" %>
-<% String connected = (String) session.getAttribute("connected");%>
-<% String pseudo = (String) session.getAttribute("login");%>
-<% List<Contenu> listeDesContenus = (List<Contenu>) session.getAttribute("listContenu");%>
-<% if(connected == "true" && pseudo.equals("admin")){%>
+<%@ page
+	import="main.java.io.github.dramanebamba.pole_info.model.Master,
+		main.java.io.github.dramanebamba.pole_info.model.Contenu,
+		java.util.HashMap,
+		java.util.List,pole_info.CoursDAO"%>
+<%
+	String connected = (String) session.getAttribute("connected");
+	String pseudo = (String) session.getAttribute("login");
+	List<Contenu> listeDesContenus = (List<Contenu>) session.getAttribute("listContenu");
+	HashMap<Contenu, List<Master>> listMasters = (HashMap<Contenu, List<Master>>) session
+			.getAttribute("listMasters");
+	List<Master> listAllMasters = (List<Master>) session.getAttribute("listAllMasters");
+	if (connected == "true" && pseudo.equals("admin")) 
+	{
+%>
 <body>
 	<div class="container">
-	<h1>Liste des contenus de cours</h1>
+		<h1>Liste des contenus de cours</h1>
 		<div class="row">
-		<table class="table">
-			<thead>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Description</th>
+						<th>Apprentissage</th>
+						<th>Horaires</th>
+						<th>ECTS</th>
+						<th>Projet</th>
+						<th>Objectifs</th>
+						<th>Contents</th>
+						<th>Biblio</th>
+						<th>Supprimer</th>
+						<th>Parcours lié</th>
+						<th>Facultatif</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%
+					for (Contenu c : listeDesContenus) // On affiche une ligne pour chaque contenu
+						{
+							// On place une ligne pour chaque master lié à ce contenu
+							for (Master m : listMasters.get(c)) // 
+							{
+								String name_master = m.getNom(); // Recuperation du nom du master lié
+								int id_master = m.getId();
+								
+								// Recuperation de la valeur du champs "obligatoire" de ce contenu pour ce master
+								String obligatoire_final = (new CoursDAO().getObligatoire(c.getId(), id_master)
+										.equals("O")) ? "Non" : "Oui";
+				%>
 				<tr>
-					<th>Nom</th>
-					<th>Description</th>
-					<th>Apprentissage</th>
-					<th>Horaires</th>
-					<th>ECTS</th>
-					<th>Projet</th>
-					<th>Objectifs</th>
-					<th>Contents</th>
-					<th>Biblio</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-		<% for(Contenu c : listeDesContenus) {%>
-				<tr>
-					<td><%= c.getNomMat() %></td>
-					<td><%= c.getDesc()  %></td>
-					<td><%= c.getApp() %></td>
-					<td><%= c.getVolHoraire() %></td>
-					<td><%= c.getEcts() %></td>
-					<td><%= c.getVolume_projet() %></td>
-					<td><%= c.getObj() %></td>
-					<td><%= c.getContent() %></td>
-					<td><%= c.getBiblio() %></td>
-					<td class="test-align">
-						<a href="./GetContenuServlet?operation=remove&id=<%= c.getId()%>">
-						<span class="glyphicon glyphicon-trash"></span>
-						</a>
+					<td><%=c.getNomMat()%></td>
+					<td><%=c.getDesc()%></td>
+					<td><%=c.getApp()%></td>
+					<td><%=c.getVolHoraire()%></td>
+					<td><%=c.getEcts()%></td>
+					<td><%=c.getVolume_projet()%></td>
+					<td><%=c.getObj()%></td>
+					<td><%=c.getContent()%></td>
+					<td><%=c.getBiblio()%></td>
+					<td class="test-align"><a
+						href="./GetContenuServlet?operation=remove&id=<%=c.getId()%>">
+							<span class="glyphicon glyphicon-trash"></span>
+					</a></td>
+					<td><form method="post" action="/pole_info/GetContenuServlet?operation=changeMaster">
+							<p>
+								<select name="changeMaster" onchange="this.form.submit()">
+									<%
+									for (Master masterAll : listAllMasters) 
+									{
+										if (masterAll.getNom().equals(name_master)) 
+										{
+										%>
+											<option value=<%=(Integer.toString(id_master)+"/"+Integer.toString(masterAll.getId())+"/"+Integer.toString(c.getId()))%> selected><%=masterAll.getNom()%></option>
+										<%
+										} else {
+										%>
+											<option value=<%=(Integer.toString(id_master)+"/"+Integer.toString(masterAll.getId())+"/"+Integer.toString(c.getId()))%>><%=masterAll.getNom()%></option>
+										<%
+										}
+									}
+									%>
+								</select>
+							</p>
+						</form></td>
+					<td>
+					<form method="post" 
+					action="/pole_info/GetContenuServlet?operation=changeObligation">
+						<p>
+							<select name="changeObli" onchange="this.form.submit()">
+								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%> selected><%= obligatoire_final %></option>
+								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%>><%= (obligatoire_final.equals("Non"))?"Oui":"Non" %></option>
+							</select>
+						</p>
+					</form>
 					</td>
-				</tr>
-		<% } %>
-		</tbody>
-		</table>
+					</tr>
+					<%
+						}
+							}
+					%>
+				</tbody>
+			</table>
 		</div>
-		<br/>
+		<br />
 		<div class="row">
 			<a class="btn btn-danger" href="./accueil">Annuler</a>
 		</div>
 	</div>
-<% } else{%>
+	<%
+		} else {
+	%>
 	NOTHING TO SHOW
-<%} %>
+	<%} %>
 </body>
 </html>

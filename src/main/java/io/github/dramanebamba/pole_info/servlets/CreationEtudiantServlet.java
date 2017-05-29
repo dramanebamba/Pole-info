@@ -25,6 +25,10 @@ public class CreationEtudiantServlet extends HttpServlet
 	 * 
 	 */
 	private static final long serialVersionUID = 3L;
+	
+	@Inject
+	private VerificationBDDService verification_BDD;
+	
 	@Inject
 	PersonneDAO persDAO;
 	
@@ -66,9 +70,16 @@ public class CreationEtudiantServlet extends HttpServlet
 
 		if(operation.equals("createStudent")){
 				System.out.println("Création etudiant...");
-				persDAO.creerPersonne(new Personne(nom, prenom, mail, "", "", "", "", "", "", 0, 0, "S"));
-				System.out.println("Nouvel étudiant créé : " + prenom + " " + nom + " / " + mail + " / " + parcours);
-				System.out.println(prenom + " " + nom + " ajouté en BDD");
+				
+				if(verification_BDD.verification(mail)) // CDI : Si true alors la personne peut etre ajoutee, sinon deja en BDD
+				{
+					persDAO.creerPersonne(new Personne(nom, prenom, mail, "", "", "", "", "", "", 0, 0, "S"));
+					System.out.println("Nouvel étudiant créé : " + prenom + " " + nom + " / " + mail + " / " + parcours);
+					System.out.println(prenom + " " + nom + " ajouté en BDD");
+				}
+				else
+					System.out.println("Erreur : L'étudiant est déjà en base de données (email). Retour au menu.");
+				
 				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 				dispatch.forward(request, response);
 		}

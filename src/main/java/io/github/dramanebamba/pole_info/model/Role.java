@@ -22,7 +22,7 @@ public class Role
 		return code;
 	}
 	
-	public void setCode(char code) 
+	private void setCode(char code) 
 	{
 		this.code = code;
 	}
@@ -32,7 +32,7 @@ public class Role
 		return intitule;
 	}
 	
-	public void setIntitule(String intitule) 
+	private void setIntitule(String intitule) 
 	{
 		this.intitule = intitule;
 	}

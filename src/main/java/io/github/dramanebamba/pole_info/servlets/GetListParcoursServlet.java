@@ -3,7 +3,6 @@ package main.java.io.github.dramanebamba.pole_info.servlets;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,37 +12,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
-import main.java.io.github.dramanebamba.pole_info.service.*;
+import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+import main.java.io.github.dramanebamba.pole_info.model.Master;
 import pole_info.AffectationDAO;
-import pole_info.Backup;
 import pole_info.ContenuDAO;
 import pole_info.CoursDAO;
 import pole_info.MasterDAO;
-import pole_info.Personne;
 import pole_info.PersonneDAO;
-import main.java.io.github.dramanebamba.pole_info.model.*;
 
 /**
  * Servlet implementation class Identification
  */
-@WebServlet("/listCourses")
-public class GetListCoursesServlet extends HttpServlet
+@WebServlet("/listParcours")
+public class GetListParcoursServlet extends HttpServlet
 {
 	@Inject
-	ContenuDAO contenu;
-	
-	@Inject
-	PersonneDAO personne;
-	
-	@Inject
-	AffectationDAO affectation;
+	MasterDAO master;
 
-	public GetListCoursesServlet()
+	@Inject
+	CoursDAO cours;
+
+	public GetListParcoursServlet()
 	{
 		/**
 		 * @see HttpServlet#HttpServlet()
@@ -57,36 +50,35 @@ public class GetListCoursesServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		if(request.getParameter("operation").equals("getlistCourses"))	
-			exportJSONListCourses(contenu.getAllCourses()); // Recuperation de la liste des cours
-		
+		if(request.getParameter("operation").equals("getlistParcours"))	
+			exportJSONListParcours(master.listeDesMasters()); // Recuperation de la liste des cours
+
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 		dispatch.forward(request, response);
 	}
 
 	// Methode servant a lister les cours avec les etudiants qui y sont relie, pour ensuite exporter cette liste en fichier JSON
 	@SuppressWarnings("resource")
-	public void exportJSONListCourses(List<Contenu> liste)
+	public void exportJSONListParcours(List<Master> liste)
 	{
 		System.out.println("Récupération liste des cours");
 		Gson json = new Gson();
 		FileWriter writer;	// Objet servant a ecrire dans le fichier voulu
-		
+
 		try
 		{
-			File fil = new File("../eclipseApps/pole_info/Export_JSON_Courses.json"); // ecriture en brut [provisoire]
+			File fil = new File("../eclipseApps/pole_info/Export_JSON_Parcours.json"); // ecriture en brut [provisoire]
 			fil.createNewFile();	// Creation nouveau fichier
 			writer = new FileWriter(fil); // Liaison entre l'objet et le fichier a remplir
-			
+
 			// Parcours de la liste des contenus recue en parametre
-			for(Contenu c: liste)
+			for(Master m: liste)
 			{
-				json.toJson(c, writer);	// On ecrit d'abord le contenu, ensuite les etudiants raccroches
+				json.toJson(m, writer);	// On ecrit d'abord le contenu, ensuite les etudiants raccroches
+				writer.write("\n");	// Saut de ligne pour passer au prochain contenu
 				
 				// Apres recuperation des id des etudiants rattaches a ce contenu, recuperation des objets personne lies
-				for(Integer i : affectation.getListePersonnes(c.getId()))
-					json.toJson(personne.getPersonne(i), writer);	// ecriture dans le fichier de la personne
-				
+				cours.getListePersonnes(m.getId(), json, writer);
 				writer.write("\n");	// Saut de ligne pour passer au prochain contenu
 			}
 			// Fermeture de l'ecriture sur le ficher JSON

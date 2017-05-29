@@ -49,37 +49,37 @@ public class Cours
 	public int getId_master() {
 		return id_master;
 	}
-	public void setId_master(int id_master) {
+	private void setId_master(int id_master) {
 		this.id_master = id_master;
 	}
 	public int getId_contenu() {
 		return id_contenu;
 	}
-	public void setId_contenu(int id_contenu) {
+	private void setId_contenu(int id_contenu) {
 		this.id_contenu = id_contenu;
 	}
 	public int getId_enseignant() {
 		return id_enseignant;
 	}
-	public void setId_enseignant(int id_enseignant) {
+	private void setId_enseignant(int id_enseignant) {
 		this.id_enseignant = id_enseignant;
 	}
 	public String getPeriode() {
 		return periode;
 	}
-	public void setPeriode(String periode) {
+	private void setPeriode(String periode) {
 		this.periode = periode;
 	}
 	public String getObligatoire() {
 		return obligatoire;
 	}
-	public void setObligatoire(String obligatoire) {
+	private void setObligatoire(String obligatoire) {
 		this.obligatoire = obligatoire;
 	}
 	public String getNotes() {
 		return notes;
 	}
-	public void setNotes(String notes) {
+	private void setNotes(String notes) {
 		this.notes = notes;
 	}
 

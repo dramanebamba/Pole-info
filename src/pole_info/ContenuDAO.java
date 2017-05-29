@@ -14,17 +14,18 @@ import main.java.io.github.dramanebamba.pole_info.model.Cours;
 @RequestScoped
 public class ContenuDAO {
 
-	private static final String QUERY_CONT = "SELECT u FROM Contenu u ";
 	private static final String QUERY_GET = "SELECT u FROM Contenu u ";
 	private final static String QUERY_LIST_CONTENU = "SELECT b FROM Contenu b";
+	private static final String QUERY_GET_ID = "SELECT u FROM Contenu u WHERE u.id = :id";
+	private static final String PARAM_ID = "id";
 
 	Contenu contenu;
 
-	public void creerContenu(Contenu contenu){
+	public void creerContenu(Contenu cont){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(contenu);
+		em.persist(cont);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -40,6 +41,18 @@ public class ContenuDAO {
 		em.close();
 		return list;
 	}
+	
+	public Contenu getContenu(int id_c)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		Contenu c = em.createQuery(QUERY_GET_ID,Contenu.class).setParameter(PARAM_ID, id_c).getSingleResult();
+		em.close();
+
+		return c;
+	}
+	
 	public List<Contenu> listeDesContenus(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
@@ -56,10 +69,10 @@ public class ContenuDAO {
 	public void supprimerContenu(int key){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		Contenu contenu = em.find(Contenu.class, key);
+		Contenu cont = em.find(Contenu.class, key);
 		if(contenu!=null){
 			em.getTransaction().begin();
-			em.remove(contenu);
+			em.remove(cont);
 			em.getTransaction().commit();
 			em.close();
 			System.out.println("Suppression de la clé : " + key);

@@ -18,17 +18,34 @@ import javax.transaction.Transactional;*/
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
+import main.java.io.github.dramanebamba.pole_info.model.Master;
+
 @RequestScoped
 public class PersonneDAO {
 
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u " + "WHERE u.email = :email AND u.password = :password";
 	private static final String QUERY_ROLE = "SELECT u.roles FROM Personne u WHERE u.email = :email AND u.password = :password";
+	private static final String QUERY_IS_IN = "SELECT u FROM Personne u WHERE u.email = :email";
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
+	private static final String QUERY_GET_BY_MASTER = "SELECT u FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_ID = "id";
+	private static final String PARAM_ID_MASTER = "id_master";
+
 
 	Personne personne;
+	
+	public boolean isInBDD(String mail)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Personne> p = em.createQuery(QUERY_IS_IN,Personne.class).setParameter(PARAM_EMAIL, mail).getResultList();
+		em.close();
+
+		return (p.isEmpty())?false:true;
+	}
 	
 	public String getRoles(String email, String password)
 	{
@@ -92,6 +109,15 @@ public class PersonneDAO {
 		em.close();
 		
 		return (li.isEmpty())?false:true;
+	}
+	
+	public List<Personne> getMasterById(int id_master){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Personne> listStudent  = em.createQuery(QUERY_GET_BY_MASTER,Personne.class).setParameter(PARAM_ID_MASTER, id_master).getResultList();		
+		
+		return listStudent;
 	}
 
 }

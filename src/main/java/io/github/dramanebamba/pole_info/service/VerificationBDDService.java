@@ -1,24 +1,21 @@
 package main.java.io.github.dramanebamba.pole_info.service;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import main.java.io.github.dramanebamba.pole_info.model.*;
+import pole_info.ContenuDAO;
 import pole_info.Personne;
+import pole_info.PersonneDAO;
 
 @ApplicationScoped
 public class VerificationBDDService 
 {
-	/*public boolean test(String mail)
+	@Inject
+	PersonneDAO personne;
+	
+	public boolean verification(String mail)
 	{
-		System.out.println("TEST CDI");
-		if(Personne.getBDD().size()>0)
-		{
-			for(Personne personne:Personne.getBDD())
-			{
-				if(personne.getEmail().equals(mail))	
-					return false;
-			}
-		}
-		return true;
-	}*/
-
+		return (personne.isInBDD(mail))?false:true;
+	}
 }
