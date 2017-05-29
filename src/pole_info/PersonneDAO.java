@@ -30,6 +30,7 @@ public class PersonneDAO {
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String QUERY_GET_BY_MASTER = "SELECT u FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
 	
+	private static final String QUERY_GET_BY_IDS = "SELECT u FROM Personne u WHERE u.id IN :studentIds";
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_ID = "id";
@@ -140,6 +141,15 @@ public class PersonneDAO {
 		
 		List<Personne> listStudent  = em.createQuery(QUERY_GET_BY_MASTER,Personne.class).setParameter(PARAM_ID_MASTER, id_master).getResultList();		
 		
+		return listStudent;
+	}
+	
+	public List<Personne> getStudentByIds(List<Integer> studentIds){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Personne> listStudent  = em.createQuery(QUERY_GET_BY_IDS,Personne.class).setParameter("studentIds", studentIds).getResultList();		
+		System.out.println(listStudent);
 		return listStudent;
 	}
 

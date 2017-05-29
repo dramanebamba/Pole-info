@@ -17,9 +17,7 @@
     <body>
       <div class="container">
         <h1>Affectation des étudiants</h1>
-        <a href="./GetAffectationServlet">Voir la liste des affectations</a>
-        <p class="lead">Un responsable peut affecter un étudiant aux cours facultatifs</p>
-
+        <a href="./GetAffectationMaster">Voir la liste des affectations</a>
         <form class="form-horizontal" action="./AffectationCours" method="post">
           <div class="form-group">
             <label for="exampleInputName2" class="col-sm-2 control-label">Sélectionner un master</label>

@@ -41,6 +41,7 @@ public class CoursDAO
 	private static final String QUERY_GET_OBLIGATOIRE = "SELECT u.obligatoire FROM Cours u WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
 	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
 	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
+	private static final String QUERY_GET_COURSES = "SELECT c.id_master, c.id_contenu, m.nom, con.nom FROM Master m, Cours c, Contenu con WHERE m.id = c.id_master AND con.id = c.id_contenu AND c.obligatoire = 'N'";
 	
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_M = "id_m";
@@ -266,6 +267,21 @@ public class CoursDAO
 		em.close();
 
 		return p.getId();
+	}
+	
+	public List<Object[]> getCourses(){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Object[]> listCourses = new ArrayList<>();
+		listCourses = em.createQuery(QUERY_GET_COURSES,Object[].class).getResultList();
+		System.out.println(listCourses);
+		int i = 0;
+		for (i=0;i<listCourses.size(); i++)
+		{
+			System.out.println(listCourses.get(i)[1]);
+		}
+		return listCourses;
 	}
 
 

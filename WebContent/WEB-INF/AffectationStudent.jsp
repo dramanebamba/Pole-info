@@ -22,10 +22,10 @@
     <% if(connected == "true" && pseudo.equals("admin")){%>
     <body>
       <div class="container">
-        <h1>
+        <h1>Affectation des étudiants - 
           <% out.println(nom_master+ " - " + nom_contenu.getNomMat()); %>
         </h1>
-        <a href="./GetAffectationServlet">Voir la liste des affectations</a>
+        <a href="./GetAffectationMaster">Voir la liste des affectations</a>
         <p class="lead">Nombre d'étudiant affecté à ce cours : <% out.println(numAffectation); %></p>
 
         <form class="form-horizontal" action="./AffectationStudent" method="post">
@@ -49,7 +49,7 @@
           </div>
           <input type="hidden" name="id_master" value=<% out.println(id_master);%>>
           <input type="hidden" name="id_contenu" value=<% out.println(id_contenu);%>>
-          <input type="hidden" name="nom_master" value=<% out.println(nom_master);%>>          
+          <input type="hidden" name="nom_master" value=<% out.println(nom_master);%>>
           <%-- <% for(Master m : nomMaster) {%>
           <input type="hidden" name="nom_master" value="<%= m.getNom() %>">
           <% } %> --%>
