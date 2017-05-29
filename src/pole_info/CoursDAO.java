@@ -10,13 +10,17 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import com.google.gson.Gson;
 
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
+import main.java.io.github.dramanebamba.pole_info.model.Master;
 import pole_info.Personne;
 
 @RequestScoped
+// @Transactional
 public class CoursDAO
 {
 	@Inject
@@ -25,12 +29,13 @@ public class CoursDAO
 	@Inject
 	ContenuDAO contenu;
 	
-	private static final String QUERY_UPDATE_MASTER = "UPDATE Cours u SET u.id_master = :new_id WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
-	private static final String QUERY_UPDATE_OBLIGATION = "UPDATE Cours u SET u.obligatoire = :valeur WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
+	/*@PersistenceContext(unitName = "pole")
+	EntityManager em;*/
 	
 	private static final String QUERY_GET_TEACHERS = "SELECT u.id_enseignant FROM Cours u WHERE u.id_master = :id";
 	private static final String QUERY_GET_ALL_COURSES = "SELECT u FROM Cours u WHERE u.id_contenu = :id_c";
 	private static final String QUERY_GET_CONTENT = "SELECT u.id_contenu FROM Cours u WHERE u.id_master = :id_m AND u.id_enseignant = :id_e";
+	private static final String QUERY_GET_CONTENT_BIS = "SELECT u FROM Cours u WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
 	private static final String QUERY_GET_MASTER = "SELECT u.id_master FROM Cours u WHERE u.id_contenu = :id_c";
 	private static final String QUERY_GET_OBLIGATOIRE = "SELECT u.obligatoire FROM Cours u WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
 	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
@@ -57,31 +62,43 @@ public class CoursDAO
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 		
+		em.getTransaction().begin();
+		
 		System.out.println("Lancement modification du master en Base de données...");
 		
-		em.createQuery(QUERY_UPDATE_MASTER)
-		.setParameter("new_id", new_val)
-		.setParameter(PARAM_M, id_master)
-		.setParameter(PARAM_C, id_contenu);
+		Cours c = em.createQuery(QUERY_GET_CONTENT_BIS, Cours.class)
+				.setParameter(PARAM_M, id_master)
+				.setParameter(PARAM_C, id_contenu)
+				.getSingleResult();
+		
+		c.setId_master(new_val);
+		em.flush();
+		em.getTransaction().commit();
+		em.close();
 		
 		System.out.println("Modification du master réalisée en Base de données.");
-		em.close();
 	}
 	
 	public void updateObligatoire(int id_master, int id_contenu, String new_val)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-
+		
 		System.out.println("Lancement modification de l'attribut obligatoire en Base de données...");
 		
-		em.createQuery(QUERY_UPDATE_OBLIGATION)
-		.setParameter("valeur", new_val)
-		.setParameter(PARAM_M, id_master)
-		.setParameter(PARAM_C, id_contenu);
+		em.getTransaction().begin();
+		
+		Cours c = em.createQuery(QUERY_GET_CONTENT_BIS, Cours.class)
+				.setParameter(PARAM_M, id_master)
+				.setParameter(PARAM_C, id_contenu)
+				.getSingleResult();
+		
+		c.setObligatoire(new_val);
+		em.merge(c);
+		em.getTransaction().commit();
+		em.close();
 		
 		System.out.println("Modification de l'attribut obligatoire réalisée en Base de données.");
-		em.close();
 	}
 	
 	public List<Integer> getListContenus(int id_c)
