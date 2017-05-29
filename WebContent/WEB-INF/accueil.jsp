@@ -8,6 +8,7 @@
 <% String connected = (String) session.getAttribute("connected"); %>
 <% String pseudo = (String) session.getAttribute("login"); %>
 <% String role = (String) session.getAttribute("roles"); %>
+<% int id_ma = (Integer) session.getAttribute("id_m"); %>
 <% if (connected == "true") { %>
 <body>
 	<div class="container">
@@ -20,6 +21,8 @@
 		<a href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant
 		</a><br /> <br /> <a href="./PostPreferenceServlet"> Indiquer ses
 			pr&eacute;f&eacute;rences </a><br /> <br />
+		<a href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
+		<br /> <br />
 
 		<h2>Enseignant</h2>
 		<a href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />

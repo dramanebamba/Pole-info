@@ -25,16 +25,28 @@ public class PersonneDAO {
 
 	private static final String QUERY_AUTH = "SELECT u FROM Personne u " + "WHERE u.email = :email AND u.password = :password";
 	private static final String QUERY_ROLE = "SELECT u.roles FROM Personne u WHERE u.email = :email AND u.password = :password";
+	private static final String QUERY_MASTER = "SELECT u.id_master FROM Personne u WHERE u.email = :email AND u.password = :password";
 	private static final String QUERY_IS_IN = "SELECT u FROM Personne u WHERE u.email = :email";
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String QUERY_GET_BY_MASTER = "SELECT u FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
+	
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_ID_MASTER = "id_master";
-
-
+	
 	Personne personne;
+	
+	public List<Personne> getListStudentMaster(int id_m)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Personne> liste = em.createQuery(QUERY_GET_BY_MASTER,Personne.class).setParameter(PARAM_ID_MASTER, id_m).getResultList();
+		em.close();
+
+		return liste;
+	}
 	
 	public boolean isInBDD(String mail)
 	{
@@ -45,6 +57,17 @@ public class PersonneDAO {
 		em.close();
 
 		return (p.isEmpty())?false:true;
+	}
+	
+	public int getMaster(String email, String password)
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		int id_m = em.createQuery(QUERY_MASTER,Integer.class).setParameter(PARAM_EMAIL, email).setParameter(PARAM_PASSWORD, password).getSingleResult();
+		em.close();
+
+		return id_m;
 	}
 	
 	public String getRoles(String email, String password)

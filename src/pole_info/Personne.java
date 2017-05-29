@@ -68,7 +68,7 @@ public class Personne {
 
 	public Personne(String nom, String pre, String mail,
 			String cv, String note, String pw,
-			int id_m, int annee, String role){
+			int id_m, int annee, String role, String add){
 		setId(noC++);
 		setNom(nom);
 		setPrenom(pre);
@@ -79,6 +79,7 @@ public class Personne {
 		setPassword(pw);
 		setId_master(id_m);
 		setAnnee_master(annee);
+		setAdress(add);
 	}
 	
 	public Personne(String nom, String pre, String mail,
@@ -98,6 +99,16 @@ public class Personne {
 		setPassword(pw);
 		setId_master(id_m);
 		setAnnee_master(annee);
+	}
+	
+	public void setAdress(String s)
+	{
+		adresse = s;
+	}
+	
+	public String getAdress()
+	{
+		return adresse;
 	}
 	
 	public String getTelephone() {

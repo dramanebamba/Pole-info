@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Accueil</title>
+<title>Liste des cours</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <%@ page
