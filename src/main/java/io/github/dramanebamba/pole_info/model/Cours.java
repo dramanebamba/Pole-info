@@ -15,10 +15,10 @@ public class Cours
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_master = 0;
-	
-	@Column(name = "id_contenu")
 	private int id_contenu = 0;
+	
+	@Column(name = "id_master")
+	private int id_master = 0;
 	
 	@Column(name = "id_enseignant")
 	private int id_enseignant = 0;
@@ -49,7 +49,7 @@ public class Cours
 	public int getId_master() {
 		return id_master;
 	}
-	private void setId_master(int id_master) {
+	public void setId_master(int id_master) {
 		this.id_master = id_master;
 	}
 	public int getId_contenu() {
@@ -73,7 +73,7 @@ public class Cours
 	public String getObligatoire() {
 		return obligatoire;
 	}
-	private void setObligatoire(String obligatoire) {
+	public void setObligatoire(String obligatoire) {
 		this.obligatoire = obligatoire;
 	}
 	public String getNotes() {
