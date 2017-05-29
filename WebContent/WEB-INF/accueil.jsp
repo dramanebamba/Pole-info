@@ -20,6 +20,7 @@
 <% String pseudo = (String) session.getAttribute("login"); %>
 <% String role = (String) session.getAttribute("roles"); %>
 <% int id_ma = (Integer) session.getAttribute("id_m"); %>
+<% int id = (Integer) session.getAttribute("id"); %>
 <% if (connected == "true") { %>
 <body>
 
@@ -56,11 +57,13 @@
 		<!-- <h1>Menu</h1> -->
 		<% if (role.equals("S")) { // Etudiant %>
 			<h2>Enseignements</h2>
-			<a class="btn btn-default" href="./PostPreferenceServlet"> Indiquer mes
+			<a class="btn btn-default" href="./GetCreatePreferenceServlet"> Indiquer mes
+			pr&eacute;f&eacute;rences </a><br /> <br />
+			<a class="btn btn-default" href="./GetPreferenceServlet?id=<%=id%>"> Voir mes
 			pr&eacute;f&eacute;rences </a><br /> <br />
 		<% } else if (role.equals("M")) { // Enseignant %>
 		<h2>&Eacute;tudiant</h2>
-		<a class="btn btn-default" href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant</a>
+		<a class="btn btn-default" href="./GetCreateStudentServlet"> Cr&eacute;ation d'un &Eacute;tudiant</a>
 		<br /> <br /> 
 		<a class="btn btn-default" href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
 		<br /> <br />
@@ -89,16 +92,17 @@
 		<br />
 
 		<h2>Gestion des masters et contenus</h2>
-		<a class="btn btn-default" href="./PostContenuServlet"> G&eacute;rer les contenus d'un cours</a><br />
-		<br />
-		<a class="btn btn-default" href="./PostMasterServlet"> G&eacute;rer les masters</a><br />
-
+		<a class="btn btn-default" href="./GetCreateContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br/><br/>
+		<a class="btn btn-default" href="./GetContenuServlet">Liste des contenus</a><br/><br/>
+		<a class="btn btn-default" href="./GetCreateMasterServlet"> Cr&eacute;er un master</a><br/><br/>
+		<a class="btn btn-default" href="./GetMasterServlet">Liste des masters</a><br/><br/>
+		
 		<h2>Gestion des affectation</h2>
 		<a class="btn btn-default" href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
 		<br />
 		
 		<h2>Gestion des cours</h2>
-		<a class="btn btn-default" href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
+		<a class="btn btn-default" href="./PostCoursServlet"> Cr&eacute;er un cours (obligatoire/facultatif)</a><br />
 		<br />
 		<% } else { %>
 		<br />

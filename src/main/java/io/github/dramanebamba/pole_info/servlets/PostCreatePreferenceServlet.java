@@ -22,22 +22,22 @@ import pole_info.PreferenceDAO;
 /**
  * Servlet implementation class PostPreferenceServlet
  */
-@WebServlet("/PostPreferenceServlet")
-public class PostPreferenceServlet extends HttpServlet {
+@WebServlet("/PostCreatePreferenceServlet")
+public class PostCreatePreferenceServlet extends HttpServlet {
 	public static final String VUE = "/WEB-INF/PostPreference.jsp";
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PreferenceDAO preferenceDao;
-	@Inject
 	private MasterDAO masterDao;
+	@Inject
+	private PreferenceDAO preferenceDao;
 	@Inject
 	private ContenuDAO contenuDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostPreferenceServlet() {
+    public PostCreatePreferenceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,17 +47,8 @@ public class PostPreferenceServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		
-		List<Master> listMaster = masterDao.listeDesMasters();
-		List<Contenu> listContenu = contenuDao.listeDesContenus();
-		
-		session.setAttribute("listMaster", listMaster);
-		session.setAttribute("listContenu", listContenu);
-		
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher(VUE);
-		dispatch.forward(request, response);
+		//DEBUG
+		System.out.println("POSTCREATEPREFERENCESERVLET");
 	}
 
 	/**
@@ -67,6 +58,13 @@ public class PostPreferenceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		
+		//Comment just in case, if something bug but not needed
+		//requestList<Master> listMaster = masterDao.listeDesMasters();
+		//session.setAttribute("listMaster", listMaster);
+		
+		System.out.println("Liste des attributes de sessions : ");
+		System.out.println(session.getAttributeNames().toString());
 		
 		String operation = request.getParameter("operation");
 		

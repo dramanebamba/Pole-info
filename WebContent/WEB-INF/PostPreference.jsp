@@ -42,7 +42,7 @@
 
 		<p class="lead">Un étudiant peut choisir ses préférences</p>
 		
-		<form class="form-horizontal" action="./PostPreferenceServlet?operation=masterChoice"
+		<form class="form-horizontal" action="./PostCreatePreferenceServlet?operation=masterChoice"
 			method="post">
 			<div class="form-group">
 				<label for="Master" class="col-sm-2 control-label">Master</label>
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			</form>
-			<form class="form-horizontal" action="./PostPreferenceServlet?operation=postPreference" method="post">
+			<form class="form-horizontal" action="./PostCreatePreferenceServlet?operation=postPreference" method="post">
 			<div class="form-group">
 				<label for="id_contenu" class="col-sm-2 control-label">Contenu</label>
 				<div class="col-sm-10">

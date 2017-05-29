@@ -1,13 +1,7 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
-
-import main.java.io.github.dramanebamba.pole_info.service.*;
-import pole_info.PreferenceDAO;
-import main.java.io.github.dramanebamba.pole_info.model.*;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -18,22 +12,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class Preferences
- */
-@WebServlet("/GetPreferenceServlet")
-public class GetPreferenceServlet extends HttpServlet {
-	public static final String ATT_MESSAGES = "preference";
-	public static final String VUE          = "/WEB-INF/GetPreference.jsp";
-	private static final long serialVersionUID = 1L;
-	
-	@Inject
-	private PreferenceDAO preferenceDao;
+import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+import main.java.io.github.dramanebamba.pole_info.model.Master;
+import pole_info.ContenuDAO;
+import pole_info.MasterDAO;
 
+/**
+ * Servlet implementation class GetCreatePreferenceServlet
+ */
+@WebServlet("/GetCreatePreferenceServlet")
+public class GetCreatePreferenceServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private MasterDAO masterDao;
+	@Inject
+	private ContenuDAO contenuDao;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public GetPreferenceServlet() {
+	public GetCreatePreferenceServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,28 +40,22 @@ public class GetPreferenceServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//Vector<Preference> preference = listePreference.getPreference();
-		//request.setAttribute( ATT_MESSAGES, preference );
-		
 		HttpSession session = request.getSession();
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		List<Preference> listPreference = preferenceDao.getPreference(id);
-		
-		session.setAttribute("listPreference", listPreference);
-		
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher(VUE);
+
+		List<Master> listMaster = masterDao.listeDesMasters();
+		List<Contenu> listContenu = contenuDao.listeDesContenus();
+
+		session.setAttribute("listMaster", listMaster);
+		session.setAttribute("listContenu", listContenu);
+
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/PostPreference.jsp");
 		dispatch.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

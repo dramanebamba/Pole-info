@@ -18,8 +18,8 @@ import main.java.io.github.dramanebamba.pole_info.model.*;
 /**
  * Servlet implementation class Identification
  */
-@WebServlet("/creationEtudiant")
-public class CreationEtudiantServlet extends HttpServlet 
+@WebServlet("/PostCreateStudent")
+public class PostCreateStudentServlet extends HttpServlet 
 {	
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class CreationEtudiantServlet extends HttpServlet
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreationEtudiantServlet() 
+	public PostCreateStudentServlet() 
 	{
 		super();
 	}
@@ -46,8 +46,7 @@ public class CreationEtudiantServlet extends HttpServlet
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEtudiant.html");
-		dispatch.forward(request, response);
+		//
 	}
 	
 	/**
@@ -56,7 +55,6 @@ public class CreationEtudiantServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");
 		String nom = request.getParameter("last_name");
@@ -68,7 +66,7 @@ public class CreationEtudiantServlet extends HttpServlet
 		session.setAttribute("true", connected);
 		System.out.println("Operation : " + operation);
 
-		if(operation.equals("createStudent")){
+		//if(operation.equals("createStudent")){
 				System.out.println("Création etudiant...");
 				
 				if(verification_BDD.verification(mail)) // CDI : Si true alors la personne peut etre ajoutee, sinon deja en BDD
@@ -82,9 +80,9 @@ public class CreationEtudiantServlet extends HttpServlet
 				
 				RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 				dispatch.forward(request, response);
-		}
+	/*	}
 		else{
 				response.getWriter().println("KO");
-		}
+		}*/
 	}
 }

@@ -1,10 +1,34 @@
 package main.java.io.github.dramanebamba.pole_info.model;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@ApplicationScoped
+@Entity
+@Table(name="Preference")
 public class Preference {
+	
+	@Id
+	@Column(name = "id_master")
 	private int id_master = 0;
+	
+	@Id
+	@Column(name = "id_contenu")
 	private int id_contenu = 0;
+	
+	@Id
+	@Column(name = "id_personne")
 	private int id_personne = 0;
+	
+	@Column(name = "niveau")
 	private int niveau = 0;
+	
+	public Preference(){
+		
+	}
 	
 	public Preference(int id_master, int id_contenu, int id_personne, int niveau) {
 		setId_master(id_master);
