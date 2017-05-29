@@ -6,7 +6,7 @@
   <html>
     <head>
       <meta charset="utf-8" />
-      <title>Affectation des étudiants</title>
+      <title>Consulter les affectations</title>
       <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
     </head>
     <%@ page import="main.java.io.github.dramanebamba.pole_info.model.Master,java.util.List" %>
@@ -19,13 +19,12 @@
     <% if(connected == "true" && pseudo.equals("admin")){%>
     <body>
       <div class="container">
-        <h1>Affectation des étudiants - 
+        <h1>Consulter les affectations - 
           <% for(Master m : nomMaster) {%>
             <%= m.getNom() %>
           <% } %>
         </h1>
-        <a href="./GetAffectationMaster">Voir la liste des affectations</a>
-        <form class="form-horizontal" action="./AffectationStudent" method="post">
+        <form class="form-horizontal" action="./GetAffectation" method="post">
           <div class="form-group">
             <label for="exampleInputName2" class="col-sm-2 control-label">Sélectionner un cours facultatif</label>
             <div class="col-sm-10">
@@ -38,7 +37,7 @@
               </select>
             </div>
           </div>
-          <input type="hidden" name="id_master" value=<%out.println(id_master);%>>
+          <input type="hidden" name="id_master" value=<% out.println(id_master);%>>
           <% for(Master m : nomMaster) {%>
           <input type="hidden" name="nom_master" value="<%= m.getNom() %>">
           <% } %>
