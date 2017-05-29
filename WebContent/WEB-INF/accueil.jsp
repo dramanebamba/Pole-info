@@ -24,9 +24,13 @@
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
       		<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      		<li><a href="#"><form action="./identification?operation=logout" method="post">
-			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-log-in">Se déconnecter</span></button>
-		</form></a></li>
+      		<li><a href="#">
+      			<form action="./identification?operation=logout" method="post">
+					<button class="btn btn-default" type="submit">
+						<span class="glyphicon glyphicon-log-in">Se déconnecter</span>
+					</button>
+				</form>
+		</a></li>
     	</ul>
 	  </div>
 	</nav>
