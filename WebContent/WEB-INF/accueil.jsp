@@ -103,14 +103,7 @@
 		<br />
 		
 		
-		<h2>Gestion des cours</h2>
-		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
-		<br />
 		
-		
-		<h2>Gestion des cours</h2>
-		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
-		<br />
 		
 		<% } %>
 		<% } else { %>
