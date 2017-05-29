@@ -59,6 +59,8 @@ public class IdentificationServlet extends HttpServlet
 		} else	if(operation.equals("confAuth") && persDAO.trouverPersonne(login,pw)){
 			int id = persDAO.getId(login, pw);
 			String roles = persDAO.getRoles(login, pw);
+			int id_m = persDAO.getMaster(login, pw);
+			session.setAttribute("id_m", id_m);
 			session.setAttribute("roles", roles);
 			session.setAttribute("id", id);
 			session.setAttribute("connected", "true");

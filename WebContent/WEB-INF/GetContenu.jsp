@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Accueil</title>
+<title>Liste des cours</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <%@ page
@@ -13,9 +13,15 @@
 <%
 	String connected = (String) session.getAttribute("connected");
 	String pseudo = (String) session.getAttribute("login");
+	
+	@SuppressWarnings("unchecked")
 	List<Contenu> listeDesContenus = (List<Contenu>) session.getAttribute("listContenu");
+	
+	@SuppressWarnings("unchecked")
 	HashMap<Contenu, List<Master>> listMasters = (HashMap<Contenu, List<Master>>) session
 			.getAttribute("listMasters");
+	
+	@SuppressWarnings("unchecked")
 	List<Master> listAllMasters = (List<Master>) session.getAttribute("listAllMasters");
 	if (connected == "true" && pseudo.equals("admin")) 
 	{

@@ -60,8 +60,14 @@
 			pr&eacute;f&eacute;rences </a><br /> <br />
 		<% } else if (role.equals("M")) { // Enseignant %>
 		<h2>&Eacute;tudiant</h2>
+<<<<<<< HEAD
 		<a class="btn btn-default" href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant</a>
 		<br /> <br /> 
+=======
+		<a href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant
+		</a><br /> <br /> <a href="./PostPreferenceServlet"> Indiquer ses
+			pr&eacute;f&eacute;rences </a><br /> <br />
+>>>>>>> branch 'master' of https://github.com/dramanebamba/pole_info.git
 		<a href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
 		<br /> <br />
 
@@ -101,9 +107,6 @@
 		<h2>Gestion des cours</h2>
 		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
 		<br />
-		
-		
-		
 		
 		<% } %>
 		<% } else { %>
