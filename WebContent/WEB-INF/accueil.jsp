@@ -23,14 +23,16 @@
 	      <li><a href="#">Page 3</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
-      		<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      		<li><a href="#">
-      			<form action="./identification?operation=logout" method="post">
-					<button class="btn btn-default" type="submit">
-						<span class="glyphicon glyphicon-log-in">Se déconnecter</span>
-					</button>
-				</form>
-		</a></li>
+      		<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+      		<li>
+      			<a href="">
+      				<form action="./identification?operation=logout" method="post">
+						<button class="btn-link" type="submit">
+							<span class="glyphicon glyphicon-log-out"></span> Se déconnecter
+						</button>
+					</form>
+				</a>
+			</li>
     	</ul>
 	  </div>
 	</nav>
