@@ -26,13 +26,13 @@ public class CoursDAO
 {
 	@Inject
 	PersonneDAO personne;
-	
+
 	@Inject
 	ContenuDAO contenu;
-	
+
 	/*@PersistenceContext(unitName = "pole")
 	EntityManager em;*/
-	
+
 	private static final String QUERY_GET_TEACHERS = "SELECT u.id_enseignant FROM Cours u WHERE u.id_master = :id";
 	private static final String QUERY_GET_ALL_COURSES = "SELECT u FROM Cours u WHERE u.id_contenu = :id_c";
 	private static final String QUERY_GET_CONTENT = "SELECT u.id_contenu FROM Cours u WHERE u.id_master = :id_m AND u.id_enseignant = :id_e";
@@ -41,12 +41,12 @@ public class CoursDAO
 	private static final String QUERY_GET_OBLIGATOIRE = "SELECT u.obligatoire FROM Cours u WHERE u.id_master = :id_m AND u.id_contenu = :id_c";
 	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
 	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
-	
+
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_M = "id_m";
 	private static final String PARAM_E = "id_e";
 	private static final String PARAM_C = "id_c";
-	
+
 	public List<Cours> getAllCourses(int id_c)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
@@ -54,54 +54,54 @@ public class CoursDAO
 
 		List<Cours> liste = em.createQuery(QUERY_GET_ALL_COURSES, Cours.class).setParameter(PARAM_C, id_c).getResultList();
 		em.close();
-		
+
 		return liste;
 	}
-	
+
 	public void updateMaster(int id_master, int id_contenu, int new_val)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
+
 		em.getTransaction().begin();
-		
+
 		System.out.println("Lancement modification du master en Base de données...");
-		
+
 		Cours c = em.createQuery(QUERY_GET_CONTENT_BIS, Cours.class)
 				.setParameter(PARAM_M, id_master)
 				.setParameter(PARAM_C, id_contenu)
 				.getSingleResult();
-		
+
 		c.setId_master(new_val);
 		em.flush();
 		em.getTransaction().commit();
 		em.close();
-		
+
 		System.out.println("Modification du master réalisée en Base de données.");
 	}
-	
+
 	public void updateObligatoire(int id_master, int id_contenu, String new_val)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
+
 		System.out.println("Lancement modification de l'attribut obligatoire en Base de données...");
-		
+
 		em.getTransaction().begin();
-		
+
 		Cours c = em.createQuery(QUERY_GET_CONTENT_BIS, Cours.class)
 				.setParameter(PARAM_M, id_master)
 				.setParameter(PARAM_C, id_contenu)
 				.getSingleResult();
-		
+
 		c.setObligatoire(new_val);
 		em.merge(c);
 		em.getTransaction().commit();
 		em.close();
-		
+
 		System.out.println("Modification de l'attribut obligatoire réalisée en Base de données.");
 	}
-	
+
 	public List<Integer> getListContenus(int id_c)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
@@ -109,10 +109,10 @@ public class CoursDAO
 
 		List<Integer> li = em.createQuery(QUERY_GET_MASTER,Integer.class).setParameter(PARAM_C, id_c).getResultList();
 		em.close();
-		
+
 		return li;
 	}
-	
+
 	public String getObligatoire(int id_c, int id_m)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
@@ -120,30 +120,30 @@ public class CoursDAO
 
 		String obli = em.createQuery(QUERY_GET_OBLIGATOIRE,String.class).setParameter(PARAM_C, id_c).setParameter(PARAM_M, id_m).getSingleResult();
 		em.close();
-		
+
 		return obli;
 	}
-	
+
 	public void getListePersonnes(int id_master, Gson json, FileWriter writer)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
+
 		List<Integer> li = em.createQuery(QUERY_GET_TEACHERS,Integer.class).setParameter(PARAM_ID, id_master).getResultList();
 		for(Integer i: suppressionDoublons(li))
 		{
 			try
 			{
 				json.toJson(personne.getPersonne(i), writer);	// ecriture dans le fichier de la personne
-				
+
 				List<Integer> l_content = em.createQuery(QUERY_GET_CONTENT,Integer.class)
-				.setParameter(PARAM_M, id_master)
-				.setParameter(PARAM_E, i)
-				.getResultList();
-				
+						.setParameter(PARAM_M, id_master)
+						.setParameter(PARAM_E, i)
+						.getResultList();
+
 				for(Integer id_content : l_content)
-				json.toJson(contenu.getContenu(id_content), writer);	// ecriture dans le fichier de la personne
-				
+					json.toJson(contenu.getContenu(id_content), writer);	// ecriture dans le fichier de la personne
+
 				writer.write("\n");
 			}
 			catch (IOException e)
@@ -153,22 +153,22 @@ public class CoursDAO
 		}
 		em.close();
 	}
-	
+
 	public List<Integer> suppressionDoublons(List<Integer> liste)
 	{
 		List<Integer> new_liste = new ArrayList<>();
 		for(Integer i : liste)
 		{
 			if(!new_liste.contains(i))
-			new_liste.add(i);
+				new_liste.add(i);
 		}
 		return new_liste;
 	}
-	
+
 	public List<Object[]> getListCours(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
+
 		List<Object[]> nomCours = new ArrayList<>();
 		System.out.println("récupération du résultat de la requête");
 		nomCours = em.createQuery(QUERY_GET_COURS,Object[].class).getResultList();
@@ -181,11 +181,11 @@ public class CoursDAO
 		}
 		return nomCours;
 	}
-	
+
 	public List<Object[]> getCoursByMaster(int id_master){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
+
 		List<Object[]> coursByMaster  = em.createQuery(QUERY_GET_COURS_BY_MASTER,Object[].class).setParameter("id_master", id_master).getResultList();
 		if(coursByMaster.isEmpty()){
 			System.out.println("Pas de cours facultatifs pour ce master");
@@ -196,10 +196,10 @@ public class CoursDAO
 		}
 		return coursByMaster;
 	}
-	
+
 	private static final String QUERY_GET_ID_MASTER = "SELECT u.id FROM Master u " + "WHERE u.nom = :master";
 	private static final String QUERY_GET_ID_CONTENU = "SELECT u.id FROM Contenu u WHERE u.nom = :contenu";
-	private static final String QUERY_GET_ID_ENSEIGNANT = "SELECT u.id FROM Personne u WHERE u.nom = :enseignant AND u.roles = M";
+	private static final String QUERY_GET_ID_ENSEIGNANT = "SELECT u.id FROM Personne u WHERE u.nom = :enseignant AND u.roles = 'M'";
 
 	private static final String PARAM_MASTER = "master";
 	private static final String PARAM_CONTENU = "contenu";
@@ -222,49 +222,43 @@ public class CoursDAO
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 
-		Master m = null;
-
-		m = em.createQuery(QUERY_GET_ID_MASTER,Master.class)
+		int m = em.createQuery(QUERY_GET_ID_MASTER,Integer.class)
 				.setParameter(PARAM_MASTER, nom_master)
 				.getSingleResult();
 
 		em.close();
 
-		return m.getId();
+		return m;
 	}
-	
+
 	public int getIdContenu(String nom_contenu){
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 
-		Contenu c = null;
-
-		c = em.createQuery(QUERY_GET_ID_CONTENU,Contenu.class)
+		int c = em.createQuery(QUERY_GET_ID_CONTENU,Integer.class)
 				.setParameter(PARAM_CONTENU, nom_contenu)
 				.getSingleResult();
 
 		em.close();
 
-		return c.getId();
+
+		return c;
 	}
-	
-	
+
+
 	public int getIdEnseignant(String nom_enseignant){
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
 
-		Personne p = null;
-
-		p = em.createQuery(QUERY_GET_ID_ENSEIGNANT,Personne.class)
+		int p = em.createQuery(QUERY_GET_ID_ENSEIGNANT,Integer.class)
 				.setParameter(PARAM_ENSEIGNANT, nom_enseignant)
 				.getSingleResult();
 
 		em.close();
 
-		return p.getId();
+		return p;
 	}
-
 
 }

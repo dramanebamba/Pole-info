@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class Cours 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_master = 0;
 	
 	@Column(name = "id_contenu")

@@ -14,7 +14,10 @@
 		<h1>Menu</h1>
 		<br />
 		<% if (role.equals("S")) { // Etudiant %>
-		CE QUE PEUT FAIRE L'ETUDIANT
+		BIENVENUE <% out.println(pseudo); %>
+		<br />
+		<a href="./consulterCours"> Consulter mes cours </a>
+		<br/>
 		<% } else if (role.equals("M")) { // Enseignant %>
 		<h2>&Eacute;tudiant</h2>
 		<a href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant
