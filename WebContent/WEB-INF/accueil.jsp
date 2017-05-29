@@ -68,7 +68,6 @@
 		<h2>Enseignant</h2>
 		<a class="btn btn-default" href="./creationEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
 		<br />
-		<% if (pseudo.equals("admin")) { %>
 
 		<h2>Base de donn&eacute;es</h2>
 		<a class="btn btn-warning" href="./GetBackupServlet"> Liste des sauvegardes de la base de
@@ -101,8 +100,6 @@
 		<h2>Gestion des cours</h2>
 		<a class="btn btn-default" href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
 		<br />
-		
-		<% } %>
 		<% } else { %>
 		<br />
 		Erreur: Votre compte n'est ni un Enseignant, ni un &Eacute;tudiant, veuillez contacter l'administrateur.
