@@ -62,9 +62,7 @@
 		<h2>&Eacute;tudiant</h2>
 		<a class="btn btn-default" href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant</a>
 		<br /> <br /> 
-		<a href="./creationEtudiant"> Cr&eacute;ation d'un &Eacute;tudiant
-		</a><br /> <br />
-		<a href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
+		<a class="btn btn-default" href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
 		<br /> <br />
 
 		<h2>Enseignant</h2>
@@ -101,7 +99,7 @@
 		<br />
 		
 		<h2>Gestion des cours</h2>
-		<a href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
+		<a class="btn btn-default" href="./PostCoursServlet"> Création de cours obligatoires/facultatifs</a><br />
 		<br />
 		
 		<% } %>
