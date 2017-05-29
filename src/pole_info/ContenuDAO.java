@@ -17,6 +17,11 @@ public class ContenuDAO {
 	private static final String QUERY_GET = "SELECT u FROM Contenu u ";
 	private final static String QUERY_LIST_CONTENU = "SELECT b FROM Contenu b";
 	private static final String QUERY_GET_ID = "SELECT u FROM Contenu u WHERE u.id = :id";
+	private static final String QUERY_CONTENU_MASTER = "SELECT u FROM Contenu u WHERE u.id IN"
+			+ " (SELECT a.id_contenu FROM Affectation a INNER JOIN Cours c ON c.id_master = a.id_master"
+			+ " WHERE a.id_master= :idMaster AND c.obligatoire = \"N\")";
+	//SELECT * FROM Contenu WHERE id IN (SELECT a.id_contenu FROM Affectation a INNER JOIN Cours c  ON c.id_master = a.id_master WHERE a.id_master = 1 AND c.obligatoire = "N")
+	private static final String PARAM_ID_MASTER = "idMaster";
 	private static final String PARAM_ID = "id";
 
 	Contenu contenu;
@@ -39,6 +44,17 @@ public class ContenuDAO {
 		List<Contenu> list = em.createQuery(QUERY_GET,Contenu.class).getResultList();
 
 		em.close();
+		return list;
+	}
+	
+	public List<Contenu> getCoursesFromMaster(int idMaster){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		List<Contenu> list = em.createQuery(QUERY_CONTENU_MASTER,Contenu.class)
+							.setParameter(PARAM_ID_MASTER, idMaster)
+							.getResultList();
+		
 		return list;
 	}
 	

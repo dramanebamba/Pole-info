@@ -1,9 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Menu</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png">
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+	<title>Menu</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+	<link href="css/coming-sssoon.css" rel="stylesheet" />
+
+    <!--     Fonts     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 </head>
 <% String connected = (String) session.getAttribute("connected"); %>
 <% String pseudo = (String) session.getAttribute("login"); %>
@@ -17,10 +28,13 @@
 	      <a class="navbar-brand" href="./accueil">Pole Info</a>
 	    </div>
 	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="#">Menu</a></li>
-	      <li><a href="#">Page 1</a></li>
-	      <li><a href="#">Page 2</a></li>
-	      <li><a href="#">Page 3</a></li>
+	      <li class="active"><a href="./accueil">Menu</a></li>
+	      <li><a href="#">&Eacute;tudiant</a></li>
+	      <li><a href="#">Enseignant</a></li>
+	      <li><a href="#">Base de donn&eacute;es</a></li>
+	      <li><a href="#">Exports JSON</a></li>
+	      <li><a href="#">Masters & Contenus</a></li>
+	      <li><a href="#">Affectations</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
       		<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
@@ -38,7 +52,7 @@
 	</nav>
 
 	<div class="container">
-		<h1>Menu</h1>
+		<!-- <h1>Menu</h1> -->
 		<% if (role.equals("S")) { // Etudiant %>
 			<h2>Enseignements</h2>
 			<a class="btn btn-default" href="./PostPreferenceServlet"> Indiquer mes
@@ -83,18 +97,18 @@
 		<% } %>
 		<% } else { %>
 		<br />
-		Erreur: Votre compte n'est ni un Enseignant, ni un �tudiant, veuillez contacter l'administrateur.
+		Erreur: Votre compte n'est ni un Enseignant, ni un &Eacute;tudiant, veuillez contacter l'administrateur.
 		<br />
 		<% } %>
-		<form action="./identification?operation=logout" method="post">
+		<!-- <form action="./identification?operation=logout" method="post">
 			<button class="btn btn-danger" type="submit">Se
 				d&eacute;connecter</button>
-		</form>
+		</form> -->
 		<br />
 	</div>
 	<% } else { %>
 	<br />
-	Erreur : vous n'&Ecirc;tes plus connect&eactue;.
+	Erreur : vous n'&ecirc;tes plus connect&eacute;.
 	<br />
 	<% } %>
 </body>
