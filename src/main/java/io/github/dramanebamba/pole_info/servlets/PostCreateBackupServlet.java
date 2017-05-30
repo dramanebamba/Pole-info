@@ -123,9 +123,11 @@ public class PostCreateBackupServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		//response.getWriter().println("<div class=\"alert alert-success\" role=\"alert\"><strong>Success !</strong> Backup créé !</div>");
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
 		dispatch.forward(request, response);
+		
 	}
 
 }

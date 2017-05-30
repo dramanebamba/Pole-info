@@ -22,9 +22,11 @@
 <% int id_ma = (Integer) session.getAttribute("id_m"); %>
 <% int id = (Integer) session.getAttribute("id"); %>
 <% if (connected == "true") { %>
-<body>
+<body style="background-image: url('images/student.jpeg');
+background-repeat: repeat;
+background-size: contain">
 
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="./accueil">Pole Info</a>
@@ -45,20 +47,11 @@
 					<span class="glyphicon glyphicon-log-out"></span> Se déconnecter
 				</a>
 			</li>
-			<!-- <li>
-      			<a href="">
-      				<form action="./identification?operation=logout" method="post">
-						<button class="btn-link" type="submit">
-							<span class="glyphicon glyphicon-log-out"></span> Se déconnecter
-						</button>
-					</form>
-				</a>
-			</li> -->
     	</ul>
 	  </div>
 	</nav>
 
-	<div class="container">
+	<div class="container" style="padding-top: 70px;">
 		<!-- <h1>Menu</h1> -->
 		<% if (role.equals("S")) { // Etudiant %>
 			<h2>Enseignements</h2>
@@ -68,18 +61,18 @@
 			pr&eacute;f&eacute;rences </a><br /> <br />
 		<% } else if (role.equals("M")) { // Enseignant %>
 		<h2>&Eacute;tudiant</h2>
-		<a class="btn btn-default" href="./GetCreateStudentServlet"> Cr&eacute;ation d'un &Eacute;tudiant</a>
+		<a class="btn btn-success" href="./GetCreateStudentServlet"> Cr&eacute;ation d'un &Eacute;tudiant</a>
 		<br /> <br /> 
-		<a class="btn btn-default" href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
+		<a class="btn btn-primary" href="./listStudents?id=<%=id_ma%>"> Visualiser la liste des etudiants </a>
 		<br /> <br />
 
 		<h2>Enseignant</h2>
-		<a class="btn btn-default" href="./GetCreateEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
+		<a class="btn btn-success" href="./GetCreateEnseignant"> Cr&eacute;ation d'un enseignant </a><br />
 		<br />
 
 		<h2>Base de donn&eacute;es</h2>
-		<a class="btn btn-warning" href="./GetBackupServlet"> Liste des sauvegardes de la base de
-			donn&eacute;es </a><br /> <br /> <a class="btn btn-warning" href="./GetCreateBackupServlet">
+		<a class="btn btn-primary" href="./GetBackupServlet"> Liste des sauvegardes de la base de
+			donn&eacute;es </a><br /> <br /> <a class="btn btn-success" href="./GetCreateBackupServlet">
 			Cr&eacute;er une sauvegarde de la base de donn&eacute;es </a><br /> <br />
 		<!-- <a href="./GetRestoreBackupServlet"> Restaurer la derni&eacute;re
 			sauvegarde de la base de donn&eacute;es </a><br /> <br /> -->
@@ -97,17 +90,17 @@
 		<br />
 
 		<h2>Gestion des masters et contenus</h2>
-		<a class="btn btn-default" href="./GetCreateContenuServlet"> Cr&eacute;er le contenu d'un cours</a><br/><br/>
-		<a class="btn btn-default" href="./GetContenuServlet">Liste des contenus</a><br/><br/>
-		<a class="btn btn-default" href="./GetCreateMasterServlet"> Cr&eacute;er un master</a><br/><br/>
-		<a class="btn btn-default" href="./GetMasterServlet">Liste des masters</a><br/><br/>
+		<a class="btn btn-success" href="./GetCreateContenuServlet"> Cr&eacute;ation d'un contenu pour un cours</a><br/><br/>
+		<a class="btn btn-primary" href="./GetContenuServlet">Liste des contenus</a><br/><br/>
+		<a class="btn btn-success" href="./GetCreateMasterServlet"> Cr&eacute;ation d'un master</a><br/><br/>
+		<a class="btn btn-primary" href="./GetMasterServlet">Liste des masters</a><br/><br/>
 		
 		<h2>Gestion des affectation</h2>
 		<a class="btn btn-default" href="./AffectationMaster"> Affecter un &eacute;tudiant aux cours facultatifs</a><br />
 		<br />
 		
 		<h2>Gestion des cours</h2>
-		<a class="btn btn-default" href="./PostCoursServlet"> Cr&eacute;er un cours (obligatoire/facultatif)</a><br />
+		<a class="btn btn-success" href="./PostCoursServlet"> Cr&eacute;ation d'un cours (obligatoire/facultatif)</a><br />
 		<br />
 		<% } else { %>
 		<br />
