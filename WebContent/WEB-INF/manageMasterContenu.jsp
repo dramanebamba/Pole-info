@@ -11,7 +11,7 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-<title>Menu</title>
+<title>Masters & Contenus</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 <link href="css/coming-sssoon.css" rel="stylesheet" />
 
@@ -83,32 +83,27 @@
 	<div class="container" style="padding-top: 70px;">
 		<!-- <h1>Menu</h1> -->
 		<%
-			if (role.equals("S")) { // Etudiant
+			if (role.equals("M")) { // Enseignant
 		%>
 		<div class="page-header">
 			<h1 style="color: #000;">
-				Bienvenue sur votre espace Pole Info <br /> <small style="color: #FFF;">Votre
-					page d'accueil est en cours de construction ! Vous pouvez accéder à
-					vos fonctionnalités via la barre de navigation située plus haut</small>
+				Bienvenue sur votre espace Pole Info <br /> <small style="color: #FFF;">Vous êtes
+					sur la page de gestion des export JSON</small>
 			</h1>
 		</div>
+		<h2 style="color: #000;">Gestion des masters et contenus</h2>
+		<a class="btn btn-success" href="./GetCreateContenuServlet">
+			Cr&eacute;ation d'un contenu pour un cours</a><br /> <br /> <a
+			class="btn btn-primary" href="./GetContenuServlet">Liste des
+			contenus</a><br /> <br /> <a class="btn btn-success"
+			href="./GetCreateMasterServlet"> Cr&eacute;ation d'un master</a><br />
+		<br /> <a class="btn btn-primary" href="./GetMasterServlet">Liste
+			des masters</a><br /> <br />
 
-
-		<%
-			} else if (role.equals("M")) { // Enseignant
-		%>
-		<div class="page-header">
-			<h1 style="color: #000;">
-				Bienvenue sur votre espace Pole Info <br /> <small style="color: #FFF;">Votre
-					page d'accueil est en cours de construction pour les enseignants ! Vous pouvez accéder à
-					vos fonctionnalités via la barre de navigation située plus haut</small>
-			</h1>
-		</div>
 		<%
 			} else {
 		%>
-		<br /> Erreur: Votre compte n'est ni un Enseignant, ni un
-		&Eacute;tudiant, veuillez contacter l'administrateur. <br />
+		<br /> Erreur: Votre compte n'est pas un Enseignant, veuillez contacter l'administrateur. <br />
 		<%
 			}
 		%>
