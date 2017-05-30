@@ -19,6 +19,7 @@
 				<tr>
 					<th>Nom</th>
 					<th>Description</th>
+					<th>Frequentation</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,7 @@
 				<tr>
 					<td><%= c.getNom() %></td>
 					<td><%= c.getDesc()  %></td>
+					<td><a href="./GetMasterDetailsServlet?id=<%= c.getId()%>"> D&eacute;tails Master </a></td>
 					<td class="test-align">
 						<a href="./GetMasterServlet?operation=remove&id=<%= c.getId()%>">
 						<span class="glyphicon glyphicon-trash"></span>

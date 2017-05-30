@@ -28,6 +28,7 @@ public class PersonneDAO {
 	private static final String QUERY_IS_IN = "SELECT u FROM Personne u WHERE u.email = :email";
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String QUERY_GET_BY_MASTER = "SELECT u FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
+	private static final String QUERY_GET_COUNT_BY_MASTER = "SELECT COUNT(*) FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_ID = "id";
@@ -118,6 +119,15 @@ public class PersonneDAO {
 		List<Personne> listStudent  = em.createQuery(QUERY_GET_BY_MASTER,Personne.class).setParameter(PARAM_ID_MASTER, id_master).getResultList();		
 		
 		return listStudent;
+	}
+	
+	public long getCountByMasterId(int id_master){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		int nb_personne = (int) em.createNativeQuery(QUERY_GET_COUNT_BY_MASTER).setParameter(PARAM_ID_MASTER, id_master).getSingleResult();
+		
+		return nb_personne;
 	}
 
 }

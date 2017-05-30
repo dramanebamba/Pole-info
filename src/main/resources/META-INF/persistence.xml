@@ -3,18 +3,18 @@
 	xmlns="http://java.sun.com/xml/ns/persistence">
 	<!-- <persistence-unit name="pole" transaction-type="RESOURCE_LOCAL"> -->
 	<persistence-unit name="pole" transaction-type="JTA">
-		<jta-data-source>MyDB</jta-data-source>
-<!-- 		<jta-data-source>jdbc/__default</jta-data-source> dramane wally-->
+		<!-- <jta-data-source>MyDB</jta-data-source> -->
+		<jta-data-source>jdbc/__default</jta-data-source>
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-		 <class>pole_info.Personne</class>
-		 <class>pole_info.Backup</class>
-		 <class>model.Cours</class>
-		 <class>model.Affectation</class>
-		 <class>model.Contenu</class>
-		 <class>model.Preference</class>
-		 <class>model.Role</class>
-		 <class>model.Master</class>
+		<class>pole_info.Personne</class>
+		<class>pole_info.Backup</class>
+		<class>model.Cours</class>
+		<class>model.Affectation</class>
+		<class>model.Contenu</class>
+		<class>model.Preference</class>
+		<class>model.Role</class>
+		<class>model.Master</class>
 
 		<property name="eclipselink.ddl-generation" value="create-tables" />
 		<property name="eclipselink.logging.level" value="INFO" />
@@ -22,8 +22,8 @@
 		<!-- Add the following to work around exception issue -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
-		
-	
+
+
 
 	</persistence-unit>
 </persistence>
