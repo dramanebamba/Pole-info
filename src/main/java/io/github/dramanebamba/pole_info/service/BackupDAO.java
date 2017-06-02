@@ -1,4 +1,4 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import main.java.io.github.dramanebamba.pole_info.model.Backup;
 
 @RequestScoped
 public class BackupDAO {

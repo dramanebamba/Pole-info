@@ -15,9 +15,9 @@ import javax.servlet.http.HttpSession;
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Master;
 import main.java.io.github.dramanebamba.pole_info.model.Preference;
-import pole_info.ContenuDAO;
-import pole_info.MasterDAO;
-import pole_info.PreferenceDAO;
+import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
+import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
+import main.java.io.github.dramanebamba.pole_info.service.PreferenceDAO;
 
 /**
  * Servlet implementation class PostPreferenceServlet
@@ -27,8 +27,6 @@ public class PostCreatePreferenceServlet extends HttpServlet {
 	public static final String VUE = "/WEB-INF/PostPreference.jsp";
 	private static final long serialVersionUID = 1L;
 
-	@Inject
-	private MasterDAO masterDao;
 	@Inject
 	private PreferenceDAO preferenceDao;
 	@Inject

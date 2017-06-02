@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import main.java.io.github.dramanebamba.pole_info.service.*;
-import pole_info.Personne;
-import pole_info.PersonneDAO;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 /**

@@ -2,7 +2,8 @@
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="main.java.io.github.dramanebamba.pole_info.model.Preference,java.util.List" %>
-<% List<Preference> listPreference = (List<Preference>) session.getAttribute("listPreference"); %>
+<% @SuppressWarnings("unchecked") 
+List<Preference> listPreference = (List<Preference>) session.getAttribute("listPreference"); %>
 <!DOCTYPE html>
 <html>
   <head>

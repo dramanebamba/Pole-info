@@ -19,13 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
 import main.java.io.github.dramanebamba.pole_info.service.*;
-import pole_info.AffectationDAO;
-import pole_info.Backup;
-import pole_info.ContenuDAO;
-import pole_info.CoursDAO;
-import pole_info.MasterDAO;
-import pole_info.Personne;
-import pole_info.PersonneDAO;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 /**

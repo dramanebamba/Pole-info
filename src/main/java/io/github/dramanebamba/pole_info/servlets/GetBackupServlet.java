@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pole_info.Backup;
-import pole_info.BackupDAO;
+import main.java.io.github.dramanebamba.pole_info.model.Backup;
+import main.java.io.github.dramanebamba.pole_info.service.BackupDAO;
 
 /**
  * Servlet implementation class GetBackupServlet

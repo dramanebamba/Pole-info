@@ -18,11 +18,11 @@ import com.google.gson.JsonIOException;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Master;
-import pole_info.AffectationDAO;
-import pole_info.ContenuDAO;
-import pole_info.CoursDAO;
-import pole_info.MasterDAO;
-import pole_info.PersonneDAO;
+import main.java.io.github.dramanebamba.pole_info.service.AffectationDAO;
+import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
+import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
+import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
+import main.java.io.github.dramanebamba.pole_info.service.PersonneDAO;
 
 /**
  * Servlet implementation class Identification

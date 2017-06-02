@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Vector;
 
 import main.java.io.github.dramanebamba.pole_info.service.*;
-import pole_info.PreferenceDAO;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 import javax.inject.Inject;

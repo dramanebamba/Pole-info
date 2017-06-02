@@ -31,9 +31,13 @@
 	main.java.io.github.dramanebamba.pole_info.model.Contenu,
 	main.java.io.github.dramanebamba.pole_info.model.Master,
 	java.util.List"%>
-<% %>
-<%List<Master> listMaster = (List<Master>) session.getAttribute("listMaster"); %>
-<%List<Contenu> listContenu = (List<Contenu>) session.getAttribute("listContenu"); %>
+<%
+	@SuppressWarnings("unchecked")
+	List<Master> listMaster = (List<Master>) session.getAttribute("listMaster");
+
+	@SuppressWarnings("unchecked")
+	List<Contenu> listContenu = (List<Contenu>) session.getAttribute("listContenu");
+%>
 
 <body>
 	<div class="container">
@@ -41,32 +45,44 @@
 		<a href="./GetPreferenceServlet">Voir la liste des préférences</a>
 
 		<p class="lead">Un étudiant peut choisir ses préférences</p>
-		
-		<form class="form-horizontal" action="./PostCreatePreferenceServlet?operation=masterChoice"
+
+		<form class="form-horizontal"
+			action="./PostCreatePreferenceServlet?operation=masterChoice"
 			method="post">
 			<div class="form-group">
 				<label for="Master" class="col-sm-2 control-label">Master</label>
 				<div class="col-sm-10">
 					<!-- <input type="text" name="id_master" class="form-control" placeholder="Identifiant master"> -->
-					<select class="form-control" id="id_master" name="id_master" onchange="this.form.submit()">
+					<select class="form-control" id="id_master" name="id_master"
+						onchange="this.form.submit()">
 						<option value="0"></option>
-						<% for(Master m : listMaster){ %>
-						<option value="<%=m.getId()%>"><%=m.getNom() %></option>
-						<% } %>
+						<%
+							for (Master m : listMaster) {
+						%>
+						<option value="<%=m.getId()%>"><%=m.getNom()%></option>
+						<%
+							}
+						%>
 					</select>
 				</div>
 			</div>
-			</form>
-			<form class="form-horizontal" action="./PostCreatePreferenceServlet?operation=postPreference" method="post">
+		</form>
+		<form class="form-horizontal"
+			action="./PostCreatePreferenceServlet?operation=postPreference"
+			method="post">
 			<div class="form-group">
 				<label for="id_contenu" class="col-sm-2 control-label">Contenu</label>
 				<div class="col-sm-10">
 					<!-- <input type="text" name="id_contenu" class="form-control" placeholder="Identifiant du contenu"> -->
 					<select class="form-control" id="id_contenu" name="id_contenu">
-					<option value="0"></option>
-						<% for(Contenu c : listContenu){ %>
-						<option value="<%=c.getId()%>"><%=c.getNomMat() %></option>
-						<% } %>
+						<option value="0"></option>
+						<%
+							for (Contenu c : listContenu) {
+						%>
+						<option value="<%=c.getId()%>"><%=c.getNomMat()%></option>
+						<%
+							}
+						%>
 					</select>
 				</div>
 			</div>

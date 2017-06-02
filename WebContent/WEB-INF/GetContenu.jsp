@@ -9,7 +9,7 @@
 	import="main.java.io.github.dramanebamba.pole_info.model.Master,
 		main.java.io.github.dramanebamba.pole_info.model.Contenu,
 		java.util.HashMap,
-		java.util.List,pole_info.CoursDAO"%>
+		java.util.List,main.java.io.github.dramanebamba.pole_info.service.CoursDAO"%>
 <%
 	String connected = (String) session.getAttribute("connected");
 	String pseudo = (String) session.getAttribute("login");

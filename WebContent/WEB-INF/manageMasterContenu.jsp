@@ -11,7 +11,7 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-<title>Masters & Contenus</title>
+<title>Masters &amp; Contenus</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 <link href="css/coming-sssoon.css" rel="stylesheet" />
 
@@ -64,7 +64,7 @@
 			<li><a href="./GetManageTeacher">Enseignant</a></li>
 			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
 			<li><a href="./GetManageJSON">Exports JSON</a></li>
-			<li><a href="./GetManageMasterContenu">Masters & Contenus</a></li>
+			<li><a href="./GetManageMasterContenu">Masters &amp; Contenus</a></li>
 			<li><a href="./GetManageAffectation">Affectations</a></li>
 			<li><a href="./GetManageCours">Cours</a></li>
 			<%

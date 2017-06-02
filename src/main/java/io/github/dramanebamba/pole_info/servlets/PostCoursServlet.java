@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
-import pole_info.CoursDAO;
+import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
 
 
 /**

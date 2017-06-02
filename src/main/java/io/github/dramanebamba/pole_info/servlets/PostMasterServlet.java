@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.io.github.dramanebamba.pole_info.model.Master;
-import pole_info.MasterDAO;
+import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
 
 @WebServlet("/PostMasterServlet")
 public class PostMasterServlet extends HttpServlet {

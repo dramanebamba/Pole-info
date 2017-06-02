@@ -64,7 +64,7 @@
 			<li><a href="./GetManageTeacher">Enseignant</a></li>
 			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
 			<li><a href="./GetManageJSON">Exports JSON</a></li>
-			<li><a href="./GetManageMasterContenu">Masters & Contenus</a></li>
+			<li><a href="./GetManageMasterContenu">Masters &amp; Contenus</a></li>
 			<li><a href="./GetManageAffectation">Affectations</a></li>
 			<li><a href="./GetManageCours">Cours</a></li>
 			<%

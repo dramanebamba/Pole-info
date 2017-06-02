@@ -21,11 +21,11 @@ import javax.servlet.http.HttpSession;
 
 import main.java.io.github.dramanebamba.pole_info.model.Affectation;
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
-import pole_info.AffectationDAO;
-import pole_info.ContenuDAO;
-import pole_info.CoursDAO;
-import pole_info.Personne;
-import pole_info.PersonneDAO;
+import main.java.io.github.dramanebamba.pole_info.model.Personne;
+import main.java.io.github.dramanebamba.pole_info.service.AffectationDAO;
+import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
+import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
+import main.java.io.github.dramanebamba.pole_info.service.PersonneDAO;
 
 @WebServlet("/AffectationValidate")
 public class AffectationValidate extends HttpServlet {

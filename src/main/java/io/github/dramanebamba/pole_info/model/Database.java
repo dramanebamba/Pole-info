@@ -1,4 +1,4 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

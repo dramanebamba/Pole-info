@@ -1,4 +1,4 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.service;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
 import main.java.io.github.dramanebamba.pole_info.model.Master;
-import pole_info.Personne;
+import main.java.io.github.dramanebamba.pole_info.model.Personne;
 
 @RequestScoped
 // @Transactional

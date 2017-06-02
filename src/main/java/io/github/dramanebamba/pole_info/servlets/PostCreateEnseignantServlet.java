@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.io.github.dramanebamba.pole_info.model.Personne;
+import main.java.io.github.dramanebamba.pole_info.service.PersonneDAO;
 import main.java.io.github.dramanebamba.pole_info.service.VerificationBDDService;
-import pole_info.Personne;
-import pole_info.PersonneDAO;
 
 /**
  * Servlet implementation class PostCreateEnseignant
@@ -39,6 +39,7 @@ public class PostCreateEnseignantServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -47,6 +48,7 @@ public class PostCreateEnseignantServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String operation = request.getParameter("operation");

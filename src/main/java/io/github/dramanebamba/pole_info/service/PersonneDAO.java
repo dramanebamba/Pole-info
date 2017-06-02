@@ -1,4 +1,4 @@
-package pole_info;
+package main.java.io.github.dramanebamba.pole_info.service;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
 import main.java.io.github.dramanebamba.pole_info.model.Master;
+import main.java.io.github.dramanebamba.pole_info.model.Personne;
 
 @RequestScoped
 public class PersonneDAO {

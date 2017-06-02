@@ -6,7 +6,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import main.java.io.github.dramanebamba.pole_info.model.Cours;
-import pole_info.CoursDAO;
 
 @ApplicationScoped
 public class VerificationCourseInBDD 

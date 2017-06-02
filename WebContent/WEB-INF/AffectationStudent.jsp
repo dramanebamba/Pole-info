@@ -9,17 +9,23 @@
       <title>Affectation des étudiants</title>
       <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
     </head>
-    <%@ page import="main.java.io.github.dramanebamba.pole_info.model.*,pole_info.Personne,java.util.List" %>
-    <% String connected = (String) session.getAttribute("connected");%>
-    <% String pseudo = (String) session.getAttribute("login");%>
-    <% List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");%>
-    <% List<Personne> listStudent = (List<Personne>) session.getAttribute("listStudent");%>
-    <% List<Affectation> numAffectation = (List<Affectation>) session.getAttribute("numAffectation");%>
-    <% Contenu nom_contenu = (Contenu) session.getAttribute("nom_contenu");%>
-    <% String id_master = (String) request.getAttribute("id_master");%>
-    <% String nom_master = (String) request.getAttribute("nom_master");%>
-    <% String id_contenu = (String) request.getAttribute("id_contenu");%>
-    <% if(connected == "true" && pseudo.equals("admin")){%>
+    <%@ page import="main.java.io.github.dramanebamba.pole_info.model.*,main.java.io.github.dramanebamba.pole_info.model.Personne,java.util.List" %>
+    <% String connected = (String) session.getAttribute("connected");
+     String pseudo = (String) session.getAttribute("login");
+     
+     @SuppressWarnings("unchecked")
+     List<Object[]> listCours = (List<Object[]>) session.getAttribute("listCours");
+     
+     @SuppressWarnings("unchecked")
+     List<Personne> listStudent = (List<Personne>) session.getAttribute("listStudent");
+     
+     @SuppressWarnings("unchecked")
+     List<Affectation> numAffectation = (List<Affectation>) session.getAttribute("numAffectation");
+     Contenu nom_contenu = (Contenu) session.getAttribute("nom_contenu");
+     String id_master = (String) request.getAttribute("id_master");
+     String nom_master = (String) request.getAttribute("nom_master");
+     String id_contenu = (String) request.getAttribute("id_contenu");
+     if(connected == "true" && pseudo.equals("admin")){%>
     <body>
       <div class="container">
         <h1>Affectation des étudiants - 

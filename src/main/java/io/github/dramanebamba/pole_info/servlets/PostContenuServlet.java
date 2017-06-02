@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
-import pole_info.ContenuDAO;
+import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
 
 @WebServlet("/PostContenuServlet")
 public class PostContenuServlet extends HttpServlet {

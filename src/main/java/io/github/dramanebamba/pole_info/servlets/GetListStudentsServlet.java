@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pole_info.Personne;
-import pole_info.PersonneDAO;
+import main.java.io.github.dramanebamba.pole_info.model.Personne;
+import main.java.io.github.dramanebamba.pole_info.service.PersonneDAO;
 
 /**
  * Servlet implementation class Identification

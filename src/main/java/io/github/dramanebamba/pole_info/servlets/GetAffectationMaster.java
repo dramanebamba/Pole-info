@@ -7,10 +7,6 @@ import java.util.List;
 import java.util.Vector;
 
 import main.java.io.github.dramanebamba.pole_info.service.*;
-import pole_info.AffectationDAO;
-import pole_info.ContenuDAO;
-import pole_info.CoursDAO;
-import pole_info.MasterDAO;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 
 import javax.inject.Inject;

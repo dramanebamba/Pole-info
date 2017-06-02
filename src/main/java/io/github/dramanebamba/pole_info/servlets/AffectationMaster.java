@@ -21,9 +21,9 @@ import javax.servlet.http.HttpSession;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Master;
-import pole_info.ContenuDAO;
-import pole_info.CoursDAO;
-import pole_info.MasterDAO;
+import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
+import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
+import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
 
 @WebServlet("/AffectationMaster")
 public class AffectationMaster extends HttpServlet {
@@ -54,10 +54,4 @@ public class AffectationMaster extends HttpServlet {
     dispatch.forward(request, response);
 
   }
-
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-  }
-
 }
