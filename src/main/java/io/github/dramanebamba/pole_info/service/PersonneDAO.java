@@ -1,9 +1,5 @@
 package main.java.io.github.dramanebamba.pole_info.service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -15,10 +11,6 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.transaction.Transactional;*/
 
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-
-import main.java.io.github.dramanebamba.pole_info.model.Master;
 import main.java.io.github.dramanebamba.pole_info.model.Personne;
 
 @RequestScoped

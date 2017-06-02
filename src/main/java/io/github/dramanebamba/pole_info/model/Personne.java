@@ -1,7 +1,5 @@
 package main.java.io.github.dramanebamba.pole_info.model;
 
-import java.util.Vector;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;

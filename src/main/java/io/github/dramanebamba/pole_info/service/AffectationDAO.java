@@ -7,10 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.google.gson.Gson;
-
 import main.java.io.github.dramanebamba.pole_info.model.Affectation;
-import main.java.io.github.dramanebamba.pole_info.model.Master;
 
 @RequestScoped
 public class AffectationDAO {

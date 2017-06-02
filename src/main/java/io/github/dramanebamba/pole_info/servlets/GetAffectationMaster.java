@@ -2,10 +2,7 @@ package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
-
 import main.java.io.github.dramanebamba.pole_info.service.*;
 import main.java.io.github.dramanebamba.pole_info.model.*;
 

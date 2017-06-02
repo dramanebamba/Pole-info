@@ -10,9 +10,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 import com.google.gson.Gson;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
@@ -42,6 +39,8 @@ public class CoursDAO
 	private static final String QUERY_GET_COURS = "SELECT c.id, c.nom, u.id_master FROM Cours u, Contenu c WHERE u.id_contenu = c.id AND u.obligatoire = 'N'";
 	private static final String QUERY_GET_COURS_BY_MASTER = "SELECT contenu.id, contenu.nom, cours.id_master FROM Contenu contenu, Cours cours WHERE cours.id_master = :id_master AND cours.id_contenu = contenu.id AND cours.obligatoire = 'N'";
 	private static final String QUERY_GET_COURSES = "SELECT c.id_master, c.id_contenu, m.nom, con.nom FROM Master m, Cours c, Contenu con WHERE m.id = c.id_master AND con.id = c.id_contenu AND c.obligatoire = 'N'";
+	private static final String QUERY_DELETE_CONTENU_COURS = "DELETE FROM Cours u where u.id_contenu = :id_c";
+	
 	
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_M = "id_m";
@@ -123,6 +122,8 @@ public class CoursDAO
 
 		String obli = em.createQuery(QUERY_GET_OBLIGATOIRE,String.class).setParameter(PARAM_C, id_c).setParameter(PARAM_M, id_m).getSingleResult();
 		em.close();
+		
+		System.out.println("obli : " + obli);
 		
 		return obli;
 	}
@@ -211,12 +212,20 @@ public class CoursDAO
 	Cours cours;
 
 	public void creerCours(Cours c){
+		//Persistence
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
+		
+		//Begin
 		em.getTransaction().begin();
+		
+		//Insert c in the DB
 		em.persist(c);
+		
+		//Commit
 		em.getTransaction().commit();
-		//em.flush();
+		
+		//Close
 		em.close();
 	}
 
@@ -282,6 +291,24 @@ public class CoursDAO
 			System.out.println(listCourses.get(i)[1]);
 		}
 		return listCourses;
+	}
+	
+	public void removeContenuCours(int idContenu){
+		//Persistence
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		//Begin
+		em.getTransaction().begin();
+		
+		//Query to delete orphan
+		em.createQuery(QUERY_DELETE_CONTENU_COURS).setParameter(PARAM_C, idContenu).executeUpdate();
+		
+		//Commit
+		em.getTransaction().commit();
+		
+		//Close
+		em.close();
 	}
 
 

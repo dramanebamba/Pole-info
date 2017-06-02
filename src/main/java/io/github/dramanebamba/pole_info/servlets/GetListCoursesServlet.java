@@ -3,7 +3,6 @@ package main.java.io.github.dramanebamba.pole_info.servlets;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,8 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
@@ -27,6 +24,11 @@ import main.java.io.github.dramanebamba.pole_info.model.*;
 @WebServlet("/listCourses")
 public class GetListCoursesServlet extends HttpServlet
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	ContenuDAO contenu;
 	

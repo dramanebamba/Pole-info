@@ -103,6 +103,9 @@
 								// Recuperation de la valeur du champs "obligatoire" de ce contenu pour ce master
 								String obligatoire_final = (new CoursDAO().getObligatoire(c.getId(), id_master)
 										.equals("O")) ? "Non" : "Oui";
+								System.out.println("obligatoire_final : " + obligatoire_final +
+										", pour le contenu : " + c.getNomMat());
+								System.out.println("size listeDesContenus : " + listeDesContenus.size());
 				%>
 				<tr>
 					<td><%=c.getNomMat()%></td>

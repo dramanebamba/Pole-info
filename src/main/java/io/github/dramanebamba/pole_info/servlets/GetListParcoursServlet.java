@@ -16,13 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
-import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Master;
-import main.java.io.github.dramanebamba.pole_info.service.AffectationDAO;
-import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
 import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
 import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
-import main.java.io.github.dramanebamba.pole_info.service.PersonneDAO;
 
 /**
  * Servlet implementation class Identification
@@ -30,6 +26,13 @@ import main.java.io.github.dramanebamba.pole_info.service.PersonneDAO;
 @WebServlet("/listParcours")
 public class GetListParcoursServlet extends HttpServlet
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
+
 	@Inject
 	MasterDAO master;
 

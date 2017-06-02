@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
-import main.java.io.github.dramanebamba.pole_info.model.Master;
 import main.java.io.github.dramanebamba.pole_info.model.Preference;
 import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
-import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
 import main.java.io.github.dramanebamba.pole_info.service.PreferenceDAO;
 
 /**

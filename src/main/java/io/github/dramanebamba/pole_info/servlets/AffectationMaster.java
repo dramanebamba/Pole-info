@@ -1,16 +1,10 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.io.github.dramanebamba.pole_info.model.Contenu;
 import main.java.io.github.dramanebamba.pole_info.model.Master;
-import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
-import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
 import main.java.io.github.dramanebamba.pole_info.service.MasterDAO;
 
 @WebServlet("/AffectationMaster")

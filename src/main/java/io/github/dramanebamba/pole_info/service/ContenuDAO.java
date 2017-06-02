@@ -9,7 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
-import main.java.io.github.dramanebamba.pole_info.model.Cours;
 
 @RequestScoped
 public class ContenuDAO {
@@ -21,18 +20,48 @@ public class ContenuDAO {
 			+ " (SELECT a.id_contenu FROM Affectation a INNER JOIN Cours c ON c.id_master = a.id_master"
 			+ " WHERE a.id_master= :idMaster AND c.obligatoire = \"N\")";
 	//SELECT * FROM Contenu WHERE id IN (SELECT a.id_contenu FROM Affectation a INNER JOIN Cours c  ON c.id_master = a.id_master WHERE a.id_master = 1 AND c.obligatoire = "N")
+	private static final String GET_LAST_ID_INSERTED = "SELECT max(u.id) FROM Contenu u";
 	private static final String PARAM_ID_MASTER = "idMaster";
 	private static final String PARAM_ID = "id";
 
-	Contenu contenu;
-
 	public void creerContenu(Contenu cont){
+		//Persistence
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
+
+		//Begin transaction
 		em.getTransaction().begin();
+
+		//Insertion contenu
 		em.persist(cont);
+
+		//Commit contenu
 		em.getTransaction().commit();
+
+		//close
 		em.close();
+	}
+
+	public int getLastContenuId(){
+		//Persistence
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+
+		//Begin transaction
+		em.getTransaction().begin();
+
+		//Query to retrieve last Id in DB
+		int lastID = (Integer) em.createQuery(GET_LAST_ID_INSERTED).getSingleResult();
+
+		System.out.println("last id contenu : " + lastID);
+		
+		//Commit contenu
+		em.getTransaction().commit();
+
+		//close
+		em.close();
+		
+		return lastID;
 	}
 
 	public List<Contenu> getAllCourses()
@@ -46,18 +75,18 @@ public class ContenuDAO {
 		em.close();
 		return list;
 	}
-	
+
 	public List<Contenu> getCoursesFromMaster(int idMaster){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
-		
+
 		List<Contenu> list = em.createQuery(QUERY_CONTENU_MASTER,Contenu.class)
-							.setParameter(PARAM_ID_MASTER, idMaster)
-							.getResultList();
-		
+				.setParameter(PARAM_ID_MASTER, idMaster)
+				.getResultList();
+
 		return list;
 	}
-	
+
 	public Contenu getContenu(int id_c)
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
@@ -68,7 +97,7 @@ public class ContenuDAO {
 
 		return c;
 	}
-	
+
 	public List<Contenu> listeDesContenus(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
@@ -83,13 +112,23 @@ public class ContenuDAO {
 	}
 
 	public void supprimerContenu(int key){
+		//Persistence
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
+		
+		//Retrieve the cours to remove
 		Contenu cont = em.find(Contenu.class, key);
-		if(contenu!=null){
+		
+		if(cont!=null){
+			//Begin
 			em.getTransaction().begin();
+			
+			//Remove
 			em.remove(cont);
+			
+			//Commit
 			em.getTransaction().commit();
+			
 			em.close();
 			System.out.println("Suppression de la clé : " + key);
 		}

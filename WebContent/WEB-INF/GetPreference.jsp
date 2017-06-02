@@ -11,7 +11,7 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-<title>Mes pr&eacute;f&eacute;rences</title>
+<title>Liste de mes pr&eacute;f&eacute;rences</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 <link href="css/coming-sssoon.css" rel="stylesheet" />
 

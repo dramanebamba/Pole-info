@@ -11,7 +11,7 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-<title>Affectation Master</title>
+<title>Affectation Cours</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 <link href="css/coming-sssoon.css" rel="stylesheet" />
 
@@ -77,7 +77,7 @@
 				}
 			%>
 		</h1>
-		<a href="./GetAffectationMaster">Voir la liste des affectations</a>
+		<!-- <a href="./GetAffectationMaster">Voir la liste des affectations</a> -->
 		<form class="form-horizontal" action="./AffectationStudent"
 			method="post">
 			<div class="form-group">

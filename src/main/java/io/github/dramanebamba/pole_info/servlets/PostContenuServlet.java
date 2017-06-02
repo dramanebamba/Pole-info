@@ -1,14 +1,7 @@
 package main.java.io.github.dramanebamba.pole_info.servlets;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.io.github.dramanebamba.pole_info.model.Contenu;
+import main.java.io.github.dramanebamba.pole_info.model.Cours;
 import main.java.io.github.dramanebamba.pole_info.service.ContenuDAO;
+import main.java.io.github.dramanebamba.pole_info.service.CoursDAO;
 
 @WebServlet("/PostContenuServlet")
 public class PostContenuServlet extends HttpServlet {
@@ -26,6 +21,9 @@ public class PostContenuServlet extends HttpServlet {
 
 	@Inject
 	private ContenuDAO contenuDAO;
+	
+	@Inject
+	private CoursDAO coursDAO;
 
 	public PostContenuServlet() {
 		super();
@@ -43,6 +41,15 @@ public class PostContenuServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// int id = Integer.parseInt(request.getParameter("id"));
+		int lastIdContenu = contenuDAO.getLastContenuId() + 1;
+		
+		System.out.println("lastIdContenu : " + lastIdContenu);
+		
+		//Cours fictif = new Cours(0,lastIdContenu,0,null,"O",null);
+		//coursDAO.creerCours(fictif);
+		
+		coursDAO.creerCours(new Cours(0,lastIdContenu,0,null,"O",null));
+		
 		String apprentissage = request.getParameter("apprentissage");
 		char app = apprentissage.charAt(0);
 		String biblio = request.getParameter("biblio");

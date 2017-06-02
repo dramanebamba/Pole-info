@@ -43,9 +43,9 @@
 			<li><a href="./GetManageTeacher">Enseignant</a></li>
 			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
 			<li><a href="./GetManageJSON">Exports JSON</a></li>
-			<li class="active"><a href="./GetManageMasterContenu">Masters &amp;
+			<li><a href="./GetManageMasterContenu">Masters &amp;
 					Contenus</a></li>
-			<li><a href="./GetManageAffectation">Affectations</a></li>
+			<li class="active"><a href="./GetManageAffectation">Affectations</a></li>
 			<li><a href="./GetManageCours">Cours</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
@@ -58,7 +58,7 @@
 	</nav>
 
 	<div class="container" style="padding-top:70px;">
-		<h1 class="page-header">Affectation des étudiants</h1>
+		<h1 class="page-header">Affectation des cours facultatifs</h1>
 		
 		<form class="form-horizontal" action="./AffectationCours"
 			method="post">
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 		</form>
-		<a href="./GetAffectationMaster">Voir la liste des affectations</a>
+		<!-- <a href="./GetAffectationMaster">Voir la liste des affectations</a>  -->
 	</div>
 	<% } else{%>
 	NOTHING TO SHOW
