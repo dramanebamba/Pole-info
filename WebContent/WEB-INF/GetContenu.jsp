@@ -123,7 +123,7 @@
 					</a></td>
 					<td><form method="post" action="/pole_info/GetContenuServlet?operation=changeMaster">
 							<p>
-								<select name="changeMaster" onchange="this.form.submit()">
+								<select class="form-control" name="changeMaster" onchange="this.form.submit()">
 									<%
 									for (Master masterAll : listAllMasters) 
 									{
@@ -146,7 +146,7 @@
 					<form method="post" 
 					action="/pole_info/GetContenuServlet?operation=changeObligation">
 						<p>
-							<select name="changeObli" onchange="this.form.submit()">
+							<select class="form-control" name="changeObli" onchange="this.form.submit()">
 								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%> selected><%= obligatoire_final %></option>
 								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%>><%= (obligatoire_final.equals("Non"))?"Oui":"Non" %></option>
 							</select>

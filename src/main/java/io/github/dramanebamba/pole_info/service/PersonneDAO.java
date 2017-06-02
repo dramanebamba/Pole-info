@@ -22,12 +22,15 @@ public class PersonneDAO {
 	private static final String QUERY_IS_IN = "SELECT u FROM Personne u WHERE u.email = :email";
 	private static final String QUERY_GET_ID = "SELECT u FROM Personne u WHERE u.id = :id";
 	private static final String QUERY_GET_BY_MASTER = "SELECT u FROM Personne u WHERE u.id_master = :id_master AND u.roles = 'S'";
-	
 	private static final String QUERY_GET_BY_IDS = "SELECT u FROM Personne u WHERE u.id IN :studentIds";
+	private static final String QUERY_LIST_TEACHER = "SELECT u FROM Personne u WHERE u.roles = :role";
+	
+	
 	private static final String PARAM_EMAIL = "email";
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_ID_MASTER = "id_master";
+	private static final String PARAM_ROLE = "role";
 	
 	Personne personne;
 	
@@ -145,5 +148,27 @@ public class PersonneDAO {
 		System.out.println(listStudent);
 		return listStudent;
 	}
-
+	
+	public List<Personne> listTeacher(){
+		//Persistence
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
+		EntityManager em = factory.createEntityManager();
+		
+		//Begin
+		em.getTransaction().begin();
+		
+		//Query to retrieve teachers
+		List<Personne> listTeacher  = em.createQuery(QUERY_LIST_TEACHER,Personne.class)
+				.setParameter(PARAM_ROLE, "M")
+				.getResultList();		
+		System.out.println(listTeacher);
+		
+		//commit
+		em.getTransaction().commit();
+		
+		//Close
+		em.close();
+		
+		return listTeacher;
+	}
 }

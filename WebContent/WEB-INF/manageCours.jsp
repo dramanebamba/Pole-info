@@ -92,7 +92,7 @@
 			</h1>
 		</div>
 		<h2 style="color: #000;">Gestion des cours</h2>
-		<a class="btn btn-success" href="./PostCoursServlet">
+		<a class="btn btn-success" href="./GetCreateCours">
 			Cr&eacute;ation d'un cours (obligatoire/facultatif)</a><br /> <br />
 
 		<%

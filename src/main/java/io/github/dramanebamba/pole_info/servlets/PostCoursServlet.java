@@ -56,16 +56,16 @@ public class PostCoursServlet extends HttpServlet
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		//String operation = request.getParameter("operation");
-		String master = request.getParameter("nom_master");
-		String contenu = request.getParameter("nom_contenu");
-		String enseignant = request.getParameter("nom_enseignant");
+		String master = request.getParameter("masterName");
+		String contenu = request.getParameter("contenuName");
+		String enseignant = request.getParameter("teacherName");
 		String periode = request.getParameter("periode");
 		String obligatoire = request.getParameter("obligatoire");
 		String notes = request.getParameter("notes");
 
 
-		String connected = (String) session.getAttribute("connected");
-		session.setAttribute("true", connected);
+		//String connected = (String) session.getAttribute("connected");
+		//session.setAttribute("true", connected);
 
 		int id_master = coursDAO.getIdMaster(master);
 		int id_contenu = coursDAO.getIdContenu(contenu);

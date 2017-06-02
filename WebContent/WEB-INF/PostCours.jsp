@@ -22,6 +22,24 @@
 <link href='http://fonts.googleapis.com/css?family=Grand+Hotel'
 	rel='stylesheet' type='text/css'>
 </head>
+<%@page import="main.java.io.github.dramanebamba.pole_info.model.Contenu,
+				main.java.io.github.dramanebamba.pole_info.model.Master,
+				main.java.io.github.dramanebamba.pole_info.model.Personne,
+				java.util.List" %>
+<%
+	@SuppressWarnings("unchecked")
+	List<Master> listMaster = (List<Master>) session.getAttribute("listMaster");
+	
+	@SuppressWarnings("unchecked")
+	List<Contenu> listContenu = (List<Contenu>) session.getAttribute("listContenu");
+	
+	@SuppressWarnings("unchecked")
+	List<Personne> listTeacher = (List<Personne>) session.getAttribute("listTeacher");
+	
+	String connected = (String) session.getAttribute("connected");
+	
+	if (connected == "true") {
+%>
   <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -56,21 +74,35 @@
 
       <form class="form-horizontal" action="./PostCoursServlet" method="post">
         <div class="form-group">
-          <label for="exampleInputName2" class="col-sm-2 control-label">Nom du master</label>
+          <label for="masterName" class="col-sm-2 control-label">Nom du master</label>
           <div class="col-sm-10">
-            <input type="text" name="nom_master" class="form-control" placeholder="Nom master">
+            <select class="form-control" id="masterName" name="masterName">
+            <% for(Master m : listMaster){ %>
+            	<option value="<%= m.getId() %>"><%= m.getNom() %></option>
+            <% } %>
+            </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputName2" class="col-sm-2 control-label">Nom du contenu</label>
+            <label for="contenuName" class="col-sm-2 control-label">Nom du contenu</label>
             <div class="col-sm-10">
-              <input type="text" name="nom_contenu" class="form-control" placeholder="Nom du contenu">
+              <select class="form-control" id="contenuName" name="contenuName">
+            	<% for(Contenu c : listContenu){ %>
+            		<option value="<%= c.getId() %>"><%= c.getNomMat() %></option>
+           		<% } %>
+            </select>
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputName2" class="col-sm-2 control-label">Nom de l'enseignant</label>
+              <label for="teacherName" class="col-sm-2 control-label">Nom de l'enseignant</label>
               <div class="col-sm-10">
-                <input type="text" name="nom_enseignant" class="form-control" placeholder="Nom de l'enseignant">
+                <select class="form-control" id="teacherName" name="teacherName">
+            		<% for(Personne p : listTeacher){ 
+            				if(!p.getNom().equals("poleinfo3") || !p.getNom().equals("admin")){ %>
+            					<option value="<%= p.getId() %>"><%= p.getPrenom() %> <%= p.getNom() %></option>
+           			<% 		}
+            			} %>
+            	</select>
                 </div>
               </div>
               <div class="form-group">
@@ -102,6 +134,6 @@
                 </form>
                 <!-- <a href="./GetCoursServlet">Voir la liste des cours</a>  -->
               </div>
-
+<% } %>
             </body>
           </html>

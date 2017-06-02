@@ -13,7 +13,7 @@ import main.java.io.github.dramanebamba.pole_info.model.Master;
 @RequestScoped
 public class MasterDAO
 {
-	private final static String QUERY_LIST_MASTER = "SELECT b FROM Master b";
+	private final static String QUERY_LIST_MASTER = "SELECT b FROM Master b where b.id <> 0";
 	private final static String QUERY_GET_BY_ID = "SELECT b FROM Master b WHERE b.id = :id";
 	private final static String QUERY_MASTER = "SELECT b FROM Master b WHERE b.id = :id";
 	private static final String PARAM_ID = "id";
@@ -52,7 +52,7 @@ public class MasterDAO
 
 		return listeDesMasters;
 	}
-
+	
 	public void supprimerMaster(int key){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pole");
 		EntityManager em = factory.createEntityManager();
