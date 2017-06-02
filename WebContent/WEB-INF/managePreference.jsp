@@ -30,8 +30,8 @@
 	      <a class="navbar-brand" href="./accueil">Pole Info</a>
 	    </div>
 	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="./accueil">Menu</a></li>
-	      <li><a href="./GetManagePreference">Pr&eacute;f&eacute;rences</a></li>
+	      <li><a href="./accueil">Menu</a></li>
+	      <li class="active"><a href="./GetManagePreference">Pr&eacute;f&eacute;rences</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
       		<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->

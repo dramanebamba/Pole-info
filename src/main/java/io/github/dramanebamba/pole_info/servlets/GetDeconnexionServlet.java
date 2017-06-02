@@ -34,6 +34,7 @@ public class GetDeconnexionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("connected", "false");
+		
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/index.html");
 		dispatch.forward(request, response);
 	}

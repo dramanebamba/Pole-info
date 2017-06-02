@@ -24,20 +24,15 @@
 </head>
 <%
 	String connected = (String) session.getAttribute("connected");
-%>
-<%
+
 	String pseudo = (String) session.getAttribute("login");
-%>
-<%
+
 	String role = (String) session.getAttribute("roles");
-%>
-<%
+
 	int id_ma = (Integer) session.getAttribute("id_m");
-%>
-<%
+	
 	int id = (Integer) session.getAttribute("id");
-%>
-<%
+	
 	if (connected == "true") {
 %>
 <body

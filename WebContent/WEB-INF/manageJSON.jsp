@@ -49,7 +49,7 @@
 			<a class="navbar-brand" href="./accueil">Pole Info</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="./accueil">Menu</a></li>
+			<li><a href="./accueil">Menu</a></li>
 			<%
 				if (role.equals("S")) {
 			%>
@@ -63,7 +63,7 @@
 			<li><a href="./GetManageStudent">&Eacute;tudiant</a></li>
 			<li><a href="./GetManageTeacher">Enseignant</a></li>
 			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
-			<li><a href="./GetManageJSON">Exports JSON</a></li>
+			<li class="active"><a href="./GetManageJSON">Exports JSON</a></li>
 			<li><a href="./GetManageMasterContenu">Masters &amp; Contenus</a></li>
 			<li><a href="./GetManageAffectation">Affectations</a></li>
 			<li><a href="./GetManageCours">Cours</a></li>

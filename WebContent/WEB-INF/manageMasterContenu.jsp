@@ -49,7 +49,7 @@
 			<a class="navbar-brand" href="./accueil">Pole Info</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="./accueil">Menu</a></li>
+			<li><a href="./accueil">Menu</a></li>
 			<%
 				if (role.equals("S")) {
 			%>
@@ -64,7 +64,7 @@
 			<li><a href="./GetManageTeacher">Enseignant</a></li>
 			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
 			<li><a href="./GetManageJSON">Exports JSON</a></li>
-			<li><a href="./GetManageMasterContenu">Masters &amp; Contenus</a></li>
+			<li class="active"><a href="./GetManageMasterContenu">Masters &amp; Contenus</a></li>
 			<li><a href="./GetManageAffectation">Affectations</a></li>
 			<li><a href="./GetManageCours">Cours</a></li>
 			<%
@@ -88,7 +88,7 @@
 		<div class="page-header">
 			<h1 style="color: #000;">
 				Bienvenue sur votre espace Pole Info <br /> <small style="color: #FFF;">Vous êtes
-					sur la page de gestion des export JSON</small>
+					sur la page de gestion des Masters et Contenus</small>
 			</h1>
 		</div>
 		<h2 style="color: #000;">Gestion des masters et contenus</h2>

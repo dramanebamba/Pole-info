@@ -37,10 +37,31 @@
 
 	@SuppressWarnings("unchecked")
 	List<Contenu> listContenu = (List<Contenu>) session.getAttribute("listContenu");
+	
+	int id = (Integer) session.getAttribute("id");
 %>
 
 <body>
-	<div class="container">
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="./accueil">Pole Info</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="./accueil">Menu</a></li>
+			<li  class="active"><a href="./GetPreferenceServlet?id=<%=id%>">Mes pr&eacute;f&eacute;rences</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+			<li><a href="./GetDeconnexion"> <span
+					class="glyphicon glyphicon-log-out"></span> Se d&eacute;connecter
+			</a></li>
+		</ul>
+	</div>
+	</nav>
+
+	<div class="container" style="padding-top:70px;">
 		<h1>Création d'une pr&eacute;f&eacute;rence</h1>
 		<a href="./GetPreferenceServlet">Voir la liste des préférences</a>
 
@@ -108,7 +129,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Créer</button>
-					<a href="./accueil" class="btn btn-danger">Annuler</a>
+					<!-- <a href="./accueil" class="btn btn-danger">Annuler</a> -->
 				</div>
 			</div>
 		</form>

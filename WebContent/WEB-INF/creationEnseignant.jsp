@@ -8,7 +8,7 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-	<title>Backup BDD</title>
+	<title>Cr&eacute;ation d'un enseignant</title>
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 	<link href="css/coming-sssoon.css" rel="stylesheet" />
 
@@ -16,9 +16,14 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 </head>
-<% 	String connected = (String) session.getAttribute("connected");
+<% String connected = (String) session.getAttribute("connected");
+
 	String pseudo = (String) session.getAttribute("login");
-if(connected == "true" && pseudo.equals("admin")){%>
+
+	String role = (String) session.getAttribute("roles");
+	
+	if (connected == "true") {
+%>
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -29,8 +34,8 @@ if(connected == "true" && pseudo.equals("admin")){%>
 		<ul class="nav navbar-nav">
 			<li><a href="./accueil">Menu</a></li>
 			<li><a href="./GetManageStudent">&Eacute;tudiant</a></li>
-			<li><a href="./GetManageTeacher">Enseignant</a></li>
-			<li class="active"><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
+			<li class="active"><a href="./GetManageTeacher">Enseignant</a></li>
+			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
 			<li><a href="./GetManageJSON">Exports JSON</a></li>
 			<li><a href="./GetManageMasterContenu">Masters &amp;
 					Contenus</a></li>
@@ -47,25 +52,31 @@ if(connected == "true" && pseudo.equals("admin")){%>
 	</nav>
 
 	<div class="container" style="padding-top:70px;">
-		<div class="row">
-			<form class="form-horizontal" action="./PostCreateBackupServlet" method="post">
-				<h1>Sauvegarde de la base de données</h1>
-				<div class="form-group">
-					<label for="etiq">&Eacute;tiquette</label>
-					<input class="form-control" type="text" name="etiq" id="etiq"/>
-				</div>
-				<div class="form-group">
-					<button class="btn btn-primary" type="submit">Sauvegarder la BDD</button>
-				</div> 
-			</form>
-			
-		<!-- <div class="row">
-				<a class="btn btn-danger" href="./accueil">Annuler</a>
-			</div> -->
-		</div>	
+	<h1>Formulaire de cr&eacute;ation d'un enseignant</h1>
+	
+	<div class="row">
+		<form action="./PostCreateEnseignant" method="post">
+			<div class="form-group">
+			<label>Nom</label> <input class="form-control" type="text" name="last_name" />
+			</div>
+			<div class="form-group">
+			<label>Pr&eacute;nom</label> <input class="form-control" type="text" name="first_name"/>
+			</div>
+			<div class="form-group">
+			<label>E-mail</label> <input class="form-control" type="email" name="mail" />
+			</div>
+			<div class="form-group">
+			<button type="submit" class="btn btn-primary">Cr&eacute;er l'enseignant</button>
+			</div>
+		</form>
 	</div>
-<% } else{%>
-	NOTHING TO SHOW
-<%} %>
+	
+	<div class="row">
+		<input class="btn btn-info" type="button" name="import" value="Importation d'un enseignant">
+		<!-- <a class="btn btn-danger" href="./accueil">Annuler</a> -->
+	</div>
+	
+	</div>
 </body>
+<% } %>
 </html>

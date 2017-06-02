@@ -33,8 +33,34 @@
 	if (connected == "true" && pseudo.equals("admin")) {
 %>
 <body>
-	<div class="container">
-		<h1>Liste des sauvegardes de la base de données</h1>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="./accueil">Pole Info</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="./accueil">Menu</a></li>
+			<li><a href="./GetManageStudent">&Eacute;tudiant</a></li>
+			<li><a href="./GetManageTeacher">Enseignant</a></li>
+			<li class="active"><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
+			<li><a href="./GetManageJSON">Exports JSON</a></li>
+			<li><a href="./GetManageMasterContenu">Masters &amp;
+					Contenus</a></li>
+			<li><a href="./GetManageAffectation">Affectations</a></li>
+			<li><a href="./GetManageCours">Cours</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+			<li><a href="./GetDeconnexion"> <span
+					class="glyphicon glyphicon-log-out"></span> Se d&eacute;connecter
+			</a></li>
+		</ul>
+	</div>
+	</nav>
+
+	<div class="container" style="padding-top:70px;">
+		<h1 class="page-header">Liste des sauvegardes de la base de données</h1>
 		<div class="row">
 			<table class="table">
 				<thead>
@@ -70,9 +96,9 @@
 			</table>
 		</div>
 		<br />
-		<div class="row">
+		<!-- <div class="row">
 			<a class="btn btn-danger" href="./accueil">Annuler</a>
-		</div>
+		</div> -->
 	</div>
 	<%
 		} else {

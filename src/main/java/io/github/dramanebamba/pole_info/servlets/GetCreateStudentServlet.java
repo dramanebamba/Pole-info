@@ -30,7 +30,7 @@ public class GetCreateStudentServlet extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEtudiant.html");
+		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/creationEtudiant.jsp");
 		dispatch.forward(request, response);
 	}
 

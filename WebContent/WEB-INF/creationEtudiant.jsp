@@ -11,7 +11,7 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-<title>Liste des Masters</title>
+<title>Cr&eacute;tion d'un &eacute;tudiant</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 <link href="css/coming-sssoon.css" rel="stylesheet" />
 
@@ -22,17 +22,18 @@
 <link href='http://fonts.googleapis.com/css?family=Grand+Hotel'
 	rel='stylesheet' type='text/css'>
 </head>
-<%@ page
-	import="main.java.io.github.dramanebamba.pole_info.model.Master,java.util.List"%>
-<%
-	String connected = (String) session.getAttribute("connected");
+
+<% String connected = (String) session.getAttribute("connected");
+
 	String pseudo = (String) session.getAttribute("login");
 
-	@SuppressWarnings("unchecked")
-	List<Master> listeDesMasters = (List<Master>) session.getAttribute("listMaster");
+	String role = (String) session.getAttribute("roles");
+	
 	if (connected == "true") {
 %>
+
 <body>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -40,12 +41,12 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li><a href="./accueil">Menu</a></li>
-			<li><a href="./GetManageStudent">&Eacute;tudiant</a></li>
+			<li class="active"><a href="./GetManageStudent">&Eacute;tudiant</a></li>
 			<li><a href="./GetManageTeacher">Enseignant</a></li>
 			<li><a href="./GetManageDataBase">Base de donn&eacute;es</a></li>
 			<li><a href="./GetManageJSON">Exports JSON</a></li>
-			<li class="active"><a href="./GetManageMasterContenu">Masters
-					&amp; Contenus</a></li>
+			<li><a href="./GetManageMasterContenu">Masters &amp;
+					Contenus</a></li>
 			<li><a href="./GetManageAffectation">Affectations</a></li>
 			<li><a href="./GetManageCours">Cours</a></li>
 		</ul>
@@ -58,45 +59,46 @@
 	</div>
 	</nav>
 
-	<div class="container" style="padding-top: 70px;">
-		<h1 class="page-header">Liste des masters</h1>
+	<div class="container" style="padding-top:70px;">
 		<div class="row">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Nom</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						for (Master c : listeDesMasters) {
-					%>
-					<tr>
-						<td><%=c.getNom()%></td>
-						<td><%=c.getDesc()%></td>
-						<td class="test-align"><a
-							href="./GetMasterServlet?operation=remove&id=<%=c.getId()%>">
-								<span class="glyphicon glyphicon-trash"></span>
-						</a></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
+			<H1>Formulaire de cr&eacute;ation d'un &eacute;tudiant</H1>
+			<br />
+
+			<form action="./PostCreateStudent" method="post">
+				<!-- <form action="./PostCreateStudent?operation=createStudent" method="post"> -->
+				<div class="form-group">
+					<label>Nom</label> <input class="form-control" type="text"
+						name="last_name" id="last_name" placeholder="Nom" />
+				</div>
+				<div class="form-group">
+					<label>Pr&eacute;nom</label> <input class="form-control"
+						type="text" name="first_name" id="first_name"
+						placeholder="Pr&eacute;nom" />
+				</div>
+				<div class="form-group">
+					<label>E-mail</label> <input class="form-control" type="text"
+						name="email" id="mail" placeholder="prenom.nom@dauphine.eu" />
+				</div>
+				<div class="form-group">
+					<label>Parcours</label> <SELECT class="form-control"
+						name="parcours" id="parcours" size="1">
+						<OPTION>SITN</OPTION>
+						<OPTION>IF</OPTION>
+						<OPTION>ID</OPTION>
+					</SELECT>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Cr&eacute;er
+						l'&eacute;tudiant</button>
+				</div>
+			</form>
 		</div>
-		<br />
-		<!-- <div class="row">
-			<a class="btn btn-danger" href="./accueil">Annuler</a>
-		</div> -->
+		<div class="row">
+			<input class="btn btn-info" type="button" name="import"
+				value="Importation d'un &eacute;tudiant">
+				<!-- <a class="btn btn-danger" href="./accueil">Annuler</a> -->
+		</div>
 	</div>
-	<%
-		} else {
-	%>
-	NOTHING TO SHOW
-	<%
-		}
-	%>
 </body>
+<% } %>
 </html>
