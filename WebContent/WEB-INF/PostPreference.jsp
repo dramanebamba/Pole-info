@@ -50,7 +50,7 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li><a href="./accueil">Menu</a></li>
-			<li  class="active"><a href="./GetPreferenceServlet?id=<%=id%>">Mes pr&eacute;f&eacute;rences</a></li>
+			<li  class="active"><a href="./GetManagePreference">Pr&eacute;f&eacute;rences</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->

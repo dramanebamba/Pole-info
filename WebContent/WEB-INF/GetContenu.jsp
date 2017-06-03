@@ -124,13 +124,14 @@
 					<td><form method="post" action="/pole_info/GetContenuServlet?operation=changeMaster">
 							<p>
 								<select class="form-control" name="changeMaster" onchange="this.form.submit()">
+									<option selected></option>
 									<%
 									for (Master masterAll : listAllMasters) 
 									{
 										if (masterAll.getNom().equals(name_master)) 
 										{
 										%>
-											<option value=<%=(Integer.toString(id_master)+"/"+Integer.toString(masterAll.getId())+"/"+Integer.toString(c.getId()))%> selected><%=masterAll.getNom()%></option>
+											<option value=<%=(Integer.toString(id_master)+"/"+Integer.toString(masterAll.getId())+"/"+Integer.toString(c.getId()))%>><%=masterAll.getNom()%></option>
 										<%
 										} else {
 										%>
@@ -147,7 +148,8 @@
 					action="/pole_info/GetContenuServlet?operation=changeObligation">
 						<p>
 							<select class="form-control" name="changeObli" onchange="this.form.submit()">
-								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%> selected><%= obligatoire_final %></option>
+								<option selected></option>
+								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%>><%= obligatoire_final %></option>
 								<option value=<%=Integer.toString(c.getId())+"/"+Integer.toString(id_master)+"/"+obligatoire_final%>><%= (obligatoire_final.equals("Non"))?"Oui":"Non" %></option>
 							</select>
 						</p>

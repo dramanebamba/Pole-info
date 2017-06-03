@@ -77,6 +77,7 @@
           <label for="masterName" class="col-sm-2 control-label">Nom du master</label>
           <div class="col-sm-10">
             <select class="form-control" id="masterName" name="masterName">
+            <option></option>
             <% for(Master m : listMaster){ %>
             	<option value="<%= m.getId() %>"><%= m.getNom() %></option>
             <% } %>
@@ -87,6 +88,7 @@
             <label for="contenuName" class="col-sm-2 control-label">Nom du contenu</label>
             <div class="col-sm-10">
               <select class="form-control" id="contenuName" name="contenuName">
+              	<option></option>
             	<% for(Contenu c : listContenu){ %>
             		<option value="<%= c.getId() %>"><%= c.getNomMat() %></option>
            		<% } %>
@@ -97,6 +99,7 @@
               <label for="teacherName" class="col-sm-2 control-label">Nom de l'enseignant</label>
               <div class="col-sm-10">
                 <select class="form-control" id="teacherName" name="teacherName">
+                	<option></option>
             		<% for(Personne p : listTeacher){ 
             				if(!p.getNom().equals("poleinfo3") || !p.getNom().equals("admin")){ %>
             					<option value="<%= p.getId() %>"><%= p.getPrenom() %> <%= p.getNom() %></option>
@@ -106,24 +109,25 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="exampleInputName2" class="col-sm-2 control-label">Période</label>
+                <label for="periode" class="col-sm-2 control-label">Période</label>
                 <div class="col-sm-10">
-                  <input type="text" name="periode" class="form-control" placeholder="Période">
+                  <input type="text" id="periode" name="periode" class="form-control" placeholder="Période">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName2" class="col-sm-2 control-label">Obligatoire ?</label>
+                  <label for="obligatoire" class="col-sm-2 control-label">Obligatoire ?</label>
                   <div class="col-sm-10">
-                    <select class="form-control" name="obligatoire">
-                      <option>O</option>
-                      <option>N</option>
+                    <select class="form-control" id="obligatoire" name="obligatoire">
+                    	<option value=""></option>
+                      	<option value="O">O</option>
+                      	<option value="N">N</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName2" class="col-sm-2 control-label">Notes</label>
+                  <label for="notes" class="col-sm-2 control-label">Notes</label>
                   <div class="col-sm-10">
-                    <input type="text" name="notes" class="form-control" placeholder="Notes">
+                    <input type="text" id="notes" name="notes" class="form-control" placeholder="Notes">
                     </div>
                   </div>
                   <div class="form-group">

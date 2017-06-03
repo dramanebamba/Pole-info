@@ -56,9 +56,9 @@ public class PostCoursServlet extends HttpServlet
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		//String operation = request.getParameter("operation");
-		String master = request.getParameter("masterName");
-		String contenu = request.getParameter("contenuName");
-		String enseignant = request.getParameter("teacherName");
+		int idMaster = Integer.parseInt(request.getParameter("masterName"));
+		int idContenu = Integer.parseInt(request.getParameter("contenuName"));
+		int idEnseignant = Integer.parseInt(request.getParameter("teacherName"));
 		String periode = request.getParameter("periode");
 		String obligatoire = request.getParameter("obligatoire");
 		String notes = request.getParameter("notes");
@@ -67,12 +67,8 @@ public class PostCoursServlet extends HttpServlet
 		//String connected = (String) session.getAttribute("connected");
 		//session.setAttribute("true", connected);
 
-		int id_master = coursDAO.getIdMaster(master);
-		int id_contenu = coursDAO.getIdContenu(contenu);
-		int id_enseignant = coursDAO.getIdEnseignant(enseignant);
 		
-		
-		coursDAO.creerCours(new Cours(id_master,id_contenu,id_enseignant,periode,obligatoire, notes));
+		coursDAO.creerCours(new Cours(idMaster,idContenu,idEnseignant,periode,obligatoire, notes));
 		System.out.println("Nouveau cours créé");
 
 		RequestDispatcher dispatch = this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp");
